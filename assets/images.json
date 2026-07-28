@@ -1,0 +1,191 @@
+{
+  "hero": {
+    "title": "File:五月的风 May Wind.jpg",
+    "artist": "HOUYIMIN",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:%E4%BA%94%E6%9C%88%E7%9A%84%E9%A3%8E_May_Wind.jpg",
+    "width": 3264,
+    "height": 1832,
+    "file": "hero.jpg"
+  },
+  "zhanqiao": {
+    "file": "zhanqiao.jpg",
+    "title": "File:青岛栈桥回澜阁.jpg",
+    "artist": "StefanTsingtauer",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:%E9%9D%92%E5%B2%9B%E6%A0%88%E6%A1%A5%E5%9B%9E%E6%BE%9C%E9%98%81.jpg",
+    "width": 3872,
+    "height": 2592
+  },
+  "catholic": {
+    "file": "catholic.jpg",
+    "title": "File:St. Macheal's Cathedral of Tsingtao.jpg",
+    "artist": "User:Zhangguozhen",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:St._Macheal%27s_Cathedral_of_Tsingtao.jpg",
+    "width": 2988,
+    "height": 5312
+  },
+  "badaguan": {
+    "title": "File:青岛居庸关路9号 2024-04-24.jpg",
+    "artist": "StefanTsingtauer",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:%E9%9D%92%E5%B2%9B%E5%B1%85%E5%BA%B8%E5%85%B3%E8%B7%AF9%E5%8F%B7_2024-04-24.jpg",
+    "width": 3067,
+    "height": 2045,
+    "file": "badaguan.jpg"
+  },
+  "huashilou": {
+    "file": "huashilou.jpg",
+    "title": "File:青岛花石楼东南侧 2011-02-20.jpg",
+    "artist": "Ludger Heide",
+    "license": "CC BY-SA 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:%E9%9D%92%E5%B2%9B%E8%8A%B1%E7%9F%B3%E6%A5%BC%E4%B8%9C%E5%8D%97%E4%BE%A7_2011-02-20.jpg",
+    "width": 2848,
+    "height": 4288
+  },
+  "governor": {
+    "file": "governor.jpg",
+    "title": "File:青岛迎宾馆信号山角度.jpg",
+    "artist": "StefanTsingtauer",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:%E9%9D%92%E5%B2%9B%E8%BF%8E%E5%AE%BE%E9%A6%86%E4%BF%A1%E5%8F%B7%E5%B1%B1%E8%A7%92%E5%BA%A6.jpg",
+    "width": 3872,
+    "height": 2592
+  },
+  "protestant": {
+    "file": "protestant.jpg",
+    "title": "File:青岛江苏路基督堂外立面2024.3 (1).jpg",
+    "artist": "ScareCriterion12",
+    "license": "CC0",
+    "source": "https://commons.wikimedia.org/wiki/File:%E9%9D%92%E5%B2%9B%E6%B1%9F%E8%8B%8F%E8%B7%AF%E5%9F%BA%E7%9D%A3%E5%A0%82%E5%A4%96%E7%AB%8B%E9%9D%A22024.3_(1).jpg",
+    "width": 7773,
+    "height": 5199
+  },
+  "signal": {
+    "file": "signal.jpg",
+    "title": "File:信號山 信号山 Signal Hill (HDR) 青島 青岛 Qingdao 中國旅遊 中国旅游 China Tourism SML.20121013.G12.00880-00881-00882.HDR.ChinaTourism.CN.Qingdao.SignalHill (8324917026).jpg",
+    "artist": "See-ming Lee from Hong Kong SAR, China",
+    "license": "CC BY 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:%E4%BF%A1%E8%99%9F%E5%B1%B1_%E4%BF%A1%E5%8F%B7%E5%B1%B1_Signal_Hill_(HDR)_%E9%9D%92%E5%B3%B6_%E9%9D%92%E5%B2%9B_Qingdao_%E4%B8%AD%E5%9C%8B%E6%97%85%E9%81%8A_%E4%B8%AD%E5%9B%BD%E6%97%85%E6%B8%B8_China_Tourism_SML.20121013.G12.00880-00881-00882.HDR.ChinaTourism.CN.Qingdao.SignalHill_(8324917026).jpg",
+    "width": 2064,
+    "height": 3333
+  },
+  "xiaoqingdao": {
+    "file": "xiaoqingdao.jpg",
+    "title": "File:小青岛灯塔 Leuchtturm Insel Xiaoqingdao，Qingdao.jpg",
+    "artist": "StefanTsingtauer",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:%E5%B0%8F%E9%9D%92%E5%B2%9B%E7%81%AF%E5%A1%94_Leuchtturm_Insel_Xiaoqingdao%EF%BC%8CQingdao.jpg",
+    "width": 3872,
+    "height": 2592
+  },
+  "luxun": {
+    "file": "luxun.jpg",
+    "title": "File:Gate - panoramio (26).jpg",
+    "artist": "---=XEON=---",
+    "license": "CC BY 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Gate_-_panoramio_(26).jpg",
+    "width": 6000,
+    "height": 4000
+  },
+  "beach1": {
+    "file": "beach1.jpg",
+    "title": "File:从小鱼山公园看第一海水浴场.jpg",
+    "artist": "Sprt98",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:%E4%BB%8E%E5%B0%8F%E9%B1%BC%E5%B1%B1%E5%85%AC%E5%9B%AD%E7%9C%8B%E7%AC%AC%E4%B8%80%E6%B5%B7%E6%B0%B4%E6%B5%B4%E5%9C%BA.jpg",
+    "width": 4032,
+    "height": 3024
+  },
+  "shilaoren": {
+    "file": "shilaoren.jpg",
+    "title": "File:青岛石老人海水浴场20260526.jpg",
+    "artist": "Sprt98",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:%E9%9D%92%E5%B2%9B%E7%9F%B3%E8%80%81%E4%BA%BA%E6%B5%B7%E6%B0%B4%E6%B5%B4%E5%9C%BA20260526.jpg",
+    "width": 4096,
+    "height": 3072
+  },
+  "beermuseum": {
+    "file": "beermuseum.jpg",
+    "title": "File:Affiliated shops of Tsingtao Brewery Museum (20250919133830).jpg",
+    "artist": "N509FZ",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Affiliated_shops_of_Tsingtao_Brewery_Museum_(20250919133830).jpg",
+    "width": 7169,
+    "height": 4779
+  },
+  "station": {
+    "file": "station.jpg",
+    "title": "File:East façade of Qingdao Railway Station (20191003074615).jpg",
+    "artist": "N509FZ",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:East_fa%C3%A7ade_of_Qingdao_Railway_Station_(20191003074615).jpg",
+    "width": 5184,
+    "height": 3456
+  },
+  "sailing": {
+    "file": "sailing.jpg",
+    "title": "File:Pier to lighthouse, 2008 Olympic Sailing Center, Qingdao Shandong China - panoramio.jpg",
+    "artist": "Dennis Shimer",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Pier_to_lighthouse,_2008_Olympic_Sailing_Center,_Qingdao_Shandong_China_-_panoramio.jpg",
+    "width": 6677,
+    "height": 1102
+  },
+  "xiaoyushan": {
+    "file": "xiaoyushan.jpg",
+    "title": "File:小鱼山公园——广场.jpg",
+    "artist": "Sprt98",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:%E5%B0%8F%E9%B1%BC%E5%B1%B1%E5%85%AC%E5%9B%AD%E2%80%94%E2%80%94%E5%B9%BF%E5%9C%BA.jpg",
+    "width": 4032,
+    "height": 3024
+  },
+  "kangyouwei": {
+    "file": "kangyouwei.jpg",
+    "title": "File:Former Residence of Kang Youwei in Qingdao (SE View).jpg",
+    "artist": "Brian Ammon",
+    "license": "CC0",
+    "source": "https://commons.wikimedia.org/wiki/File:Former_Residence_of_Kang_Youwei_in_Qingdao_(SE_View).jpg",
+    "width": 4032,
+    "height": 3024
+  },
+  "liyuan": {
+    "file": "liyuan.jpg",
+    "title": "File:青岛大鲍岛——青岛里院展览馆入口.jpg",
+    "artist": "Sprt98",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:%E9%9D%92%E5%B2%9B%E5%A4%A7%E9%B2%8D%E5%B2%9B%E2%80%94%E2%80%94%E9%9D%92%E5%B2%9B%E9%87%8C%E9%99%A2%E5%B1%95%E8%A7%88%E9%A6%86%E5%85%A5%E5%8F%A3.jpg",
+    "width": 4000,
+    "height": 2992
+  },
+  "museum": {
+    "file": "museum.jpg",
+    "title": "File:青岛市博物馆东侧浮雕.jpg",
+    "artist": "无知的路人",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:%E9%9D%92%E5%B2%9B%E5%B8%82%E5%8D%9A%E7%89%A9%E9%A6%86%E4%B8%9C%E4%BE%A7%E6%B5%AE%E9%9B%95.jpg",
+    "width": 8000,
+    "height": 6000
+  },
+  "beer": {
+    "file": "beer.jpg",
+    "title": "File:Self-service beer taps in Qingdao.JPG",
+    "artist": "Benlisquare",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Self-service_beer_taps_in_Qingdao.JPG",
+    "width": 6000,
+    "height": 4000
+  },
+  "oceancampus": {
+    "file": "oceancampus.jpg",
+    "title": "File:Yushan Campus of the Ocean University of China 01 2007-04.JPG",
+    "artist": "猫猫的日记本",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Yushan_Campus_of_the_Ocean_University_of_China_01_2007-04.JPG",
+    "width": 3264,
+    "height": 2448
+  }
+}

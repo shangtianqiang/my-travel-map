@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>青岛三日 · 红瓦绿树，碧海蓝天 | 8.14–8.16 人文看海之旅</title>
+<style>
+  :root{
+    --bg:#ffffff; --card:#ffffff; --ink:#1d2f3c; --muted:#5d6d78;
+    --sea:#0e5a7d; --sea-deep:#0a3f59; --tile:#b5442f; --sand:#f1f4f6;
+    --line:#e2e8ec; --gold:#c8a24a;
+    --shadow:0 10px 30px rgba(29,47,60,.08);
+    --radius:18px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:"Noto Serif SC","Songti SC","STSong","SimSun",serif;
+    background:var(--bg); color:var(--ink); line-height:1.75;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{display:block;max-width:100%}
+  a{color:var(--sea);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+
+  /* ---------- 顶部导航 ---------- */
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(255,255,255,.9);backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{display:flex;align-items:center;gap:28px;height:58px;overflow-x:auto}
+  nav .brand{font-weight:700;letter-spacing:.12em;color:var(--sea-deep);white-space:nowrap}
+  nav .brand span{color:var(--tile)}
+  nav a.nl{color:var(--muted);font-size:14px;white-space:nowrap}
+  nav a.nl:hover{color:var(--sea);text-decoration:none}
+
+  /* ---------- Hero ---------- */
+  header.hero{position:relative;min-height:66vh;display:flex;align-items:flex-end;overflow:hidden}
+  header.hero .bg{position:absolute;inset:0}
+  header.hero .bg img{width:100%;height:100%;object-fit:cover;object-position:center 42%}
+  header.hero .bg::after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg,rgba(10,40,60,.10) 0%,rgba(10,40,60,.18) 45%,rgba(10,38,56,.78) 100%);
+  }
+  header.hero .inner{position:relative;z-index:2;width:100%;padding:64px 24px 54px;color:#fff;
+    max-width:1180px;margin:0 auto}
+  .hero .kicker{letter-spacing:.35em;font-size:13px;color:#ffd9a8;margin-bottom:14px}
+  .hero h1{font-size:clamp(30px,5.2vw,56px);line-height:1.25;font-weight:900;letter-spacing:.06em;text-shadow:0 2px 18px rgba(0,0,0,.35)}
+  .hero .sub{margin-top:14px;font-size:clamp(14px,1.6vw,17px);color:rgba(255,255,255,.92);max-width:46em}
+  .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+  .chip{
+    border:1px solid rgba(255,255,255,.45);border-radius:999px;
+    padding:6px 16px;font-size:13px;color:#fff;background:rgba(10,50,70,.35);backdrop-filter:blur(4px);
+  }
+  .photo-credit{font-size:11px;color:rgba(255,255,255,.72);margin-top:16px}
+
+  /* ---------- 通用区块 ---------- */
+  section{padding:72px 0 8px}
+  .sec-head{display:flex;align-items:baseline;gap:18px;margin-bottom:8px}
+  .sec-head .no{font-size:44px;font-weight:900;color:var(--sand);-webkit-text-stroke:1px var(--tile);line-height:1}
+  .sec-head h2{font-size:clamp(24px,3vw,34px);color:var(--sea-deep);letter-spacing:.08em}
+  .sec-sub{color:var(--muted);margin-bottom:30px;max-width:52em}
+  .sec-sub em{color:var(--tile);font-style:normal}
+
+  /* ---------- 行程速览 ---------- */
+  .glance{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .glance .g{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:22px 22px 18px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+  .glance .g::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--sea)}
+  .glance .g:nth-child(2)::before{background:var(--tile)}
+  .glance .g:nth-child(3)::before{background:var(--gold)}
+  .glance .d{font-size:13px;color:var(--muted);letter-spacing:.15em}
+  .glance .t{font-size:19px;font-weight:700;margin:6px 0 8px;color:var(--sea-deep)}
+  .glance .s{font-size:14px;color:var(--muted)}
+
+  /* ---------- 交通卡 ---------- */
+  .transport{display:grid;grid-template-columns:1.05fr .95fr;gap:0;background:var(--card);
+    border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);margin-bottom:40px}
+  .transport .txt{padding:30px 30px 24px}
+  .transport h3{font-size:20px;color:var(--sea-deep);margin-bottom:14px;display:flex;align-items:center;gap:10px}
+  .transport .opt{padding:14px 0;border-top:1px dashed var(--line)}
+  .transport .opt:first-of-type{border-top:none}
+  .transport .opt b{color:var(--tile)}
+  .transport .opt p{font-size:14.5px;color:var(--muted)}
+  .transport .pic{position:relative;min-height:280px}
+  .transport .pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .transport .pic figcaption{position:absolute;left:12px;bottom:10px;font-size:12px;color:#fff;
+    background:rgba(10,50,70,.55);padding:3px 10px;border-radius:999px}
+
+  /* ---------- 每日时间轴 ---------- */
+  .day{margin-bottom:56px}
+  .day-head{display:flex;align-items:center;gap:16px;margin-bottom:6px}
+  .day-head .date{
+    background:var(--sea-deep);color:#fff;border-radius:12px;padding:8px 14px;text-align:center;line-height:1.3;
+    box-shadow:var(--shadow)}
+  .day-head .date b{display:block;font-size:20px}
+  .day-head .date span{font-size:12px;opacity:.85}
+  .day-head h3{font-size:clamp(20px,2.4vw,27px);color:var(--ink)}
+  .day-head .theme{font-size:13px;color:var(--tile);letter-spacing:.2em;margin-top:2px}
+  .route{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:14px 0 22px;font-size:13px;color:var(--muted)}
+  .route .stop{background:var(--sand);border:1px solid var(--line);border-radius:999px;padding:4px 13px;color:var(--sea-deep)}
+  .route .arr{color:var(--tile)}
+
+  .timeline{border-left:2px solid var(--line);margin-left:8px;padding-left:26px}
+  .tl{position:relative;padding:0 0 22px}
+  .tl::before{content:"";position:absolute;left:-33px;top:8px;width:12px;height:12px;border-radius:50%;
+    background:var(--bg);border:3px solid var(--sea)}
+  .tl:nth-child(even)::before{border-color:var(--tile)}
+  .tl .time{font-size:13px;color:var(--tile);font-weight:700;letter-spacing:.08em}
+  .tl .spot{font-size:17.5px;font-weight:700;color:var(--sea-deep);margin:2px 0}
+  .tl .desc{font-size:14.5px;color:var(--muted);max-width:56em}
+  .tl .tag{display:inline-block;font-size:11.5px;border:1px solid var(--line);background:var(--sand);
+    color:var(--sea-deep);border-radius:6px;padding:1px 8px;margin-left:8px;vertical-align:2px}
+
+  .tipbox{background:#f0f6fa;border:1px solid #d3e4ee;border-left:4px solid var(--sea);
+    border-radius:10px;padding:14px 18px;font-size:14px;color:#33566b;margin:4px 0 26px}
+
+  /* ---------- 照片墙 ---------- */
+  .photos{display:grid;grid-template-columns:repeat(12,1fr);gap:14px;margin-top:8px}
+  .photos figure{position:relative;border-radius:14px;overflow:hidden;box-shadow:var(--shadow);
+    background:var(--sand);opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+  .photos figure.show{opacity:1;transform:none}
+  .photos img{width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.16,1,.3,1)}
+  .photos figure:hover img{transform:scale(1.045)}
+  .photos figcaption{position:absolute;left:0;right:0;bottom:0;padding:26px 14px 10px;font-size:13px;color:#fff;
+    background:linear-gradient(180deg,transparent,rgba(8,35,50,.75));letter-spacing:.04em}
+  .photos figcaption small{opacity:.7;font-size:10.5px;margin-left:6px}
+  .w4{grid-column:span 4;height:240px}.w6{grid-column:span 6;height:260px}
+  .w8{grid-column:span 8;height:300px}.w12{grid-column:span 12;height:340px}
+  .wt{height:340px}
+
+  /* ---------- 住宿 ---------- */
+  .hotels{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+  .hotel{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:26px 26px 20px;box-shadow:var(--shadow);border-top:5px solid var(--sea)}
+  .hotel:nth-child(2){border-top-color:var(--tile)}
+  .hotel:nth-child(3){border-top-color:var(--gold)}
+  .hotel:nth-child(4){border-top-color:var(--sea-deep)}
+  .hotel .area{font-size:12px;color:var(--tile);letter-spacing:.2em}
+  .hotel h4{font-size:20px;color:var(--sea-deep);margin:4px 0 10px}
+  .hotel p{font-size:14.5px;color:var(--muted)}
+  .hotel .meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+  .hotel .meta span{font-size:12px;background:var(--sand);border:1px solid var(--line);
+    border-radius:999px;padding:3px 12px;color:var(--sea-deep)}
+
+  /* ---------- 美食 ---------- */
+  .food-hero{border-radius:var(--radius);overflow:hidden;position:relative;box-shadow:var(--shadow);margin-bottom:26px;height:330px}
+  .food-hero img{width:100%;height:100%;object-fit:cover}
+  .food-hero .cap{position:absolute;left:0;right:0;bottom:0;padding:40px 24px 18px;color:#fff;
+    background:linear-gradient(180deg,transparent,rgba(8,35,50,.8))}
+  .food-hero .cap b{font-size:20px;letter-spacing:.06em}
+  .food-hero .cap p{font-size:13.5px;opacity:.92}
+  .dishes{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .dish{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;box-shadow:var(--shadow)}
+  .dish h5{font-size:16.5px;color:var(--sea-deep)}
+  .dish h5 small{color:var(--tile);font-size:12px;margin-left:8px;font-weight:400}
+  .dish p{font-size:13.5px;color:var(--muted);margin-top:4px}
+  .streets{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:18px}
+  .street{background:var(--sand);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+  .street b{color:var(--sea-deep);font-size:15px}
+  .street p{font-size:12.5px;color:var(--muted);margin-top:2px}
+
+  /* ---------- 贴士 ---------- */
+  .tips{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .tip{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px;box-shadow:var(--shadow)}
+  .tip h5{color:var(--tile);font-size:15.5px;margin-bottom:6px}
+  .tip p{font-size:13.5px;color:var(--muted)}
+
+  /* ---------- 来源与页脚 ---------- */
+  details.credits{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 22px}
+  details.credits summary{cursor:pointer;color:var(--sea-deep);font-weight:700}
+  details.credits ul{margin:12px 0 0 1.2em;font-size:12.5px;color:var(--muted)}
+  details.credits li{margin-bottom:4px}
+  footer{margin:56px 0 0;border-top:1px solid var(--line);padding:26px 0 40px;
+    font-size:12.5px;color:var(--muted);text-align:center}
+
+  /* ---------- 动效 ---------- */
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s ease,transform .8s ease}
+  .reveal.show{opacity:1;transform:none}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto}
+    .reveal,.photos figure{opacity:1;transform:none;transition:none}
+    .photos img{transition:none}
+  }
+
+  /* ---------- 响应式 ---------- */
+  @media (max-width:900px){
+    .glance,.dishes,.tips{grid-template-columns:1fr 1fr}
+    .hotels,.streets{grid-template-columns:1fr 1fr}
+    .transport{grid-template-columns:1fr}
+    .transport .pic{min-height:220px}
+    .w4{grid-column:span 6}.w6{grid-column:span 12}.w8{grid-column:span 12}
+  }
+  @media (max-width:600px){
+    section{padding:54px 0 4px}
+    .glance,.dishes,.tips,.hotels,.streets{grid-template-columns:1fr}
+    .w4{grid-column:span 12;height:220px}
+    .w12{height:260px}
+    .day-head h3{font-size:19px}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">青岛三日<span> · </span>人文看海</div>
+    <a class="nl" href="#glance">行程速览</a>
+    <a class="nl" href="#day1">Day 1 老城海湾</a>
+    <a class="nl" href="#day2">Day 2 建筑啤酒</a>
+    <a class="nl" href="#day3">Day 3 日出山海</a>
+    <a class="nl" href="#stay">住宿</a>
+    <a class="nl" href="#food">美食</a>
+    <a class="nl" href="#tips">实用贴士</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="bg"><img src="assets/hero.jpg" alt="青岛五四广场五月的风雕塑与浮山湾天际线"></div>
+  <div class="inner">
+    <div class="kicker">QINGDAO · 2026.08.14 — 08.16</div>
+    <h1>红瓦绿树，碧海蓝天<br>三天两晚，把青岛的老灵魂与海岸线走一遍</h1>
+    <p class="sub">上海虹桥出发 · 只去有故事的人文景观，不去人挤人的网红打卡点 · 每天都留一段给大海</p>
+    <div class="chips">
+      <span class="chip">8月14日（周五）出发</span>
+      <span class="chip">三天两晚</span>
+      <span class="chip">人文建筑 × 海滨浴场</span>
+      <span class="chip">高铁 / 飞机双方案</span>
+    </div>
+    <div class="photo-credit">头图：五四广场“五月的风”与浮山湾 —— 真实照片，来源 Wikimedia Commons</div>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- ===================== 行程速览 ===================== -->
+<section id="glance">
+  <div class="sec-head"><div class="no">00</div><h2>行程速览</h2></div>
+  <p class="sec-sub">三天一条由西向东的海岸人文线：<em>第一天泡在老城</em>，<em>第二天看建筑与啤酒</em>，<em>第三天以海上日出收尾</em>。节奏松，路都顺，基本不走回头路。</p>
+  <div class="glance">
+    <div class="g reveal"><div class="d">DAY 1 · 8.14 周五</div><div class="t">抵达 · 老城与海湾</div>
+      <div class="s">栈桥 → 中山路 → 大鲍岛里院 → 天主教堂 → 鲁迅公园 → 小青岛日落</div></div>
+    <div class="g reveal"><div class="d">DAY 2 · 8.15 周六</div><div class="t">万国建筑 · 啤酒与老青岛</div>
+      <div class="s">八大关 → 二浴木栈道 → 啤酒博物馆 → 迎宾馆 → 基督教堂 → 信号山日落</div></div>
+    <div class="g reveal"><div class="d">DAY 3 · 8.16 周日</div><div class="t">海上日出 · 山与城的告别</div>
+      <div class="s">石老人日出 → 小鱼山 → 康有为故居 → 大学路老街 → 返程</div></div>
+  </div>
+</section>
+
+<!-- ===================== DAY 1 ===================== -->
+<section id="day1">
+  <div class="sec-head"><div class="no">01</div><h2>Day 1 · 抵达，扎进老城的黄昏</h2></div>
+  <p class="sec-sub">关键词：<em>百年栈桥、里院烟火、红礁石海岸</em>。抵达后不赶路，用一下午在老市南的坡街老巷里慢下来。</p>
+
+  <div class="transport reveal">
+    <div class="txt">
+      <h3>怎么去青岛（上海虹桥出发，8月14日）</h3>
+      <div class="opt"><b>方案 A · 高铁（推荐）</b>
+        <p>上海虹桥 → 青岛站 / 青岛北站，标杆车全程约 5.5–7 小时，二等座约 500–600 元（以 12306 为准）。<b>优先选终到“青岛站”的车次</b>——这座百年德式老站本身就是景点，出站步行 10 分钟即达栈桥。建议 7:00–9:00 发车，午后 14 点左右到。</p></div>
+      <div class="opt"><b>方案 B · 飞机</b>
+        <p>虹桥 → 青岛胶东国际机场约 1.5 小时。机场地铁 8 号线到青岛北站换乘 1/3 号线进市南，全程约 1 小时。暑期票价波动大，提前两周左右盯票；返程至少比航班早 2.5 小时从市区出发。</p></div>
+      <div class="opt"><b>市内移动</b>
+        <p>地铁 1/3/4/8 号线覆盖主要区域；老城景点密集，步行 + 偶尔打车最舒服。</p></div>
+    </div>
+    <figure class="pic">
+      <img src="assets/station.jpg" alt="青岛站东立面">
+      <figcaption>青岛站 · 1901 年始建的德式老站</figcaption>
+    </figure>
+  </div>
+
+  <div class="day">
+    <div class="day-head">
+      <div class="date"><b>14</b><span>周五</span></div>
+      <div><h3>老城漫步：从栈桥走到小青岛的灯</h3><div class="theme">百年地标 · 里院 · 日落</div></div>
+    </div>
+    <div class="route">
+      <span class="stop">青岛站</span><span class="arr">→</span><span class="stop">栈桥</span><span class="arr">→</span>
+      <span class="stop">中山路</span><span class="arr">→</span><span class="stop">大鲍岛里院</span><span class="arr">→</span>
+      <span class="stop">天主教堂</span><span class="arr">→</span><span class="stop">鲁迅公园</span><span class="arr">→</span><span class="stop">小青岛</span>
+    </div>
+    <div class="timeline">
+      <div class="tl"><div class="time">15:00</div><div class="spot">栈桥 · 回澜阁<span class="tag">免费</span><span class="tag">百年地标</span></div>
+        <div class="desc">青岛的城市起点。440 米长的石桥伸进青岛湾，尽头的回澜阁是 1892 年初建的百年印记。傍晚光线斜下来时最适合看海。</div></div>
+      <div class="tl"><div class="time">16:00</div><div class="spot">中山路 → 大鲍岛文化休闲街区<span class="tag">里院建筑</span></div>
+        <div class="desc">青岛的“母脉”老街。拐进大鲍岛，看更新后的里院群落——这种中西合璧的围合式民居全国少见，如今开着旧书店、咖啡铺和里院展览馆，比主街更有味道。</div></div>
+      <div class="tl"><div class="time">17:00</div><div class="spot">浙江路天主教堂（圣弥厄尔大教堂）<span class="tag">1930年代</span></div>
+        <div class="desc">哥特与罗马式双塔，花岗岩基座，是青岛天际线里最温柔的一笔。广场安静，适合坐在台阶上发会儿呆（入内参观小门票，以现场为准）。</div></div>
+      <div class="tl"><div class="time">18:00</div><div class="spot">鲁迅公园 → 小青岛<span class="tag">红礁石</span><span class="tag">日落</span></div>
+        <div class="desc">沿海边红礁石一路走到小青岛。岛上白塔是德占时期灯塔，“琴屿飘灯”是青岛十景之一——日落时分，看天光从金到蓝，海面一层层暗下去。</div></div>
+      <div class="tl"><div class="time">19:30</div><div class="spot">晚餐 · 中山路片区</div>
+        <div class="desc">百年老字号<b>春和楼</b>（香酥鸡、葱烧海参），或者<b>王姐烧烤</b>的烤鱿鱼配一扎鲜啤，都是老青岛的吃法。</div></div>
+    </div>
+    <div class="tipbox">提示：如果坐高铁到青岛站，可以把行李寄存在车站或先送酒店，栈桥就在旁边，几乎“出站即景点”。</div>
+    <div class="photos">
+      <figure class="w8"><img src="assets/zhanqiao.jpg" alt="栈桥回澜阁"><figcaption>栈桥 · 回澜阁<small>Wikimedia Commons</small></figcaption></figure>
+      <figure class="w4"><img src="assets/catholic.jpg" alt="浙江路天主教堂"><figcaption>圣弥厄尔大教堂<small>Commons</small></figcaption></figure>
+      <figure class="w4"><img src="assets/liyuan.jpg" alt="大鲍岛里院"><figcaption>大鲍岛 · 里院<small>Commons</small></figcaption></figure>
+      <figure class="w4"><img src="assets/luxun.jpg" alt="鲁迅公园牌坊"><figcaption>鲁迅公园<small>Commons</small></figcaption></figure>
+      <figure class="w4"><img src="assets/xiaoqingdao.jpg" alt="小青岛灯塔"><figcaption>小青岛 · 白塔<small>Commons</small></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== DAY 2 ===================== -->
+<section id="day2">
+  <div class="sec-head"><div class="no">02</div><h2>Day 2 · 万国建筑与一杯原浆</h2></div>
+  <p class="sec-sub">关键词：<em>八大关的梧桐、1903 年的啤酒厂、信号山的红瓦日落</em>。这一天是建筑密度最高的一天，也是“老青岛”味道最浓的一天。</p>
+
+  <div class="day">
+    <div class="day-head">
+      <div class="date"><b>15</b><span>周六</span></div>
+      <div><h3>从八大关走到信号山</h3><div class="theme">万国建筑 · 啤酒 · 红瓦日落</div></div>
+    </div>
+    <div class="route">
+      <span class="stop">八大关</span><span class="arr">→</span><span class="stop">第二海水浴场</span><span class="arr">→</span>
+      <span class="stop">登州路啤酒街</span><span class="arr">→</span><span class="stop">啤酒博物馆</span><span class="arr">→</span>
+      <span class="stop">迎宾馆</span><span class="arr">→</span><span class="stop">基督教堂</span><span class="arr">→</span><span class="stop">信号山</span>
+    </div>
+    <div class="timeline">
+      <div class="tl"><div class="time">08:30</div><div class="spot">八大关风景区<span class="tag">开放式街区</span><span class="tag">清晨人少</span></div>
+        <div class="desc">十条以长城关隘命名的路，梧桐、雪松、银杏各守一街，藏着两百多栋各国风格老别墅。清晨去，只有遛弯的本地人和扫街的环卫工。重点看<b>花石楼</b>（花岗岩城堡，蒋介石曾居）与<b>公主楼</b>（丹麦式小楼）的外观。</div></div>
+      <div class="tl"><div class="time">10:30</div><div class="spot">第二海水浴场 → 太平角滨海步道<span class="tag">木栈道</span></div>
+        <div class="desc">从花石楼下的沙滩出发，沿海边木栈道走进太平角。这一段海岬安静、礁石漂亮，是本地人拍婚纱照的私藏海岸。</div></div>
+      <div class="tl"><div class="time">12:00</div><div class="spot">登州路啤酒街 · 午餐</div>
+        <div class="desc">在青啤一厂门口的老街吃午饭：辣炒蛤蜊、烤串、一扎当天出厂的原浆——啤酒从这里流进杯子，不超过几百米。</div></div>
+      <div class="tl"><div class="time">13:30</div><div class="spot">青岛啤酒博物馆<span class="tag">1903年老厂房</span><span class="tag">需购票</span></div>
+        <div class="desc">设在 1903 年日耳曼啤酒公司老厂房里的博物馆，老糖化锅、老西门子电机都还在。门票含两杯品鉴酒（约 60 元起，建议官方公众号提前购票）。</div></div>
+      <div class="tl"><div class="time">15:30</div><div class="spot">德国总督楼旧址博物馆（迎宾馆）<span class="tag">1907年</span></div>
+        <div class="desc">中国现存最完整的德国古堡式建筑之一，内部木楼梯、壁炉、水晶灯皆为原物，是“建筑可阅读”的最佳样本（门票约 20 元，以现场为准）。</div></div>
+      <div class="tl"><div class="time">16:30</div><div class="spot">江苏路基督教堂<span class="tag">1910年</span></div>
+        <div class="desc">奶黄色墙面、红瓦、绿铜钟楼，像从巴伐利亚搬来的小山教堂。钟楼机械钟百年仍在走，整点可听钟声。</div></div>
+      <div class="tl"><div class="time">17:30</div><div class="spot">信号山公园 · 日落<span class="tag">俯瞰老城</span></div>
+        <div class="desc">三枚红色“蘑菇”旋转观景楼下，老城在脚下铺开：红瓦、绿树、教堂双塔、远处的海——“红瓦绿树，碧海蓝天”这八个字，在这里会变成实景。看完日落再下山吃饭。</div></div>
+      <div class="tl"><div class="time">19:30</div><div class="spot">晚餐 · 台东夜市 或 云霄路</div>
+        <div class="desc">要烟火气去<b>台东夜市</b>（烤鱿鱼、脂渣、野馄饨）；要正经吃海鲜去<b>云霄路</b>海鲜大排档一条街，先问价再点单。</div></div>
+      <div class="tl"><div class="time">可选</div><div class="spot">奥帆中心 · 情人坝夜色</div>
+        <div class="desc">精力够的话，打车去 2008 年奥运帆船赛场的情人坝，吹着海风看灯塔和对岸浮山湾的楼群灯光，再回酒店。</div></div>
+    </div>
+    <div class="tipbox">提示：八大关是开放式街区、全天免费；花石楼等小景点门票都在 10 元上下，以现场为准。想拍空无一人的梧桐路，请赶早。</div>
+    <div class="photos">
+      <figure class="w6"><img src="assets/badaguan.jpg" alt="八大关居庸关路老别墅与雪松"><figcaption>八大关 · 居庸关路<small>Wikimedia Commons</small></figcaption></figure>
+      <figure class="w6"><img src="assets/huashilou.jpg" alt="花石楼"><figcaption>花石楼<small>Commons</small></figcaption></figure>
+      <figure class="w6"><img src="assets/beermuseum.jpg" alt="青岛啤酒博物馆外的登州路街景"><figcaption>登州路 · 青啤老厂<small>Commons</small></figcaption></figure>
+      <figure class="w6"><img src="assets/governor.jpg" alt="迎宾馆全景"><figcaption>迎宾馆（总督楼旧址）<small>Commons</small></figcaption></figure>
+      <figure class="w6"><img src="assets/protestant.jpg" alt="江苏路基督教堂"><figcaption>江苏路基督教堂<small>Commons</small></figcaption></figure>
+      <figure class="w6"><img src="assets/signal.jpg" alt="信号山旋转观景楼"><figcaption>信号山 · 蘑菇楼<small>Commons</small></figcaption></figure>
+      <figure class="w12" style="height:260px"><img src="assets/sailing.jpg" alt="奥帆中心与浮山湾城市天际线全景"><figcaption>可选 · 奥帆中心与浮山湾夜色<small>Commons</small></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== DAY 3 ===================== -->
+<section id="day3">
+  <div class="sec-head"><div class="no">03</div><h2>Day 3 · 以一场海上日出告别</h2></div>
+  <p class="sec-sub">关键词：<em>石老人日出、小鱼山俯瞰、名人故居</em>。上午行程都集中在老城西南角，退房后拖着行李也能轻松走完，午饭后从容返程。</p>
+
+  <div class="day">
+    <div class="day-head">
+      <div class="date"><b>16</b><span>周日</span></div>
+      <div><h3>从海上日出到小鱼山</h3><div class="theme">日出 · 俯瞰 · 告别</div></div>
+    </div>
+    <div class="route">
+      <span class="stop">石老人</span><span class="arr">→</span><span class="stop">小鱼山</span><span class="arr">→</span>
+      <span class="stop">康有为故居</span><span class="arr">→</span><span class="stop">大学路—鱼山路</span><span class="arr">→</span><span class="stop">返程</span>
+    </div>
+    <div class="timeline">
+      <div class="tl"><div class="time">05:30</div><div class="spot">石老人海水浴场 · 海上日出<span class="tag">免费</span><span class="tag">可选</span></div>
+        <div class="desc">青岛看日出最好的城市沙滩，正东无遮挡，远处海蚀柱“石老人”立在晨雾里。8 月日出约 5:20–5:40，提前查好时间。起不来就改成 8 点来踩水，沙滩同样舒服。</div></div>
+      <div class="tl"><div class="time">09:00</div><div class="spot">小鱼山公园<span class="tag">俯瞰汇泉湾</span></div>
+        <div class="desc">海拔只有 60 米，十分钟登顶。览潮阁上向西看：第一海水浴场的月牙沙滩、汇泉湾的红瓦坡屋顶一次收进眼底——这是老城最经典的俯瞰机位之一。</div></div>
+      <div class="tl"><div class="time">10:00</div><div class="spot">康有为故居（天游园）<span class="tag">福山支路</span><span class="tag">免费</span></div>
+        <div class="desc">小鱼山脚下的德式小楼，康有为晚年寓居青岛的“天游园”，书房、手迹都在，院子里他亲手种的树还在长（免费，以现场开放为准）。</div></div>
+      <div class="tl"><div class="time">10:40</div><div class="spot">大学路 — 鱼山路老街<span class="tag">梧桐街区</span></div>
+        <div class="desc">不去挤网红墙，就沿着梧桐走：老舍故居、海洋大学鱼山校区的德式老建筑群（原俾斯麦兵营）都在这一片，找家老咖啡馆坐到饭点。</div></div>
+      <div class="tl"><div class="time">12:00</div><div class="spot">午餐 · 鲅鱼水饺收官</div>
+        <div class="desc">去<b>船歌鱼水饺</b>点一盘鲅鱼水饺加一盘墨鱼水饺，用青岛味道给旅程收尾。</div></div>
+      <div class="tl"><div class="time">下午</div><div class="spot">返程</div>
+        <div class="desc">高铁回：青岛站/青岛北站 → 上海虹桥；飞机回：市南到胶东机场地铁约 1 小时，务必留足时间。若返程在傍晚，可加一站<b>青岛市博物馆</b>（免费、需预约，崂山区，离石老人很近）。</div></div>
+    </div>
+    <div class="tipbox">提示：第三天看日出要前一晚早睡 + 约车；石老人离老城约 20 分钟车程。把行李寄存在酒店前台，午饭后取了直接去车站/机场。</div>
+    <div class="photos">
+      <figure class="w8"><img src="assets/shilaoren.jpg" alt="石老人海水浴场"><figcaption>石老人海水浴场<small>Wikimedia Commons</small></figcaption></figure>
+      <figure class="w4 wt"><img src="assets/xiaoyushan.jpg" alt="小鱼山公园"><figcaption>小鱼山公园<small>Commons</small></figcaption></figure>
+      <figure class="w6"><img src="assets/beach1.jpg" alt="从小鱼山看第一海水浴场"><figcaption>小鱼山俯瞰 · 第一海水浴场<small>Commons</small></figcaption></figure>
+      <figure class="w6"><img src="assets/kangyouwei.jpg" alt="康有为故居"><figcaption>康有为故居 · 天游园<small>Commons</small></figcaption></figure>
+      <figure class="w6"><img src="assets/oceancampus.jpg" alt="中国海洋大学鱼山校区老建筑"><figcaption>海大鱼山校区 · 德式老楼<small>Commons</small></figcaption></figure>
+      <figure class="w6"><img src="assets/museum.jpg" alt="青岛市博物馆"><figcaption>备选 · 青岛市博物馆<small>Commons</small></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 住宿 ===================== -->
+<section id="stay">
+  <div class="sec-head"><div class="no">04</div><h2>住在哪里</h2></div>
+  <p class="sec-sub">这趟行程的人文景点集中在<em>市南老城区</em>，海边在<em>汇泉湾与东部海岸</em>——两个思路：要么住进老建筑里，要么枕着海浪睡。价格为 8 月旺季参考区间，以预订平台实时价为准。</p>
+  <div class="hotels">
+    <div class="hotel reveal"><div class="area">老城 · 栈桥旁</div><h4>青岛栈桥王子饭店</h4>
+      <p>由 1900 年代初的“亨利王子饭店”老建筑改造，出门就是栈桥与青岛湾。住在这里，Day 1 的路线可以全程步行，晚上还能去海边遛弯看回澜阁亮灯。</p>
+      <div class="meta"><span>历史建筑</span><span>步行达栈桥</span><span>约 ¥600–1200/晚</span></div></div>
+    <div class="hotel reveal"><div class="area">老城 · 大鲍岛街区</div><h4>大鲍岛 · 里院民宿</h4>
+      <p>住进修缮后的百年里院：砖木结构、天井小院、出门就是老街夜市。适合想体验“老青岛人家”感觉的旅行者，价格比酒店友好。</p>
+      <div class="meta"><span>百年里院</span><span>本地烟火</span><span>约 ¥300–700/晚</span></div></div>
+    <div class="hotel reveal"><div class="area">汇泉湾 · 第一海水浴场</div><h4>汇泉王朝大饭店</h4>
+      <p>第一海水浴场边的老牌海景酒店，楼下就是沙滩和木栈道，去八大关、小鱼山都是起步价的距离。老牌但位置无敌，适合“随时下海”的夏天。</p>
+      <div class="meta"><span>一线海景</span><span>楼下即沙滩</span><span>约 ¥700–1500/晚</span></div></div>
+    <div class="hotel reveal"><div class="area">东部海滨 · 彰化路</div><h4>青岛海景花园大酒店</h4>
+      <p>东部海岸的度假型酒店，园林一直铺到海边，安静、服务口碑好，离石老人方向更近。适合把第三天看日出的动线放到最短。</p>
+      <div class="meta"><span>度假感</span><span>近东部海岸</span><span>约 ¥800–1600/晚</span></div></div>
+  </div>
+</section>
+
+<!-- ===================== 美食 ===================== -->
+<section id="food">
+  <div class="sec-head"><div class="no">05</div><h2>青岛味道</h2></div>
+  <p class="sec-sub">青岛的夏天 = <em>蛤蜊 + 鲜啤 + 海风</em>。本地人买啤酒用塑料袋打散装，蛤蜊按盆炒——下面这些，照着吃不会错。</p>
+  <div class="food-hero reveal">
+    <img src="assets/beer.jpg" alt="青岛街头的原浆鲜啤直供打酒台">
+    <div class="cap"><b>街头打酒台 · 原浆鲜啤新鲜直送</b>
+      <p>青岛人夏天的日常：在街角打一袋当天出厂的鲜啤。原浆保质期只有一两天，喝的是“今天”的味道（真实照片 · 青岛街头）。</p></div>
+  </div>
+  <div class="dishes">
+    <div class="dish reveal"><h5>辣炒蛤蜊<small>gá la</small></h5><p>青岛人夏天的“国民菜”，蛤蜊肥、辣椒香，配冰鲜啤一绝。任何一家本地菜馆都有，按盆上。</p></div>
+    <div class="dish reveal"><h5>鲅鱼水饺<small>船歌鱼水饺</small></h5><p>鱼肉打成茸入馅，鲜而不腥。船歌是本地起家的连锁，门店多、出品稳；墨鱼、黄花鱼馅也值得试。</p></div>
+    <div class="dish reveal"><h5>排骨米饭<small>万和春</small></h5><p>青岛特色快餐：酱香排骨炖到脱骨，肉汤浇饭。万和春是本地人从小吃到大的老字号，分店多。</p></div>
+    <div class="dish reveal"><h5>海菜凉粉<small>石花菜熬制</small></h5><p>用海里石花菜熬出的凉粉，拌蒜泥、香醋、香菜，滑溜爽口，是夏日解暑的本地味道。</p></div>
+    <div class="dish reveal"><h5>香酥鸡 · 葱烧海参<small>春和楼</small></h5><p>中山路百年鲁菜老字号（1891 年创），香酥鸡是镇店名菜；想吃一顿正经鲁菜就去这。</p></div>
+    <div class="dish reveal"><h5>烤鱿鱼 · 烧烤<small>王姐烧烤</small></h5><p>中山路老牌烧烤，大鱿鱼现烤刷酱，是青岛夜里的标志性香气；配野馄饨更地道。</p></div>
+    <div class="dish reveal"><h5>青岛锅贴<small>劈柴院</small></h5><p>劈柴院是百年小吃街（江宁路），锅贴底脆汁多，再来一碗豆腐脑，是老青岛的早饭标配。</p></div>
+    <div class="dish reveal"><h5>袋装鲜啤 · 原浆<small>登州路</small></h5><p>塑料袋打散啤是青岛独有的风景。想喝最新鲜的，去青啤一厂旁的登州路；原浆不能久放，想带走选罐装。</p></div>
+    <div class="dish reveal"><h5>崂山可乐 · 白花蛇草水<small>本地限定</small></h5><p>崂山可乐加了中草药，是青岛人的童年味道；白花蛇草水“声名在外”，勇敢者可以挑战一瓶。</p></div>
+    <div class="dish reveal"><h5>流亭猪蹄<small>伴手礼</small></h5><p>源自城阳流亭的酱猪蹄，咸香软糯，真空包装适合带回家；台东、商超均有售。</p></div>
+    <div class="dish reveal"><h5>脂渣 · 甜晒鲅鱼<small>伴手礼</small></h5><p>脂渣是青岛式酥脆猪油渣，直接吃或炖菜都香；甜晒鲅鱼是本地渔家风味，市场有真空装。</p></div>
+    <div class="dish reveal"><h5>海鲜大排档<small>先问价</small></h5><p>扇贝、海蛎子、虾虎（皮皮虾）正当季。点菜前确认时价与做法，选明码标价的店，安心吃鲜。</p></div>
+  </div>
+  <div class="streets">
+    <div class="street reveal"><b>中山路 · 劈柴院</b><p>老字号与百年小吃街，第一天晚餐就在这一带解决。</p></div>
+    <div class="street reveal"><b>登州路啤酒街</b><p>青啤一厂门口，原浆最新鲜，第二天午餐安排这。</p></div>
+    <div class="street reveal"><b>台东夜市</b><p>本地人逛的夜市，烤鱿鱼、脂渣、野馄饨，烟火气最足。</p></div>
+    <div class="street reveal"><b>云霄路美食街</b><p>海鲜大排档一条街，明档点菜，适合正经吃顿海鲜。</p></div>
+  </div>
+</section>
+
+<!-- ===================== 贴士 ===================== -->
+<section id="tips">
+  <div class="sec-head"><div class="no">06</div><h2>实用贴士</h2></div>
+  <p class="sec-sub">8 月中旬的青岛，是一年里海最暖、人也最多的时候，几个小提醒：</p>
+  <div class="tips">
+    <div class="tip reveal"><h5>天气与穿着</h5><p>24–30°C，湿度大、紫外线强。白天防晒，海边傍晚备一件薄外套；海水温度全年最高，想下海带泳衣。</p></div>
+    <div class="tip reveal"><h5>下海安全</h5><p>只在正规浴场（一浴、石老人等）有救生员的区域下水，看到红旗警示不要下海，留意离岸流。</p></div>
+    <div class="tip reveal"><h5>啤酒节</h5><p>青岛国际啤酒节通常 7 月下旬开幕、持续至 8 月中旬（主会场在西海岸金沙滩啤酒城）。行程可能赶上尾声，去不去以当年官方公告为准。</p></div>
+    <div class="tip reveal"><h5>门票与预约</h5><p>八大关、栈桥、各海水浴场免费；花石楼等小景点门票约 10 元上下；啤酒博物馆约 60 元起含品鉴，建议官方公众号提前购票；市博物馆免费需预约。</p></div>
+    <div class="tip reveal"><h5>吃海鲜避坑</h5><p>先问价、再点单，选明码标价的店；火车站周边拉客的“海鲜便宜店”一律不进。</p></div>
+    <div class="tip reveal"><h5>返程留量</h5><p>周日午后是返程高峰。去胶东机场从市南出发地铁约 1 小时、打车约 50 分钟，按航班提前 2.5 小时出门；高铁至少提前 1 小时到站。</p></div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    青岛三日人文看海之旅 · 2026.08.14–08.16 · 上海虹桥出发<br>
+    行程与价格信息整理自公开资料，出行前请以官方与预订平台为准 · 照片 © 原作者，Wikimedia Commons
+  </div>
+</footer>
+
+<script>
+(function(){
+  var els = document.querySelectorAll('.reveal, .photos figure');
+  if (!('IntersectionObserver' in window)) {
+    els.forEach(function(e){ e.classList.add('show'); });
+    return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if (en.isIntersecting) { en.target.classList.add('show'); io.unobserve(en.target); }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px 240px 0px' });
+  els.forEach(function(e){ io.observe(e); });
+  /* 兜底：3 秒后无条件显示，避免任何环境下照片保持隐藏 */
+  setTimeout(function(){ els.forEach(function(e){ e.classList.add('show'); }); }, 3000);
+})();
+</script>
+</body>
+</html>
