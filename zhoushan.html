@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>舟山三日 · 海天佛国，渔都港城 | 朱家尖 · 普陀山 · 桃花岛 跳岛之旅</title>
+<style>
+  :root{
+    --bg:#ffffff; --card:#ffffff; --ink:#1d2f3c; --muted:#5d6d78;
+    --sea:#0e5a7d; --sea-deep:#0a3f59; --tile:#b5442f; --sand:#f1f4f6;
+    --line:#e2e8ec; --gold:#c8a24a;
+    --shadow:0 10px 30px rgba(29,47,60,.08);
+    --radius:18px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:"Noto Serif SC","Songti SC","STSong","SimSun",serif;
+    background:var(--bg); color:var(--ink); line-height:1.75;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{display:block;max-width:100%}
+  a{color:var(--sea);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+
+  /* ---------- 顶部导航 ---------- */
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(255,255,255,.9);backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{display:flex;align-items:center;gap:28px;height:58px;overflow-x:auto}
+  nav .brand{font-weight:700;letter-spacing:.12em;color:var(--sea-deep);white-space:nowrap}
+  nav .brand span{color:var(--tile)}
+  nav a.nl{color:var(--muted);font-size:14px;white-space:nowrap}
+  nav a.nl:hover{color:var(--sea);text-decoration:none}
+
+  /* ---------- Hero ---------- */
+  header.hero{position:relative;min-height:66vh;display:flex;align-items:flex-end;overflow:hidden}
+  header.hero .bg{position:absolute;inset:0}
+  header.hero .bg img{width:100%;height:100%;object-fit:cover;object-position:center 42%}
+  header.hero .bg::after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg,rgba(10,40,60,.10) 0%,rgba(10,40,60,.18) 45%,rgba(10,38,56,.78) 100%);
+  }
+  header.hero .inner{position:relative;z-index:2;width:100%;padding:64px 24px 54px;color:#fff;
+    max-width:1180px;margin:0 auto}
+  .hero .kicker{letter-spacing:.35em;font-size:13px;color:#ffd9a8;margin-bottom:14px}
+  .hero h1{font-size:clamp(30px,5.2vw,56px);line-height:1.25;font-weight:900;letter-spacing:.06em;text-shadow:0 2px 18px rgba(0,0,0,.35)}
+  .hero .sub{margin-top:14px;font-size:clamp(14px,1.6vw,17px);color:rgba(255,255,255,.92);max-width:46em}
+  .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+  .chip{
+    border:1px solid rgba(255,255,255,.45);border-radius:999px;
+    padding:6px 16px;font-size:13px;color:#fff;background:rgba(10,50,70,.35);backdrop-filter:blur(4px);
+  }
+  .photo-credit{font-size:11px;color:rgba(255,255,255,.72);margin-top:16px}
+
+  /* ---------- 通用区块 ---------- */
+  section{padding:72px 0 8px}
+  .sec-head{display:flex;align-items:baseline;gap:18px;margin-bottom:8px}
+  .sec-head .no{font-size:44px;font-weight:900;color:var(--sand);-webkit-text-stroke:1px var(--tile);line-height:1}
+  .sec-head h2{font-size:clamp(24px,3vw,34px);color:var(--sea-deep);letter-spacing:.08em}
+  .sec-sub{color:var(--muted);margin-bottom:30px;max-width:52em}
+  .sec-sub em{color:var(--tile);font-style:normal}
+
+  /* ---------- 行程速览 ---------- */
+  .glance{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .glance .g{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:22px 22px 18px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+  .glance .g::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--sea)}
+  .glance .g:nth-child(2)::before{background:var(--tile)}
+  .glance .g:nth-child(3)::before{background:var(--gold)}
+  .glance .d{font-size:13px;color:var(--muted);letter-spacing:.15em}
+  .glance .t{font-size:19px;font-weight:700;margin:6px 0 8px;color:var(--sea-deep)}
+  .glance .s{font-size:14px;color:var(--muted)}
+
+  /* ---------- 交通卡 ---------- */
+  .transport{display:grid;grid-template-columns:1.05fr .95fr;gap:0;background:var(--card);
+    border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);margin-bottom:40px}
+  .transport .txt{padding:30px 30px 24px}
+  .transport h3{font-size:20px;color:var(--sea-deep);margin-bottom:14px;display:flex;align-items:center;gap:10px}
+  .transport .opt{padding:14px 0;border-top:1px dashed var(--line)}
+  .transport .opt:first-of-type{border-top:none}
+  .transport .opt b{color:var(--tile)}
+  .transport .opt p{font-size:14.5px;color:var(--muted)}
+  .transport .pic{position:relative;min-height:280px}
+  .transport .pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .transport .pic figcaption{position:absolute;left:12px;bottom:10px;font-size:12px;color:#fff;
+    background:rgba(10,50,70,.55);padding:3px 10px;border-radius:999px}
+
+  /* ---------- 每日时间轴 ---------- */
+  .day{margin-bottom:56px}
+  .day-head{display:flex;align-items:center;gap:16px;margin-bottom:6px}
+  .day-head .date{
+    background:var(--sea-deep);color:#fff;border-radius:12px;padding:8px 14px;text-align:center;line-height:1.3;
+    box-shadow:var(--shadow)}
+  .day-head .date b{display:block;font-size:20px}
+  .day-head .date span{font-size:12px;opacity:.85}
+  .day-head h3{font-size:clamp(20px,2.4vw,27px);color:var(--ink)}
+  .day-head .theme{font-size:13px;color:var(--tile);letter-spacing:.2em;margin-top:2px}
+  .route{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:14px 0 22px;font-size:13px;color:var(--muted)}
+  .route .stop{background:var(--sand);border:1px solid var(--line);border-radius:999px;padding:4px 13px;color:var(--sea-deep)}
+  .route .arr{color:var(--tile)}
+
+  .timeline{border-left:2px solid var(--line);margin-left:8px;padding-left:26px}
+  .tl{position:relative;padding:0 0 22px}
+  .tl::before{content:"";position:absolute;left:-33px;top:8px;width:12px;height:12px;border-radius:50%;
+    background:var(--bg);border:3px solid var(--sea)}
+  .tl:nth-child(even)::before{border-color:var(--tile)}
+  .tl .time{font-size:13px;color:var(--tile);font-weight:700;letter-spacing:.08em}
+  .tl .spot{font-size:17.5px;font-weight:700;color:var(--sea-deep);margin:2px 0}
+  .tl .desc{font-size:14.5px;color:var(--muted);max-width:56em}
+  .tl .tag{display:inline-block;font-size:11.5px;border:1px solid var(--line);background:var(--sand);
+    color:var(--sea-deep);border-radius:6px;padding:1px 8px;margin-left:8px;vertical-align:2px}
+
+  .tipbox{background:#f0f6fa;border:1px solid #d3e4ee;border-left:4px solid var(--sea);
+    border-radius:10px;padding:14px 18px;font-size:14px;color:#33566b;margin:4px 0 26px}
+
+  /* ---------- 照片墙 ---------- */
+  .photos{display:grid;grid-template-columns:repeat(12,1fr);gap:14px;margin-top:8px}
+  .photos figure{position:relative;border-radius:14px;overflow:hidden;box-shadow:var(--shadow);
+    background:var(--sand);opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+  .photos figure.show{opacity:1;transform:none}
+  .photos img{width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.16,1,.3,1)}
+  .photos figure:hover img{transform:scale(1.045)}
+  .photos figcaption{position:absolute;left:0;right:0;bottom:0;padding:26px 14px 10px;font-size:13px;color:#fff;
+    background:linear-gradient(180deg,transparent,rgba(8,35,50,.75));letter-spacing:.04em}
+  .photos figcaption small{opacity:.7;font-size:10.5px;margin-left:6px}
+  .w4{grid-column:span 4;height:240px}.w6{grid-column:span 6;height:260px}
+  .w8{grid-column:span 8;height:300px}.w12{grid-column:span 12;height:340px}
+  .wt{height:340px}
+
+  /* ---------- 住宿 ---------- */
+  .hotels{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+  .hotel{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:26px 26px 20px;box-shadow:var(--shadow);border-top:5px solid var(--sea)}
+  .hotel:nth-child(2){border-top-color:var(--tile)}
+  .hotel:nth-child(3){border-top-color:var(--gold)}
+  .hotel:nth-child(4){border-top-color:var(--sea-deep)}
+  .hotel .area{font-size:12px;color:var(--tile);letter-spacing:.2em}
+  .hotel h4{font-size:20px;color:var(--sea-deep);margin:4px 0 10px}
+  .hotel p{font-size:14.5px;color:var(--muted)}
+  .hotel .meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+  .hotel .meta span{font-size:12px;background:var(--sand);border:1px solid var(--line);
+    border-radius:999px;padding:3px 12px;color:var(--sea-deep)}
+
+  /* ---------- 美食 ---------- */
+  .food-hero{border-radius:var(--radius);overflow:hidden;position:relative;box-shadow:var(--shadow);margin-bottom:26px;height:330px}
+  .food-hero img{width:100%;height:100%;object-fit:cover}
+  .food-hero .cap{position:absolute;left:0;right:0;bottom:0;padding:40px 24px 18px;color:#fff;
+    background:linear-gradient(180deg,transparent,rgba(8,35,50,.8))}
+  .food-hero .cap b{font-size:20px;letter-spacing:.06em}
+  .food-hero .cap p{font-size:13.5px;opacity:.92}
+  .dishes{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .dish{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;box-shadow:var(--shadow)}
+  .dish h5{font-size:16.5px;color:var(--sea-deep)}
+  .dish h5 small{color:var(--tile);font-size:12px;margin-left:8px;font-weight:400}
+  .dish p{font-size:13.5px;color:var(--muted);margin-top:4px}
+  .streets{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:18px}
+  .street{background:var(--sand);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+  .street b{color:var(--sea-deep);font-size:15px}
+  .street p{font-size:12.5px;color:var(--muted);margin-top:2px}
+
+  /* ---------- 贴士 ---------- */
+  .tips{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .tip{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px;box-shadow:var(--shadow)}
+  .tip h5{color:var(--tile);font-size:15.5px;margin-bottom:6px}
+  .tip p{font-size:13.5px;color:var(--muted)}
+
+  /* ---------- 来源与页脚 ---------- */
+  details.credits{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 22px}
+  details.credits summary{cursor:pointer;color:var(--sea-deep);font-weight:700}
+  details.credits ul{margin:12px 0 0 1.2em;font-size:12.5px;color:var(--muted)}
+  details.credits li{margin-bottom:4px}
+  footer{margin:56px 0 0;border-top:1px solid var(--line);padding:26px 0 40px;
+    font-size:12.5px;color:var(--muted);text-align:center}
+
+  /* ---------- 动效 ---------- */
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s ease,transform .8s ease}
+  .reveal.show{opacity:1;transform:none}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto}
+    .reveal,.photos figure{opacity:1;transform:none;transition:none}
+    .photos img{transition:none}
+  }
+
+  /* ---------- 响应式 ---------- */
+  @media (max-width:900px){
+    .glance,.dishes,.tips{grid-template-columns:1fr 1fr}
+    .hotels,.streets{grid-template-columns:1fr 1fr}
+    .transport{grid-template-columns:1fr}
+    .transport .pic{min-height:220px}
+    .w4{grid-column:span 6}.w6{grid-column:span 12}.w8{grid-column:span 12}
+  }
+  @media (max-width:600px){
+    section{padding:54px 0 4px}
+    .glance,.dishes,.tips,.hotels,.streets{grid-template-columns:1fr}
+    .w4{grid-column:span 12;height:220px}
+    .w12{height:260px}
+    .day-head h3{font-size:19px}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">舟山三日<span> · </span>海天佛国</div>
+    <a class="nl" href="#glance">行程速览</a>
+    <a class="nl" href="#day1">Day 1 朱家尖</a>
+    <a class="nl" href="#day2">Day 2 普陀山</a>
+    <a class="nl" href="#day3">Day 3 桃花岛</a>
+    <a class="nl" href="#stay">住宿</a>
+    <a class="nl" href="#food">美食</a>
+    <a class="nl" href="#tips">实用贴士</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="bg"><img src="assets/zhoushan/nansha-beach.jpg" alt="朱家尖南沙海滨，海浪与远处岛屿"></div>
+  <div class="inner">
+    <div class="kicker">ZHOUSHAN · 三天两晚跳岛</div>
+    <h1>海天佛国，渔都港城<br>三天两晚，跳着岛把舟山的海与佛走一遍</h1>
+    <p class="sub">上海出发 · 一座跨海大桥连起群岛，一天一岛：朱家尖踏浪、普陀山礼佛、桃花岛寻侠，最后在沈家门渔港用一顿海鲜收尾</p>
+    <div class="chips">
+      <span class="chip">三天两晚 · 一天一岛</span>
+      <span class="chip">跳岛 × 海天佛国</span>
+      <span class="chip">自驾 / 大巴双方案</span>
+      <span class="chip">真实照片 · 无 AI 生图</span>
+    </div>
+    <div class="photo-credit">头图：朱家尖南沙海滨 —— 真实照片，来源 Wikimedia Commons</div>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- ===================== 行程速览 ===================== -->
+<section id="glance">
+  <div class="sec-head"><div class="no">00</div><h2>行程速览</h2></div>
+  <p class="sec-sub">三天一条由近及远的跳岛线：<em>第一天在朱家尖踏浪</em>，<em>第二天上普陀山礼佛</em>，<em>第三天去桃花岛寻侠、回沈家门吃海鲜</em>。一天一岛，船程都短，基本不绕路。</p>
+  <div class="glance">
+    <div class="g reveal"><div class="d">DAY 1</div><div class="t">上岛 · 朱家尖踏浪</div>
+      <div class="s">跨海大桥 → 蜈蚣峙码头 → 南沙海滨 → 乌石塘</div></div>
+    <div class="g reveal"><div class="d">DAY 2</div><div class="t">礼佛 · 海天佛国普陀山</div>
+      <div class="s">短船上岛 → 南海观音 → 普济寺 → 法雨寺 → 千步沙</div></div>
+    <div class="g reveal"><div class="d">DAY 3</div><div class="t">寻侠 · 桃花岛与渔港</div>
+      <div class="s">桃花寨 → 塔湾金沙 → 沈家门海鲜 → 返程</div></div>
+  </div>
+</section>
+
+<!-- ===================== DAY 1 ===================== -->
+<section id="day1">
+  <div class="sec-head"><div class="no">01</div><h2>Day 1 · 上岛，把脚印留给朱家尖</h2></div>
+  <p class="sec-sub">关键词：<em>跨海大桥、蜈蚣峙码头、海滨浴场、黑色卵石滩</em>。第一天以"顺利上岛"为主，不赶路。</p>
+
+  <div class="transport reveal">
+    <div class="txt">
+      <h3>怎么去舟山（上海出发）</h3>
+      <div class="opt"><b>方案 A · 自驾（推荐）</b>
+        <p>上海市区 → S4/G15 → 宁波绕城 → 甬舟高速（G9211），经舟山跨海大桥（金塘大桥等连岛工程）抵达舟山本岛、朱家尖，全程约 230 km、3.5–4 小时。蜈蚣峙码头停车场较大，节假日尽量早到，停车收费以现场为准。</p></div>
+      <div class="opt"><b>方案 B · 大巴</b>
+        <p>上海南站 / 南浦大桥 / 虹桥 → 舟山普陀长途客运中心，或直达朱家尖蜈蚣峙码头，约 4–4.5 小时，票价约 95–150 元。选终到"蜈蚣峙码头"的班次，最方便接驳上岛。</p></div>
+      <div class="opt"><b>上岛衔接</b>
+        <p>蜈蚣峙码头是旅游集散中心，普陀山、桃花岛、东极方向的船班都在此衔接，先到码头把后续船票和时刻确认好最省心。</p></div>
+    </div>
+    <figure class="pic">
+      <img src="assets/zhoushan/bridge-jintang.jpg" alt="舟山跨海大桥金塘大桥蓝色桥塔">
+      <figcaption>舟山跨海大桥 · 金塘大桥</figcaption>
+    </figure>
+  </div>
+
+  <div class="day">
+    <div class="day-head">
+      <div class="date"><b>D1</b><span>第 1 天</span></div>
+      <div><h3>从蜈蚣峙码头玩到乌石塘</h3><div class="theme">码头 · 海滨浴场 · 卵石滩</div></div>
+    </div>
+    <div class="route">
+      <span class="stop">上海</span><span class="arr">→</span><span class="stop">舟山跨海大桥</span><span class="arr">→</span>
+      <span class="stop">蜈蚣峙码头</span><span class="arr">→</span><span class="stop">南沙海滨</span><span class="arr">→</span><span class="stop">乌石塘</span>
+    </div>
+    <div class="timeline">
+      <div class="tl"><div class="time">08:00</div><div class="spot">上海出发</div>
+        <div class="desc">自驾走甬舟高速，或乘早班长途大巴；沿途经过连岛大桥，群岛从海面浮现。</div></div>
+      <div class="tl"><div class="time">12:00</div><div class="spot">抵达朱家尖 · 蜈蚣峙码头午餐<span class="tag">集散中心</span></div>
+        <div class="desc">在慈航广场吃一碗海鲜面，顺便把后两天去普陀山、桃花岛的船班和票务确认好。</div></div>
+      <div class="tl"><div class="time">13:30</div><div class="spot">南沙海滨浴场<span class="tag">朱家尖名滩</span></div>
+        <div class="desc">朱家尖最著名的沙滩，沙细坡缓，踏浪、玩沙、看海；夏季可在划定区域下海，门票以现场为准。</div></div>
+      <div class="tl"><div class="time">16:00</div><div class="spot">乌石塘<span class="tag">黑色卵石滩</span></div>
+        <div class="desc">罕见的海蚀黑色卵石滩，满滩鹅卵石随浪作响；可体验小渔船、看渔船归港。</div></div>
+      <div class="tl"><div class="time">18:00</div><div class="spot">海滨日落 · 晚餐</div>
+        <div class="desc">在码头或海滨看一场日落，晚餐安排本地小海鲜，为明天早起上普陀山养足精神。</div></div>
+    </div>
+    <div class="tipbox">提示：南沙与乌石塘相距不远，节奏很松；如果当天到得晚，可把南沙挪到第二天傍晚（普陀山返程后）。</div>
+    <div class="photos">
+      <figure class="w8"><img src="assets/zhoushan/nansha-beach.jpg" alt="朱家尖南沙海滨"><figcaption>朱家尖 · 南沙海滨<small>Wikimedia Commons</small></figcaption></figure>
+      <figure class="w4"><img src="assets/zhoushan/wushitang.jpg" alt="乌石塘黑色卵石滩"><figcaption>乌石塘 · 黑卵石<small>Commons</small></figcaption></figure>
+      <figure class="w6"><img src="assets/zhoushan/wugongzhi-terminal.jpg" alt="蜈蚣峙码头旅游集散中心"><figcaption>蜈蚣峙码头 · 集散中心<small>Commons</small></figcaption></figure>
+      <figure class="w6"><img src="assets/zhoushan/nansha-banner.jpg" alt="南沙海滨全景"><figcaption>南沙全景（退潮时分）<small>Commons</small></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== DAY 2 ===================== -->
+<section id="day2">
+  <div class="sec-head"><div class="no">02</div><h2>Day 2 · 海天佛国，一日普陀山</h2></div>
+  <p class="sec-sub">关键词：<em>南海观音、千年古寺、千步沙</em>。中国四大佛教名山中唯一坐落海上的道场，一天走完核心寺院与海岸。</p>
+
+  <div class="day">
+    <div class="day-head">
+      <div class="date"><b>D2</b><span>第 2 天</span></div>
+      <div><h3>从南海观音走到千步沙</h3><div class="theme">观音道场 · 古寺 · 长滩</div></div>
+    </div>
+    <div class="route">
+      <span class="stop">蜈蚣峙码头</span><span class="arr">→</span><span class="stop">南海观音</span><span class="arr">→</span>
+      <span class="stop">紫竹林</span><span class="arr">→</span><span class="stop">普济寺</span><span class="arr">→</span>
+      <span class="stop">法雨寺</span><span class="arr">→</span><span class="stop">千步沙</span>
+    </div>
+    <div class="timeline">
+      <div class="tl"><div class="time">07:30</div><div class="spot">蜈蚣峙码头乘船上普陀山<span class="tag">船程约 10–15 分钟</span></div>
+        <div class="desc">船班密集、随到随走（门票与船票分计，以官方为准），赶早班可避开人流高峰。</div></div>
+      <div class="tl"><div class="time">08:30</div><div class="spot">南海观音<span class="tag">地标</span></div>
+        <div class="desc">高 33 米的露天观音铜像，临海而立、气势庄严，是普陀山最具代表性的新地标。</div></div>
+      <div class="tl"><div class="time">09:30</div><div class="spot">紫竹林 · 不肯去观音院<span class="tag">海畔道场</span></div>
+        <div class="desc">普陀观音道场的发源地，临海礁石、视野开阔，可远眺海上的洛迦山卧佛。</div></div>
+      <div class="tl"><div class="time">10:30</div><div class="spot">普济禅寺<span class="tag">三大寺之首</span></div>
+        <div class="desc">普陀山主刹，寺前海印池、多宝塔古意盎然，是香火与法会最盛之处。</div></div>
+      <div class="tl"><div class="time">12:30</div><div class="spot">寺旁素斋午餐</div>
+        <div class="desc">尝一碗寺院素面或素斋，清净、快捷，午后继续登山。</div></div>
+      <div class="tl"><div class="time">13:30</div><div class="spot">法雨禅寺<span class="tag">九龙殿</span></div>
+        <div class="desc">依山而建、层层升高，寺内九龙藻井工艺绝伦，是古建筑的精品。</div></div>
+      <div class="tl"><div class="time">15:30</div><div class="spot">千步沙<span class="tag">岛上最长沙滩</span></div>
+        <div class="desc">普陀山最长的沙滩，海浪层层、人比南沙少，适合静静听海。</div></div>
+      <div class="tl"><div class="time">17:00</div><div class="spot">乘船返朱家尖 / 沈家门</div>
+        <div class="desc">返程末班船较早（傍晚前后），务必在码头确认当日末班时刻，别误船。</div></div>
+    </div>
+    <div class="tipbox">提示：节假日门票、船票务必提前在官方渠道实名预约；岛上有景交小巴串联各寺，体力有限可乘车代步。</div>
+    <div class="photos">
+      <figure class="w6"><img src="assets/zhoushan/guanyin-far.jpg" alt="远眺南海观音"><figcaption>南海观音（远眺）<small>Wikimedia Commons</small></figcaption></figure>
+      <figure class="w6"><img src="assets/zhoushan/guanyin-portrait.jpg" alt="南海观音铜像"><figcaption>南海观音铜像<small>Commons</small></figcaption></figure>
+      <figure class="w6"><img src="assets/zhoushan/fayu-temple.jpg" alt="法雨禅寺"><figcaption>法雨禅寺<small>Commons</small></figcaption></figure>
+      <figure class="w6"><img src="assets/zhoushan/putuo-archway.jpg" alt="普陀山石牌坊"><figcaption>普陀山 · 石牌坊<small>Commons</small></figcaption></figure>
+      <figure class="w4"><img src="assets/zhoushan/putuo-monk.jpg" alt="僧人走过千步沙"><figcaption>千步沙 · 僧人走过<small>Commons</small></figcaption></figure>
+      <figure class="w8"><img src="assets/zhoushan/putuo-view.jpg" alt="海天佛国古寺金瓦"><figcaption>海天佛国 · 古寺金瓦<small>Commons</small></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== DAY 3 ===================== -->
+<section id="day3">
+  <div class="sec-head"><div class="no">03</div><h2>Day 3 · 桃花岛寻侠，以一顿海鲜告别</h2></div>
+  <p class="sec-sub">关键词：<em>桃花寨、塔湾金沙、沈家门十里渔港</em>。上午去金庸笔下的桃花岛，下午回到中国最大的渔港收尾。</p>
+
+  <div class="day">
+    <div class="day-head">
+      <div class="date"><b>D3</b><span>第 3 天</span></div>
+      <div><h3>从桃花寨到沈家门渔港</h3><div class="theme">桃花岛 · 金沙 · 渔港排档</div></div>
+    </div>
+    <div class="route">
+      <span class="stop">朱家尖</span><span class="arr">→</span><span class="stop">桃花岛</span><span class="arr">→</span>
+      <span class="stop">桃花寨</span><span class="arr">→</span><span class="stop">塔湾金沙</span><span class="arr">→</span>
+      <span class="stop">沈家门</span><span class="arr">→</span><span class="stop">返程</span>
+    </div>
+    <div class="timeline">
+      <div class="tl"><div class="time">08:00</div><div class="spot">乘船赴桃花岛<span class="tag">船程约 20 分钟</span></div>
+        <div class="desc">金庸笔下"东邪"黄药师的桃花岛，山海相依；班次以码头当日公告为准，上岛先确认返程末班。</div></div>
+      <div class="tl"><div class="time">09:00</div><div class="spot">桃花寨<span class="tag">沿海栈道</span></div>
+        <div class="desc">临海而建的寨城与观景栈道，听涛看海，是岛上最出片的地方之一。</div></div>
+      <div class="tl"><div class="time">10:30</div><div class="spot">塔湾金沙 · 安期峰<span class="tag">沙滩 / 峰峦</span></div>
+        <div class="desc">岛上的金沙滩沙质细软，安期峰为舟山群岛较高的山峰，门票以现场为准。</div></div>
+      <div class="tl"><div class="time">12:30</div><div class="spot">岛上午餐</div>
+        <div class="desc">在渔家小店吃一顿现做的小海鲜，简单、新鲜。</div></div>
+      <div class="tl"><div class="time">14:00</div><div class="spot">返回舟山本岛 · 沈家门渔港<span class="tag">中国最大渔港之一</span></div>
+        <div class="desc">十里渔港、桅樯林立，逛一逛水产市场，感受"渔都港城"的日常。</div></div>
+      <div class="tl"><div class="time">15:30</div><div class="spot">沈家门海鲜排档<span class="tag">先问价再点</span></div>
+        <div class="desc">带鱼、梭子蟹、皮皮虾、淡菜现挑现做，认准明码标价的排档，安心吃鲜。</div></div>
+      <div class="tl"><div class="time">17:00</div><div class="spot">返程回上海</div>
+        <div class="desc">自驾或乘大巴返回，约 4 小时；尽量避开周日傍晚的返程高峰。</div></div>
+    </div>
+    <div class="tipbox">提示：桃花岛船班相对少，上岛先确认返程末班；不想赶路的话，可把桃花岛换成"普陀山半日 + 沈家门"。</div>
+    <div class="photos">
+      <figure class="w6"><img src="assets/zhoushan/taohua-1.jpg" alt="桃花岛桃花寨"><figcaption>桃花岛 · 桃花寨<small>Wikimedia Commons</small></figcaption></figure>
+      <figure class="w6"><img src="assets/zhoushan/taohua-2.jpg" alt="桃花岛塔湾金沙"><figcaption>桃花岛 · 塔湾金沙<small>Commons</small></figcaption></figure>
+      <figure class="w6"><img src="assets/zhoushan/taohua-3.jpg" alt="桃花岛城楼"><figcaption>桃花岛 · 城楼<small>Commons</small></figcaption></figure>
+      <figure class="w6"><img src="assets/zhoushan/shenjiamen-port.jpg" alt="沈家门十里渔港"><figcaption>沈家门 · 十里渔港<small>Commons</small></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 住宿 ===================== -->
+<section id="stay">
+  <div class="sec-head"><div class="no">04</div><h2>住在哪里</h2></div>
+  <p class="sec-sub">三天动线都以<em>朱家尖蜈蚣峙码头</em>集散，两个思路：住码头附近接驳最省心，或住海滨 / 沈家门枕着渔港烟火。价格为参考区间，节假日上浮，以预订平台实时价为准。</p>
+  <div class="hotels">
+    <div class="hotel reveal"><div class="area">朱家尖 · 蜈蚣峙码头</div><h4>慈航广场片区</h4>
+      <p>住码头旁，三天上岛船班最省心，餐饮、购物、票务都集中在楼下，拖行李也方便。</p>
+      <div class="meta"><span>接驳最方便</span><span>餐饮集中</span><span>约 ¥400–900/晚</span></div></div>
+    <div class="hotel reveal"><div class="area">朱家尖 · 东沙 / 南沙海滨</div><h4>海滨度假酒店 / 民宿</h4>
+      <p>临海而居、步行到沙滩，适合踏浪、看海上日出，度假感最足。</p>
+      <div class="meta"><span>一线海景</span><span>近沙滩</span><span>约 ¥500–1200/晚</span></div></div>
+    <div class="hotel reveal"><div class="area">沈家门 · 渔港城区</div><h4>沈家门城区酒店</h4>
+      <p>中国最大渔港旁，海鲜排档下楼即达，烟火气足、性价比高，第三天动线最短。</p>
+      <div class="meta"><span>渔港烟火</span><span>排档聚集</span><span>约 ¥300–700/晚</span></div></div>
+    <div class="hotel reveal"><div class="area">普陀山 · 岛上</div><h4>普陀山山居 / 寺院客房</h4>
+      <p>想二刷、赶寺院早课或看清晨无人的海，可住一晚岛上，价格偏高、房源紧。</p>
+      <div class="meta"><span>听早课</span><span>清晨看海</span><span>约 ¥600–1500/晚</span></div></div>
+  </div>
+</section>
+
+<!-- ===================== 美食 ===================== -->
+<section id="food">
+  <div class="sec-head"><div class="no">05</div><h2>舟山味道</h2></div>
+  <p class="sec-sub">舟山的味道 = <em>海鲜 + 渔港 + 素斋</em>。海货讲究"刚上岸"，吃的是一个鲜；上了普陀山，又有清净的素面素斋。</p>
+  <div class="food-hero reveal">
+    <img src="assets/zhoushan/seafood-putuo.jpg" alt="舟山渔市上的各类海鲜干货">
+    <div class="cap"><b>渔市日常 · 一桌"刚上岸"的小海鲜</b>
+      <p>贝类、虾干、鱼鲞琳琅满目——真实照片，摄于舟山渔市（Wikimedia Commons）。</p></div>
+  </div>
+  <div class="dishes">
+    <div class="dish reveal"><h5>清蒸 / 红烧小海鲜</h5><p>梭子蟹、带鱼、皮皮虾（虾虎）应季而食，做法简单，吃的就是原味的鲜。</p></div>
+    <div class="dish reveal"><h5>海鲜面 · 海鲜年糕</h5><p>码头与城区常见，浇头现炒、汤头鲜甜，一顿就能尝好几样海味。</p></div>
+    <div class="dish reveal"><h5>葱油海瓜子 · 辣螺</h5><p>本地特色小贝壳、小海螺，葱油一激香气十足，是佐酒的一绝。</p></div>
+    <div class="dish reveal"><h5>淡菜（贻贝）汤</h5><p>舟山一带盛产贻贝，汤色奶白、味道鲜浓，平价又鲜美。</p></div>
+    <div class="dish reveal"><h5>红膏呛蟹</h5><p>舟山名菜，梭子蟹以盐卤呛制，红膏满盖、咸鲜回甘。</p></div>
+    <div class="dish reveal"><h5>黄鱼鲞 · 各类鱼鲞</h5><p>渔家传统风干海鱼，拿来烧肉下饭，是地道的海岛家常味。</p></div>
+    <div class="dish reveal"><h5>沈家门夜排档</h5><p>现挑现做、灯火通明，是舟山最有烟火气的一顿；记得先问价。</p></div>
+    <div class="dish reveal"><h5>普陀山素斋 · 素面</h5><p>寺院旁的素面、素斋清净快捷，礼佛之日正好尝一尝。</p></div>
+    <div class="dish reveal"><h5>海鲜干货伴手礼</h5><p>虾皮、紫菜、鱼干、淡菜干，渔市与商超都有，适合带回家。</p></div>
+  </div>
+  <div class="streets">
+    <div class="street reveal"><b>沈家门夜排档</b><p>舟山最出名的海鲜排档，第三天晚餐就在这。</p></div>
+    <div class="street reveal"><b>蜈蚣峙码头 · 慈航广场</b><p>码头快餐、海鲜面，上岛前后解决最方便。</p></div>
+    <div class="street reveal"><b>舟山本岛 · 东港商圈</b><p>餐馆集中、选择多，适合正经吃一顿。</p></div>
+    <div class="street reveal"><b>普陀山码头 / 普济寺旁</b><p>素斋、素面与简餐，礼佛当天用餐。</p></div>
+  </div>
+</section>
+
+<!-- ===================== 贴士 ===================== -->
+<section id="tips">
+  <div class="sec-head"><div class="no">06</div><h2>实用贴士</h2></div>
+  <p class="sec-sub">跳岛旅行，海况和船班是关键，几条小提醒：</p>
+  <div class="tips">
+    <div class="tip reveal"><h5>最佳季节</h5><p>海岛冬暖夏凉，9–10 月天蓝海清、体感舒适，也能避开暑期人潮与长假高峰；夏秋季留意台风预报。</p></div>
+    <div class="tip reveal"><h5>船班与天气</h5><p>跳岛全靠船，遇大风、大雾可能停航，行程预留半天弹性；船票提前在官方渠道购买，节假日更紧张。</p></div>
+    <div class="tip reveal"><h5>防晒与晕船</h5><p>海上紫外线强，备好防晒霜、帽子和墨镜；容易晕船者提前服药、尽量坐通风处。</p></div>
+    <div class="tip reveal"><h5>门票与预约</h5><p>普陀山门票与船票分计，各景区门票以官方为准，节假日提前实名预约、错峰上岛。</p></div>
+    <div class="tip reveal"><h5>吃海鲜避坑</h5><p>认准明码标价、先问价再点单；海鲜配姜醋、别贪凉，选择正规排档和餐馆。</p></div>
+    <div class="tip reveal"><h5>自驾与停车</h5><p>甬舟高速节假日易拥堵，尽量早出发；码头停车位有限、先到先得，按现场指引停放。</p></div>
+  </div>
+</section>
+
+<!-- ===================== 下一站预告 ===================== -->
+<section id="next">
+  <div class="sec-head"><div class="no">07</div><h2>下一本旅行地图</h2></div>
+  <p class="sec-sub">舟山群岛远不止这"金三角"。更远处的<em>东极岛</em>——庙子湖、青浜"海上布达拉宫"、东福山的大陆第一缕日出，是下一趟想跳的岛。</p>
+  <div class="food-hero reveal" style="height:300px">
+    <img src="assets/zhoushan/dongji-banner.jpg" alt="东极岛渔村全景">
+    <div class="cap"><b>东极岛 · 东海之极</b>
+      <p>石屋依山、渔港向海，下一本旅行地图见（真实照片 · Wikimedia Commons）。</p></div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    舟山三日跳岛 · 朱家尖 · 普陀山 · 桃花岛 · 上海出发<br>
+    行程与价格信息整理自公开资料，出行前请以官方与预订平台为准 · 照片 © 原作者，Wikimedia Commons
+  </div>
+</footer>
+
+<script>
+(function(){
+  var els = document.querySelectorAll('.reveal, .photos figure');
+  if (!('IntersectionObserver' in window)) {
+    els.forEach(function(e){ e.classList.add('show'); });
+    return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if (en.isIntersecting) { en.target.classList.add('show'); io.unobserve(en.target); }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px 240px 0px' });
+  els.forEach(function(e){ io.observe(e); });
+  /* 兜底：3 秒后无条件显示，避免任何环境下照片保持隐藏 */
+  setTimeout(function(){ els.forEach(function(e){ e.classList.add('show'); }); }, 3000);
+})();
+</script>
+</body>
+</html>
