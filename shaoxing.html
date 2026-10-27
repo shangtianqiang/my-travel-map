@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>绍兴一日 · 桥多，酒香，书生多 | 上海虹桥出发 · 鲁迅故里 · 沈园 · 仓桥直街</title>
+<style>
+  :root{
+    --bg:#ffffff; --card:#ffffff; --ink:#20282a; --muted:#5d6a6c;
+    --sea:#2f5d57; --sea-deep:#1d403c; --tile:#a8482e; --sand:#f2f4f3;
+    --line:#e3e8e6; --gold:#c9a24a;
+    --shadow:0 10px 30px rgba(32,40,42,.08);
+    --radius:18px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:"Noto Serif SC","Songti SC","STSong","SimSun",serif;
+    background:var(--bg); color:var(--ink); line-height:1.75;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{display:block;max-width:100%}
+  a{color:var(--sea);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+
+  /* ---------- 顶部导航 ---------- */
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(255,255,255,.9);backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{display:flex;align-items:center;gap:28px;height:58px;overflow-x:auto}
+  nav .brand{font-weight:700;letter-spacing:.12em;color:var(--sea-deep);white-space:nowrap}
+  nav .brand span{color:var(--tile)}
+  nav a.nl{color:var(--muted);font-size:14px;white-space:nowrap}
+  nav a.nl:hover{color:var(--sea);text-decoration:none}
+
+  /* ---------- Hero ---------- */
+  header.hero{position:relative;min-height:68vh;display:flex;align-items:flex-end;overflow:hidden}
+  header.hero .bg{position:absolute;inset:0}
+  header.hero .bg img{width:100%;height:100%;object-fit:cover;object-position:center 55%}
+  header.hero .bg::after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg,rgba(20,32,30,.12) 0%,rgba(20,32,30,.22) 45%,rgba(18,30,28,.80) 100%);
+  }
+  header.hero .inner{position:relative;z-index:2;width:100%;padding:64px 24px 54px;color:#fff;
+    max-width:1180px;margin:0 auto}
+  .hero .kicker{letter-spacing:.35em;font-size:13px;color:#ffd9a8;margin-bottom:14px}
+  .hero h1{font-size:clamp(30px,5.2vw,56px);line-height:1.25;font-weight:900;letter-spacing:.06em;text-shadow:0 2px 18px rgba(0,0,0,.35)}
+  .hero .sub{margin-top:14px;font-size:clamp(14px,1.6vw,17px);color:rgba(255,255,255,.92);max-width:46em}
+  .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+  .chip{
+    border:1px solid rgba(255,255,255,.45);border-radius:999px;
+    padding:6px 16px;font-size:13px;color:#fff;background:rgba(20,45,42,.38);backdrop-filter:blur(4px);
+  }
+  .photo-credit{font-size:11px;color:rgba(255,255,255,.72);margin-top:16px}
+
+  /* ---------- 通用区块 ---------- */
+  section{padding:72px 0 8px}
+  .sec-head{display:flex;align-items:baseline;gap:18px;margin-bottom:8px}
+  .sec-head .no{font-size:44px;font-weight:900;color:var(--sand);-webkit-text-stroke:1px var(--tile);line-height:1}
+  .sec-head h2{font-size:clamp(24px,3vw,34px);color:var(--sea-deep);letter-spacing:.08em}
+  .sec-sub{color:var(--muted);margin-bottom:30px;max-width:52em}
+  .sec-sub em{color:var(--tile);font-style:normal}
+
+  /* ---------- 行程速览 ---------- */
+  .glance{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .glance .g{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:22px 22px 18px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+  .glance .g::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--sea)}
+  .glance .g:nth-child(2)::before{background:var(--tile)}
+  .glance .g:nth-child(3)::before{background:var(--gold)}
+  .glance .d{font-size:13px;color:var(--muted);letter-spacing:.15em}
+  .glance .t{font-size:19px;font-weight:700;margin:6px 0 8px;color:var(--sea-deep)}
+  .glance .s{font-size:14px;color:var(--muted)}
+
+  /* ---------- 交通卡 ---------- */
+  .transport{display:grid;grid-template-columns:1.05fr .95fr;gap:0;background:var(--card);
+    border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);margin-bottom:40px}
+  .transport .txt{padding:30px 30px 24px}
+  .transport h3{font-size:20px;color:var(--sea-deep);margin-bottom:14px;display:flex;align-items:center;gap:10px}
+  .transport .opt{padding:14px 0;border-top:1px dashed var(--line)}
+  .transport .opt:first-of-type{border-top:none}
+  .transport .opt b{color:var(--tile)}
+  .transport .opt p{font-size:14.5px;color:var(--muted)}
+  .transport .pic{position:relative;min-height:280px}
+  .transport .pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .transport .pic figcaption{position:absolute;left:12px;bottom:10px;font-size:12px;color:#fff;
+    background:rgba(20,45,42,.6);padding:3px 10px;border-radius:999px}
+
+  /* ---------- 车次表 ---------- */
+  .tt{width:100%;border-collapse:collapse;font-size:13.5px;margin:6px 0 18px}
+  .tt th,.tt td{border-bottom:1px solid var(--line);padding:9px 10px;text-align:left;color:var(--muted)}
+  .tt th{color:var(--sea-deep);font-weight:700;background:var(--sand);font-size:12.5px;letter-spacing:.06em}
+  .tt td b{color:var(--ink)}
+  .tt tr.pick td{background:#f4f8f6}
+  .tt tr.pick td:first-child{box-shadow:inset 3px 0 0 var(--tile)}
+
+  /* ---------- 每日时间轴 ---------- */
+  .day{margin-bottom:56px}
+  .day-head{display:flex;align-items:center;gap:16px;margin-bottom:6px}
+  .day-head .date{
+    background:var(--sea-deep);color:#fff;border-radius:12px;padding:8px 14px;text-align:center;line-height:1.3;
+    box-shadow:var(--shadow)}
+  .day-head .date b{display:block;font-size:20px}
+  .day-head .date span{font-size:12px;opacity:.85}
+  .day-head h3{font-size:clamp(20px,2.4vw,27px);color:var(--ink)}
+  .day-head .theme{font-size:13px;color:var(--tile);letter-spacing:.2em;margin-top:2px}
+  .route{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:14px 0 22px;font-size:13px;color:var(--muted)}
+  .route .stop{background:var(--sand);border:1px solid var(--line);border-radius:999px;padding:4px 13px;color:var(--sea-deep)}
+  .route .arr{color:var(--tile)}
+
+  .timeline{border-left:2px solid var(--line);margin-left:8px;padding-left:26px}
+  .tl{position:relative;padding:0 0 22px}
+  .tl::before{content:"";position:absolute;left:-33px;top:8px;width:12px;height:12px;border-radius:50%;
+    background:var(--bg);border:3px solid var(--sea)}
+  .tl:nth-child(even)::before{border-color:var(--tile)}
+  .tl .time{font-size:13px;color:var(--tile);font-weight:700;letter-spacing:.08em}
+  .tl .spot{font-size:17.5px;font-weight:700;color:var(--sea-deep);margin:2px 0}
+  .tl .desc{font-size:14.5px;color:var(--muted);max-width:56em}
+  .tl .tag{display:inline-block;font-size:11.5px;border:1px solid var(--line);background:var(--sand);
+    color:var(--sea-deep);border-radius:6px;padding:1px 8px;margin-left:8px;vertical-align:2px}
+
+  .tipbox{background:#f3f7f6;border:1px solid #d5e4e1;border-left:4px solid var(--sea);
+    border-radius:10px;padding:14px 18px;font-size:14px;color:#31514d;margin:4px 0 26px}
+  .tipbox.warn{background:#fdf6f2;border-color:#f0dbd0;border-left-color:var(--tile);color:#6c4331}
+
+  /* ---------- 照片墙 ---------- */
+  .photos{display:grid;grid-template-columns:repeat(12,1fr);gap:14px;margin-top:8px}
+  .photos figure{position:relative;border-radius:14px;overflow:hidden;box-shadow:var(--shadow);
+    background:var(--sand);opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+  .photos figure.show{opacity:1;transform:none}
+  .photos img{width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.16,1,.3,1)}
+  .photos figure:hover img{transform:scale(1.045)}
+  .photos figcaption{position:absolute;left:0;right:0;bottom:0;padding:26px 14px 10px;font-size:13px;color:#fff;
+    background:linear-gradient(180deg,transparent,rgba(14,34,31,.78));letter-spacing:.04em}
+  .photos figcaption small{opacity:.7;font-size:10.5px;margin-left:6px}
+  .w4{grid-column:span 4;height:240px}.w6{grid-column:span 6;height:260px}
+  .w8{grid-column:span 8;height:300px}.w12{grid-column:span 12;height:340px}
+
+  /* ---------- 备选路线 ---------- */
+  .alts{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .alt{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:26px 26px 20px;box-shadow:var(--shadow);border-top:5px solid var(--sea)}
+  .alt:nth-child(2){border-top-color:var(--tile)}
+  .alt:nth-child(3){border-top-color:var(--gold)}
+  .alt .area{font-size:12px;color:var(--tile);letter-spacing:.2em}
+  .alt h4{font-size:20px;color:var(--sea-deep);margin:4px 0 10px}
+  .alt p{font-size:14.5px;color:var(--muted)}
+  .alt .meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+  .alt .meta span{font-size:12px;background:var(--sand);border:1px solid var(--line);
+    border-radius:999px;padding:3px 12px;color:var(--sea-deep)}
+
+  /* ---------- 美食 ---------- */
+  .food-hero{border-radius:var(--radius);overflow:hidden;position:relative;box-shadow:var(--shadow);margin-bottom:26px;height:330px}
+  .food-hero img{width:100%;height:100%;object-fit:cover}
+  .food-hero .cap{position:absolute;left:0;right:0;bottom:0;padding:40px 24px 18px;color:#fff;
+    background:linear-gradient(180deg,transparent,rgba(14,34,31,.82))}
+  .food-hero .cap b{font-size:20px;letter-spacing:.06em}
+  .food-hero .cap p{font-size:13.5px;opacity:.92}
+  .dishes{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .dish{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;box-shadow:var(--shadow)}
+  .dish h5{font-size:16.5px;color:var(--sea-deep)}
+  .dish h5 small{color:var(--tile);font-size:12px;margin-left:8px;font-weight:400}
+  .dish p{font-size:13.5px;color:var(--muted);margin-top:4px}
+  .streets{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:18px}
+  .street{background:var(--sand);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+  .street b{color:var(--sea-deep);font-size:15px}
+  .street p{font-size:12.5px;color:var(--muted);margin-top:2px}
+
+  /* ---------- 贴士 ---------- */
+  .tips{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .tip{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px;box-shadow:var(--shadow)}
+  .tip h5{color:var(--tile);font-size:15.5px;margin-bottom:6px}
+  .tip p{font-size:13.5px;color:var(--muted)}
+
+  /* ---------- 预算 ---------- */
+  .budget{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:22px}
+  .budget .b{background:var(--sand);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+  .budget .b .k{font-size:12.5px;color:var(--muted);letter-spacing:.1em}
+  .budget .b .v{font-size:20px;color:var(--sea-deep);font-weight:700;margin-top:2px}
+  .budget .b .n{font-size:12px;color:var(--muted)}
+
+  /* ---------- 页脚 ---------- */
+  footer{margin:56px 0 0;border-top:1px solid var(--line);padding:26px 0 40px;
+    font-size:12.5px;color:var(--muted);text-align:center}
+
+  /* ---------- 动效 ---------- */
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s ease,transform .8s ease}
+  .reveal.show{opacity:1;transform:none}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto}
+    .reveal,.photos figure{opacity:1;transform:none;transition:none}
+    .photos img{transition:none}
+  }
+
+  /* ---------- 响应式 ---------- */
+  @media (max-width:900px){
+    .glance,.dishes,.tips,.alts{grid-template-columns:1fr 1fr}
+    .streets,.budget{grid-template-columns:1fr 1fr}
+    .transport{grid-template-columns:1fr}
+    .transport .pic{min-height:220px}
+    .w4{grid-column:span 6}.w6{grid-column:span 12}.w8{grid-column:span 12}
+    .tt th,.tt td{padding:8px 6px;font-size:12.5px}
+  }
+  @media (max-width:600px){
+    section{padding:54px 0 4px}
+    .glance,.dishes,.tips,.alts,.streets{grid-template-columns:1fr}
+    .budget{grid-template-columns:1fr 1fr}
+    .w4{grid-column:span 12;height:220px}
+    .w12{height:260px}
+    .day-head h3{font-size:19px}
+    .food-hero{height:240px}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">绍兴一日<span> · </span>桥多，酒香</div>
+    <a class="nl" href="#glance">行程速览</a>
+    <a class="nl" href="#transport">高铁与接驳</a>
+    <a class="nl" href="#morning">上午 文豪故里</a>
+    <a class="nl" href="#afternoon">午后 宋园老街</a>
+    <a class="nl" href="#evening">傍晚 桥与酒</a>
+    <a class="nl" href="#alt">备选路线</a>
+    <a class="nl" href="#food">美食</a>
+    <a class="nl" href="#tips">实用贴士</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="bg"><img src="assets/shaoxing/hero.jpg" alt="绍兴八字桥，南宋石梁桥横跨河道，两岸是白墙黛瓦的老民居"></div>
+  <div class="inner">
+    <div class="kicker">SHAOXING · 2026.10.31 一日往返</div>
+    <h1>桥多，酒香，书生多<br>一天把绍兴读一遍</h1>
+    <p class="sub">上海虹桥 08:05 出发，绍兴北 19:04 返程 · 从百草园到三味书屋，从沈园的《钗头凤》到八字桥的石阶，最后用一壶太雕和一支黄酒棒冰收尾</p>
+    <div class="chips">
+      <span class="chip">一日往返 · 无需住宿</span>
+      <span class="chip">全程步行 + 2 段打车</span>
+      <span class="chip">高铁 1 小时 13 分</span>
+      <span class="chip">真实照片 · 无 AI 生图</span>
+    </div>
+    <div class="photo-credit">头图：八字桥，南宋嘉泰年间始建、宝祐四年（1256）重建 —— 真实照片，来源 Wikimedia Commons</div>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- ===================== 行程速览 ===================== -->
+<section id="glance">
+  <div class="sec-head"><div class="no">00</div><h2>行程速览</h2></div>
+  <p class="sec-sub">一整天都圈在<em>古城核心 2 公里</em>里：上午读鲁迅，午后逛宋园与老街，傍晚看桥、喝酒、买东西。景点之间基本步行可达，只有<em>往返高铁站</em>需要打车或坐地铁。</p>
+  <div class="glance">
+    <div class="g reveal"><div class="d">08:05 — 12:00</div><div class="t">上午 · 从百草园到三味书屋</div>
+      <div class="s">高铁抵绍兴北 → 鲁迅故里（故居 / 百草园 / 三味书屋 / 纪念馆）→ 咸亨酒店午餐</div></div>
+    <div class="g reveal"><div class="d">12:00 — 16:20</div><div class="t">午后 · 沈园一场旧梦，直街一段烟火</div>
+      <div class="s">沈园《钗头凤》→ 仓桥直街慢逛小吃 → 八字桥看宋代立交</div></div>
+    <div class="g reveal"><div class="d">16:20 — 20:23</div><div class="t">傍晚 · 书圣故里，带一壶酒回家</div>
+      <div class="s">书圣故里（墨池 / 题扇桥）→ 买黄酒茴香豆 → 绍兴北 19:04 返程</div></div>
+  </div>
+</section>
+
+<!-- ===================== 交通 ===================== -->
+<section id="transport">
+  <div class="sec-head"><div class="no">01</div><h2>高铁与接驳</h2></div>
+  <p class="sec-sub">沪绍之间班次密集，<em>上海虹桥 → 绍兴北</em>最快约 73 分钟。选车次的两个原则：去程别太早（古城 8:30 才开园），回程给足 40 分钟缓冲（绍兴北站不小，进站要走一段）。</p>
+
+  <div class="transport reveal">
+    <div class="txt">
+      <h3>去程 · 挑 08:00 前后这一班</h3>
+      <div class="opt"><b>首选 G7503 · 08:05 → 09:18</b>
+        <p>上海虹桥 08:05 开，经嘉兴南、杭州东，09:18 到绍兴北，全程 1 小时 13 分。停站少、时间最贴合，二等座百元上下。落地后打车 25 分钟，10:00 前就能站到鲁迅故里门口。</p></div>
+      <div class="opt"><b>备选 G7549 · 08:10 → 09:33</b>
+        <p>同样是 8 点档，多停金山北一站，晚 15 分钟到。买不到 G7503 就上这班，行程整体往后推 15 分钟即可，不必改计划。</p></div>
+      <div class="opt"><b>绍兴北站 → 古城（两个选择）</b>
+        <p><b>打车</b>：15–17 公里，25–30 分钟，约 40 元，网约车在出站层随叫随到 —— 一日游时间紧，回程建议也打车。<br>
+           <b>地铁</b>：轨道交通 1 号线支线（黄酒小镇方向）坐 4 站到黄酒小镇，同站换 1 号线（芳泉方向）坐 7 站到「鲁迅故里」站，全程约 50 分钟、3–5 元，A1 口出站步行约 400 米到景区。</p></div>
+    </div>
+    <figure class="pic">
+      <img src="assets/shaoxing/wupeng.jpg" alt="绍兴河道上成排的乌篷船，船头搭着红色篷布">
+      <figcaption>乌篷船 · 水上人家的日常</figcaption>
+    </figure>
+  </div>
+
+  <div class="day">
+    <div class="day-head">
+      <div class="date"><b>G</b><span>去程</span></div>
+      <div><h3>去程车次参考</h3><div class="theme">上海虹桥 → 绍兴北</div></div>
+    </div>
+    <table class="tt">
+      <tr><th>车次</th><th>上海虹桥</th><th>绍兴北</th><th>历时</th><th>说明</th></tr>
+      <tr class="pick"><td><b>G7503</b></td><td><b>08:05</b></td><td><b>09:18</b></td><td>1h13</td><td>首选，停站少</td></tr>
+      <tr><td>G7549</td><td>08:10</td><td>09:33</td><td>1h23</td><td>备选，多停金山北</td></tr>
+      <tr><td>G7505</td><td>08:57</td><td>10:15</td><td>1h18</td><td>起不来床的兜底方案</td></tr>
+    </table>
+
+    <div class="day-head" style="margin-top:26px">
+      <div class="date"><b>G</b><span>返程</span></div>
+      <div><h3>返程车次参考</h3><div class="theme">绍兴北 → 上海虹桥</div></div>
+    </div>
+    <table class="tt">
+      <tr><th>车次</th><th>绍兴北</th><th>上海虹桥</th><th>历时</th><th>说明</th></tr>
+      <tr class="pick"><td><b>G7562</b></td><td><b>19:04</b></td><td><b>20:23</b></td><td>1h19</td><td>首选，19:00 档最贴合</td></tr>
+      <tr><td>D3133 / D3132</td><td>19:00</td><td>20:34</td><td>1h34</td><td>刚好 19:00 开，动车</td></tr>
+      <tr><td>D3206</td><td>19:24</td><td>20:48</td><td>1h24</td><td>买不到前两班的备选</td></tr>
+    </table>
+    <div class="tipbox warn">班次与票价为公开时刻表整理，<b>2026 年 10 月 31 日为周六</b>，热门车次建议提前 7–14 天在 12306 购票；返程尽量选 19:00 之后、20:30 前到沪的车次，晚了地铁末班还能赶上。</div>
+  </div>
+</section>
+
+<!-- ===================== 上午 ===================== -->
+<section id="morning">
+  <div class="sec-head"><div class="no">02</div><h2>上午 · 从百草园到三味书屋</h2></div>
+  <p class="sec-sub">关键词：<em>课本现场、免费但要预约、咸亨的茴香豆</em>。鲁迅故里是一整片街区，故居、百草园、三味书屋、纪念馆都在里面，走完约 2 小时。</p>
+
+  <div class="day">
+    <div class="day-head">
+      <div class="date"><b>AM</b><span>第 0.5 天</span></div>
+      <div><h3>高铁落地 → 鲁迅故里 → 咸亨午餐</h3><div class="theme">文豪故里 · 水乡社戏 · 老字号</div></div>
+    </div>
+    <div class="route">
+      <span class="stop">上海虹桥</span><span class="arr">→</span><span class="stop">绍兴北</span><span class="arr">→</span>
+      <span class="stop">鲁迅故里</span><span class="arr">→</span><span class="stop">咸亨酒店</span>
+    </div>
+    <div class="timeline">
+      <div class="tl"><div class="time">06:50</div><div class="spot">出门，往虹桥火车站</div>
+        <div class="desc">建议 07:35 前到站。周六早高峰前出发，安检队伍短，还能在候车层吃个早饭。</div></div>
+      <div class="tl"><div class="time">08:05</div><div class="spot">G7503 上海虹桥开<span class="tag">1h13</span></div>
+        <div class="desc">过杭州东后窗外的水田与丘陵开始多起来，9 点出头就到绍兴北。</div></div>
+      <div class="tl"><div class="time">09:18</div><div class="spot">抵绍兴北，出站打车<span class="tag">约 40 元 / 25 分钟</span></div>
+        <div class="desc">绍兴北站在柯桥方向、离古城 16 公里，站前网约车通道很顺。想省钱可坐地铁 1 号线支线换乘 1 号线到「鲁迅故里」站，约 50 分钟、3–5 元。</div></div>
+      <div class="tl"><div class="time">10:00</div><div class="spot">鲁迅故里<span class="tag">免费 · 需实名预约</span></div>
+        <div class="desc">景区含周家老台门、鲁迅故居、百草园、三味书屋、鲁迅纪念馆，全部免费，但<b>必须提前在「绍兴市文旅集团」或「鲁迅纪念馆」公众号实名分时预约</b>，现场基本无票。开放 8:30–20:30（20:15 停止入园，周一 17:00 停止入园）。</div></div>
+      <div class="tl"><div class="time">10:10</div><div class="spot">鲁迅故居 · 百草园<span class="tag">约 40 分钟</span></div>
+        <div class="desc">晚清台门院落，鲁迅 1881 年出生于此，故居后就是那片「不必说碧绿的菜畦」的百草园 —— 现在是一方安静的小菜园，石井栏还在，和课文里对得上。</div></div>
+      <div class="tl"><div class="time">10:50</div><div class="spot">三味书屋<span class="tag">「早」字课桌</span></div>
+        <div class="desc">寿家台门的私塾，正中挂「三味书屋」匾，东北角那张书桌就是鲁迅刻「早」字的位置（隔着栏杆看）。人多时排队进，别着急。</div></div>
+      <div class="tl"><div class="time">11:20</div><div class="spot">鲁迅纪念馆<span class="tag">免费 · 有空调</span></div>
+        <div class="desc">系统讲鲁迅一生与著作版本，手稿、照片、旧版书籍不少。走累了这里是很好的中场休息点，也可以听 10:00 / 14:00 的免费讲解。</div></div>
+      <div class="tl"><div class="time">11:45</div><div class="spot">步行至咸亨酒店<span class="tag">300 米 · 5 分钟</span></div>
+        <div class="desc">鲁迅中路 179 号，门口立着孔乙己像。堂食区就是课文里的场景，「温两碗酒，要一碟茴香豆」在这里能原样点出来。</div></div>
+      <div class="tl"><div class="time">12:00</div><div class="spot">咸亨酒店午餐<span class="tag">人均 80–120 元</span></div>
+        <div class="desc">必点：茴香豆、霉干菜扣肉、绍三鲜，配一壶太雕（温热喝）。人多时先取号，12 点前入座基本不用等；赶时间可点黄酒布丁当甜品。</div></div>
+    </div>
+    <div class="tipbox">提示：鲁迅故里预约选<b>10:00–12:00</b>时段最合适，既不用太早从上海出发，也能在午饭前走完。周末建议提前 3–5 天预约。</div>
+    <div class="photos">
+      <figure class="w8"><img src="assets/shaoxing/sanwei.jpg" alt="三味书屋，匾额下是旧时私塾的陈设"><figcaption>三味书屋 · 匾额下的旧时私塾，东北角那张书桌刻着「早」字<small>Wikimedia Commons</small></figcaption></figure>
+      <figure class="w4"><img src="assets/shaoxing/xianheng.jpg" alt="咸亨酒店门脸，挂着红灯笼与招牌"><figcaption>咸亨酒店 · 鲁迅中路 179 号<small>Commons</small></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 午后 ===================== -->
+<section id="afternoon">
+  <div class="sec-head"><div class="no">03</div><h2>午后 · 沈园一场旧梦，直街一段烟火</h2></div>
+  <p class="sec-sub">关键词：<em>钗头凤、环山河、臭豆腐与奶油小攀</em>。这一段全程步行，从鲁迅中路往北，一路走到八字桥，共约 2.5 公里。</p>
+
+  <div class="day">
+    <div class="day-head">
+      <div class="date"><b>PM</b><span>午后</span></div>
+      <div><h3>沈园 → 仓桥直街 → 八字桥</h3><div class="theme">宋代园林 · 水乡老街 · 宋代立交</div></div>
+    </div>
+    <div class="route">
+      <span class="stop">咸亨酒店</span><span class="arr">→</span><span class="stop">沈园</span><span class="arr">→</span>
+      <span class="stop">仓桥直街</span><span class="arr">→</span><span class="stop">八字桥</span>
+    </div>
+    <div class="timeline">
+      <div class="tl"><div class="time">13:10</div><div class="spot">步行至沈园<span class="tag">300 米</span></div>
+        <div class="desc">鲁迅中路 318 号，和咸亨几乎斜对门 —— 绍兴的好处就是景点之间不用坐车。</div></div>
+      <div class="tl"><div class="time">13:20</div><div class="spot">沈园<span class="tag">40 元 · 日场 8:00–17:00</span></div>
+        <div class="desc">800 多年历史的宋代私家园林，陆游与唐琬在此重逢，《钗头凤》题在园中石壁上。看点：孤鹤轩、问梅槛、宋井、葫芦池。16:40 停止入园，别拖到傍晚才来。</div></div>
+      <div class="tl"><div class="time">14:20</div><div class="spot">步行 / 骑行到仓桥直街<span class="tag">1.2 公里 · 15 分钟</span></div>
+        <div class="desc">出沈园往西，穿过居民区就到。这条 1.5 公里的老街沿环山河铺开，清末民初的民居原样保留，曾获联合国教科文组织亚太地区文化遗产保护奖 —— 难得的是它没被改成纯商业街，晾衣绳和煤气灶都还在。</div></div>
+      <div class="tl"><div class="time">14:35</div><div class="spot">仓桥直街慢逛<span class="tag">边逛边吃</span></div>
+        <div class="desc">路线：宝珠桥 → 恒济典当 → 震元堂 → 状元楼。沿河的石阶、晾在窗外的衣裳、巷口打牌的老人，是绍兴最日常的一段。小吃别错过：臭豆腐约 10 元、奶油小攀约 4 元、黄酒棒冰约 5 元、木莲豆腐 3–5 元。</div></div>
+      <div class="tl"><div class="time">15:30</div><div class="spot">步行到八字桥<span class="tag">1.2 公里 · 15 分钟</span></div>
+        <div class="desc">沿八字桥直街往东北走，穿过一片没有游客的居民巷，桥上几乎没人 —— 这是全程最安静的一段。</div></div>
+      <div class="tl"><div class="time">15:45</div><div class="spot">八字桥<span class="tag">免费 · 全国重点文保</span></div>
+        <div class="desc">南宋嘉泰年间始建、宝祐四年（1256）重建，桥下西侧第五根石柱还刻着「宝祐丙辰仲冬吉日造」。三向四面落坡、两桥相对而斜，「状如八字」因而得名，陆连三路、水通南北 —— 建筑学家陈从周称它是我国最早的「城市立交桥」，2001 年列为全国重点文物保护单位，也随浙东运河一起进了世界遗产名录。桥下是运河故道，乌篷船会从桥洞里摇过；站在桥上往南北看，两岸全是白墙黑瓦的老房子。</div></div>
+      <div class="tl"><div class="time">16:20</div><div class="spot">骑行 / 步行至书圣故里<span class="tag">1.3 公里</span></div>
+        <div class="desc">往西北方向，进入蕺山脚下的老街区。这里不收门票，是活着的居民区。</div></div>
+    </div>
+    <div class="tipbox">提示：下午三点后光线转暖，仓桥直街与八字桥都很好拍。若想坐乌篷船，可在鲁迅故里或城市广场码头体验（约 60 元 / 人、20 分钟），把它替换掉八字桥那一段即可，时间刚好卡得住。</div>
+    <div class="photos">
+      <figure class="w6"><img src="assets/shaoxing/shenyuan.jpg" alt="沈园内的亭台与水池"><figcaption>沈园 · 《钗头凤》的石壁与池水<small>Wikimedia Commons</small></figcaption></figure>
+      <figure class="w6"><img src="assets/shaoxing/cangqiao.jpg" alt="仓桥直街沿环山河的清末民初民居"><figcaption>仓桥直街 · 环山河与沿河民居<small>Commons</small></figcaption></figure>
+      <figure class="w12"><img src="assets/shaoxing/bazi.jpg" alt="八字桥石阶与河面上的乌篷船"><figcaption>八字桥 · 南宋石梁桥与桥下乌篷船<small>Commons</small></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 傍晚 ===================== -->
+<section id="evening">
+  <div class="sec-head"><div class="no">04</div><h2>傍晚 · 书圣故里，带一壶酒回家</h2></div>
+  <p class="sec-sub">关键词：<em>墨池、题扇桥、黄酒与茴香豆</em>。王羲之住过的地方，如今是咖啡馆、旧书店和酱油铺混在一起的老巷子，收尾最舒服。</p>
+
+  <div class="day">
+    <div class="day-head">
+      <div class="date"><b>EVE</b><span>傍晚</span></div>
+      <div><h3>书圣故里 → 伴手礼 → 绍兴北</h3><div class="theme">书法圣地 · 黄酒 · 返程</div></div>
+    </div>
+    <div class="route">
+      <span class="stop">八字桥</span><span class="arr">→</span><span class="stop">书圣故里</span><span class="arr">→</span>
+      <span class="stop">绍兴北</span><span class="arr">→</span><span class="stop">上海虹桥</span>
+    </div>
+    <div class="timeline">
+      <div class="tl"><div class="time">16:35</div><div class="spot">书圣故里 · 墨池与题扇桥<span class="tag">街区免费</span></div>
+        <div class="desc">王羲之故居一带的老街区：墨池传说是他洗笔处，题扇桥是他给卖扇老妇题字的地方，还有戒珠寺、蔡元培故居（部分院落需另购票）。小巷窄、人不多，屋檐下晾着酱鸭，很有生活气。</div></div>
+      <div class="tl"><div class="time">17:20</div><div class="spot">买伴手礼 + 简单吃点<span class="tag">20–30 分钟</span></div>
+        <div class="desc">黄酒选古越龙山 / 会稽山的加饭、花雕，超市和专卖店比景区门口便宜近一半；茴香豆、霉干菜买真空装；想再垫一口就来碗次坞打面（人均 20 元左右）。黄酒棒冰、黄酒布丁可以边走边吃。</div></div>
+      <div class="tl"><div class="time">17:50</div><div class="spot">打车去绍兴北<span class="tag">12 公里 · 25 分钟 · 约 40 元</span></div>
+        <div class="desc">书圣故里到绍兴北走快速路，周六傍晚可能小堵，留出 30 分钟余量最稳；也可以先走到城市广场坐地铁 1 号线，但要换乘，时间上不如打车。</div></div>
+      <div class="tl"><div class="time">18:20</div><div class="spot">绍兴北站 · 进站候车</div>
+        <div class="desc">绍兴北站进站口到站台有一段距离，周末晚高峰人多，建议 18:30 前完成安检。候车层有便利店和快餐，晚饭没吃饱可以在这补。</div></div>
+      <div class="tl"><div class="time">19:04</div><div class="spot">G7562 返程<span class="tag">1h19</span></div>
+        <div class="desc">经杭州东，20:23 到上海虹桥。车上正好把一天的照片翻一遍。</div></div>
+      <div class="tl"><div class="time">20:23</div><div class="spot">抵上海虹桥</div>
+        <div class="desc">虹桥枢纽地铁 2 / 10 / 17 号线都在，末班车充裕，回家不慌。</div></div>
+    </div>
+    <div class="tipbox warn">卡点提醒：19:04 这一班是首选的「最后一班舒适车」。若在书圣故里逛忘了时间，还有 19:24 的 D3206（20:48 到）兜底 —— 但别赌，18:30 到站最安心。</div>
+    <div class="photos">
+      <figure class="w6"><img src="assets/shaoxing/cangqiao2.jpg" alt="仓桥直街的窄巷，两侧是老民居与店铺"><figcaption>仓桥直街 · 巷子里的日常<small>Wikimedia Commons</small></figcaption></figure>
+      <figure class="w6"><img src="assets/shaoxing/huangjiu.jpg" alt="绍兴花雕酒坛"><figcaption>花雕 · 走的时候带一坛回去<small>Commons</small></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 备选 ===================== -->
+<section id="alt">
+  <div class="sec-head"><div class="no">05</div><h2>不安排住宿 · 三条备选线</h2></div>
+  <p class="sec-sub">当天往返，<em>本页不安排住宿</em>（若临时想留一晚，古城内鲁迅故里 / 仓桥直街一带民宿约 180–400 元，出门就是老街）。下面三条是主线的平替：体力一般就砍掉书圣故里，想看点山水或书法就换掉午后那段。</p>
+  <div class="alts">
+    <div class="alt reveal"><div class="area">换掉午后 · 山水</div><h4>东湖 · 乌篷船穿岩洞</h4>
+      <p>古代采石场留下的峭壁与深潭，坐乌篷船从陶公洞、仙桃洞底下穿过去，石壁贴着脸走。门票 50 元（线上常约 45 元），船费约 40–85 元 / 船可坐 3 人。离古城 4 公里，打车 15 分钟。</p>
+      <div class="meta"><span>13:20 沈园后出发</span><span>游 1.5 小时</span><span>16:20 打车去北站</span></div></div>
+    <div class="alt reveal"><div class="area">换掉午后 · 书法</div><h4>兰亭 · 曲水流觞</h4>
+      <p>王羲之写《兰亭集序》的地方，鹅池、御碑亭（康熙乾隆同碑）、曲水流觞都在。门票 70 元，在城西南 12 公里，来回打车约 40 分钟，需要把午后压到只有沈园。</p>
+      <div class="meta"><span>13:30 打车前往</span><span>游 1.5 小时</span><span>时间偏紧 · 二刷再来</span></div></div>
+    <div class="alt reveal"><div class="area">加一站 · 古镇</div><h4>安昌 · 腊肠与酱园</h4>
+      <p>离绍兴北站只有 8 公里，最适合放在返程前：老街免费，仁昌酱园、腊肠酱鸭挂满廊檐，展馆联票 50 元（不逛展馆可不买）。逛 1 小时，再打车 15 分钟到站正好。</p>
+      <div class="meta"><span>16:00 打车前往</span><span>游 1 小时</span><span>17:40 直达北站</span></div></div>
+  </div>
+</section>
+
+<!-- ===================== 美食 ===================== -->
+<section id="food">
+  <div class="sec-head"><div class="no">06</div><h2>绍兴味道</h2></div>
+  <p class="sec-sub">绍兴菜的灵魂是四个字：<em>霉、糟、醉、鲜</em>。霉干菜与臭豆腐是"闻着臭吃着香"，糟鸡醉蟹是黄酒入菜，其余的鲜，都靠河鲜和越鸡撑着。一整天可以这样安排：午餐吃桌菜，下午吃小吃，走的时候带酒。</p>
+  <div class="food-hero reveal">
+    <img src="assets/shaoxing/cangqiao.jpg" alt="仓桥直街沿河的老民居，绍兴人日常生活的水巷">
+    <div class="cap"><b>水边一顿饭，配一壶温过的太雕</b>
+      <p>绍兴人喝酒讲究温着喝，老街的烟火气就沿河铺开 —— 真实照片，摄于仓桥直街（Wikimedia Commons）。</p></div>
+  </div>
+  <div class="dishes">
+    <div class="dish reveal"><h5>霉干菜扣肉<small>头牌</small></h5><p>乌黑的芥菜干吸饱五花肉的油，肉酥烂、菜回甘，配荷叶夹或直接拌饭。咸亨、寻宝记都做得稳。</p></div>
+    <div class="dish reveal"><h5>绍三鲜</h5><p>鱼圆、肉圆、蛋饺三件套，加河虾、笋片、肉皮用清鸡汤慢炖，汤清味厚，一桌人的安全牌。</p></div>
+    <div class="dish reveal"><h5>绍兴臭豆腐<small>约 10 元</small></h5><p>用苋菜梗卤水发酵，臭味淡雅，外皮薄脆内里爆汁，甜酱辣酱双蘸。仓桥直街、鲁迅故里的老摊最地道。</p></div>
+    <div class="dish reveal"><h5>茴香豆<small>约 15 元 / 碟</small></h5><p>《孔乙己》同款，豆子煮得绵软咸香，越嚼越有味道 —— 配黄酒才是正确打开方式。</p></div>
+    <div class="dish reveal"><h5>黄酒 · 太雕 / 花雕<small>约 38 元 / 壶</small></h5><p>绍兴黄酒分元红、加饭、善酿、香雪，太雕偏甜、花雕醇厚，温到 40℃ 左右最香。别空腹喝。</p></div>
+    <div class="dish reveal"><h5>糟鸡 / 醉鸡</h5><p>越鸡用陈年酒糟腌，皮爽肉滑、酒香清透，冷盘上桌，解腻一绝。</p></div>
+    <div class="dish reveal"><h5>奶油小攀<small>约 4 元</small></h5><p>绍兴版蛋挞，酥壳托着烤到金黄的蛋奶馅，甜而不腻，老城区的怀旧点心。</p></div>
+    <div class="dish reveal"><h5>次坞打面<small>人均 20 元</small></h5><p>手工捶打的面条筋道弹牙，浇头可要大排、雪菜肉丝、腰花，早餐或赶车前的一碗正好。</p></div>
+    <div class="dish reveal"><h5>安昌酱鸭 · 腊肠</h5><p>酱油、香料、黄酒腌后自然风干，酱香紧实，可真空打包当伴手礼 —— 年味的代表。</p></div>
+  </div>
+  <div class="streets">
+    <div class="street reveal"><b>咸亨酒店（鲁迅中路 179 号）</b><p>午餐主场。堂食区就是课文场景，茴香豆 + 太雕 + 霉干菜扣肉。</p></div>
+    <div class="street reveal"><b>仓桥直街</b><p>小吃一条街。孔乙己酒家（112 号）、状元楼、沿河臭豆腐摊，边走边吃。</p></div>
+    <div class="street reveal"><b>鲁迅故里步行街</b><p>三味臭豆腐、奶油小攀、黄酒棒冰，逛景区顺手解决下午茶。</p></div>
+    <div class="street reveal"><b>书圣故里 · 蕺山街</b><p>咖啡馆、小酒馆、旧书店混在民居里，适合返程前坐一会儿。</p></div>
+  </div>
+</section>
+
+<!-- ===================== 贴士 ===================== -->
+<section id="tips">
+  <div class="sec-head"><div class="no">07</div><h2>实用贴士</h2></div>
+  <p class="sec-sub">一日游最怕两件事：<em>预约没做</em>和<em>错过返程车</em>。把这两件办掉，其余都很松弛。</p>
+  <div class="tips">
+    <div class="tip reveal"><h5>鲁迅故里必须预约</h5><p>免费但需实名分时预约，在「绍兴市文旅集团」或「鲁迅纪念馆」公众号操作。周末建议提前 3–5 天，选 10:00–12:00 时段；现场基本无票，别赌。</p></div>
+    <div class="tip reveal"><h5>门票怎么买划算</h5><p>只去沈园就单买 40 元；若还想加东湖、兰亭、大禹陵，买「古城联票五选四」145–160 元更划算。60–69 岁、全日制学生半价，70 岁以上免大门票。</p></div>
+    <div class="tip reveal"><h5>10 月末的天气</h5><p>绍兴常年此时 13–22℃，早晚温差大，薄外套 + 长袖即可；秋雨说来就来，带把折叠伞。青石板路遇雨打滑，穿平底鞋。</p></div>
+    <div class="tip reveal"><h5>返程卡点</h5><p>19:04 的 G7562 是舒适线，18:30 前进站最稳。绍兴北站进站口到站台有一段路，周末排队安检要时间；打车从古城到站按 30 分钟算。</p></div>
+    <div class="tip reveal"><h5>古城内怎么走</h5><p>景点集中在 2 公里内，共享单车最自由；老城区部分街巷禁行机动车，别指望打车穿巷子。步行导航用「步行」模式，会带你走桥和巷子。</p></div>
+    <div class="tip reveal"><h5>人多与吃饭</h5><p>周六下午仓桥直街最挤，建议 14:30 前到；咸亨 12 点前入座不用等号。景区门口的特产溢价高，黄酒茴香豆去市区超市买，便宜近一半。</p></div>
+  </div>
+
+  <div class="budget">
+    <div class="b"><div class="k">高铁往返</div><div class="v">≈ ¥200</div><div class="n">二等座，单程百元上下</div></div>
+    <div class="b"><div class="k">市内交通</div><div class="v">≈ ¥80</div><div class="n">两段打车 + 零星骑行</div></div>
+    <div class="b"><div class="k">门票</div><div class="v">¥40 起</div><div class="n">只算沈园，联票另计</div></div>
+    <div class="b"><div class="k">吃与买</div><div class="v">¥150–250</div><div class="n">午餐 + 小吃 + 伴手礼</div></div>
+    <div class="b"><div class="k">人均合计</div><div class="v">¥470–570</div><div class="n">不含大宗伴手礼</div></div>
+  </div>
+
+  <div class="tipbox" style="margin-top:26px">一句话版本：<b>08:05 上车 · 10:00 进鲁迅故里 · 12:00 咸亨吃茴香豆 · 13:20 沈园 · 14:35 仓桥直街 · 15:45 八字桥 · 16:35 书圣故里 · 17:50 打车去站 · 19:04 返程 · 20:23 到虹桥。</b></div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    绍兴一日 · 鲁迅故里 · 沈园 · 仓桥直街 · 八字桥 · 书圣故里 · 上海虹桥往返<br>
+    行程与价格信息整理自公开资料，出行前请以官方与预订平台为准 · 照片 © 原作者，Wikimedia Commons
+  </div>
+</footer>
+
+<script>
+(function(){
+  var els = document.querySelectorAll('.reveal, .photos figure');
+  if (!('IntersectionObserver' in window)) {
+    els.forEach(function(e){ e.classList.add('show'); });
+    return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if (en.isIntersecting) { en.target.classList.add('show'); io.unobserve(en.target); }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px 240px 0px' });
+  els.forEach(function(e){ io.observe(e); });
+  /* 兜底：3 秒后无条件显示，避免任何环境下照片保持隐藏 */
+  setTimeout(function(){ els.forEach(function(e){ e.classList.add('show'); }); }, 3000);
+})();
+</script>
+</body>
+</html>
