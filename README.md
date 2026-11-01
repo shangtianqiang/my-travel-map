@@ -20,8 +20,6 @@
 | 成都 | 一座来了就不想走的城市 · 熊猫·慢生活·川渝味 三天两晚（日期待定） | <https://shangtianqiang.github.io/my-travel-map/chengdu.html> |
 | 重庆 | 山即是城，城即是山 · 8D夜景·老街轻轨·火锅 三天两晚（日期待定） | <https://shangtianqiang.github.io/my-travel-map/chongqing.html> |
 
-下一站：东极岛 / 嵊泗，正在路上。
-
 ## 目录结构
 
 ```

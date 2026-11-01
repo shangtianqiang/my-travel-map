@@ -33,44 +33,41 @@
   nav .brand span{color:var(--tile)}
 
   /* Hero */
-  header.hero{padding:90px 0 40px;text-align:center}
-  .hero .kicker{letter-spacing:.4em;font-size:13px;color:var(--tile);margin-bottom:18px}
-  .hero h1{font-size:clamp(34px,6vw,62px);color:var(--sea-deep);letter-spacing:.1em;font-weight:900}
-  .hero p{margin:18px auto 0;max-width:40em;color:var(--muted);font-size:clamp(15px,1.8vw,18px)}
-  .hero .meta{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;margin-top:28px}
+  header.hero{padding:56px 0 24px;text-align:center}
+  .hero .kicker{letter-spacing:.4em;font-size:12px;color:var(--tile);margin-bottom:12px}
+  .hero h1{font-size:clamp(26px,4.5vw,42px);color:var(--sea-deep);letter-spacing:.1em;font-weight:900}
+  .hero p{margin:12px auto 0;max-width:40em;color:var(--muted);font-size:clamp(13.5px,1.6vw,15.5px)}
+  .hero .meta{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin-top:18px}
   .hero .meta span{background:var(--sand);border:1px solid var(--line);border-radius:999px;
-    padding:6px 18px;font-size:13.5px;color:var(--sea-deep)}
+    padding:5px 14px;font-size:12.5px;color:var(--sea-deep)}
 
   /* 目的地板 */
-  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;padding:26px 0 10px}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;padding:20px 0 8px}
   .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
     overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column;
     transition:transform .5s cubic-bezier(.16,1,.3,1),box-shadow .5s}
-  .card:hover{transform:translateY(-6px);box-shadow:0 22px 46px rgba(29,47,60,.14)}
-  .card .cover{position:relative;height:260px;overflow:hidden}
+  .card:hover{transform:translateY(-5px);box-shadow:0 18px 40px rgba(29,47,60,.14)}
+  .card .cover{position:relative;height:165px;overflow:hidden}
   .card .cover img{width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.16,1,.3,1)}
   .card:hover .cover img{transform:scale(1.05)}
-  .card .cover .tag{position:absolute;left:14px;top:14px;background:rgba(10,50,70,.72);color:#fff;
-    font-size:12.5px;letter-spacing:.08em;padding:5px 14px;border-radius:999px;backdrop-filter:blur(4px)}
-  .card .body{padding:24px 26px 26px;display:flex;flex-direction:column;flex:1}
-  .card h2{font-size:24px;color:var(--sea-deep);letter-spacing:.05em}
-  .card p{font-size:14.5px;color:var(--muted);margin:10px 0 20px;flex:1}
+  .card .cover .tag{position:absolute;left:12px;top:12px;background:rgba(10,50,70,.72);color:#fff;
+    font-size:11.5px;letter-spacing:.08em;padding:4px 12px;border-radius:999px;backdrop-filter:blur(4px)}
+  .card .body{padding:15px 18px 17px;display:flex;flex-direction:column;flex:1}
+  .card h2{font-size:18px;color:var(--sea-deep);letter-spacing:.05em}
+  .card p{font-size:13px;color:var(--muted);margin:7px 0 13px;flex:1}
   .card .go{align-self:flex-start;border:1px solid var(--sea);color:var(--sea);border-radius:999px;
-    padding:8px 22px;font-size:14px;transition:background .3s,color .3s}
+    padding:5px 15px;font-size:12.5px;transition:background .3s,color .3s}
   .card .go:hover{background:var(--sea);color:#fff}
-
-  .coming{border:1px dashed #c3d2da;border-radius:var(--radius);background:var(--sand);
-    display:flex;flex-direction:column;align-items:center;justify-content:center;
-    text-align:center;padding:40px;min-height:260px;color:var(--muted)}
-  .coming b{color:var(--sea-deep);font-size:20px;letter-spacing:.06em}
-  .coming p{font-size:14px;margin-top:10px}
 
   footer{margin:60px 0 0;border-top:1px solid var(--line);padding:28px 0 42px;
     font-size:12.5px;color:var(--muted);text-align:center}
 
-  @media (max-width:760px){
+  @media (max-width:980px){
+    .grid{grid-template-columns:1fr 1fr}
+  }
+  @media (max-width:640px){
     .grid{grid-template-columns:1fr}
-    header.hero{padding:64px 0 26px}
+    header.hero{padding:44px 0 20px}
   }
 </style>
 </head>
@@ -205,11 +202,6 @@
         <span class="go">打开重庆攻略 →</span>
       </div>
     </a>
-
-    <div class="coming">
-      <b>下一站 · 东极岛 / 嵊泗</b>
-      <p>庙子湖、青浜"海上布达拉宫"、东福山的大陆第一缕日出……<br>更远的海岛，正在路上。</p>
-    </div>
 
   </div>
 </main>
