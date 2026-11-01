@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>厦门三日 · 城在海上，海在城中 | 鼓浪屿·环岛路之旅（日期待定）</title>
+<style>
+  :root{
+    --bg:#ffffff; --card:#ffffff; --ink:#1d2f3c; --muted:#5d6d78;
+    --sea:#0e5a7d; --sea-deep:#0a3f59; --tile:#b5442f; --sand:#f1f4f6;
+    --line:#e2e8ec; --gold:#c8a24a;
+    --shadow:0 10px 30px rgba(29,47,60,.08);
+    --radius:18px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:"Noto Serif SC","Songti SC","STSong","SimSun",serif;
+    background:var(--bg); color:var(--ink); line-height:1.75;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{display:block;max-width:100%}
+  a{color:var(--sea);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+
+  /* ---------- 顶部导航 ---------- */
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(255,255,255,.9);backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{display:flex;align-items:center;gap:28px;height:58px;overflow-x:auto}
+  nav .brand{font-weight:700;letter-spacing:.12em;color:var(--sea-deep);white-space:nowrap}
+  nav .brand span{color:var(--tile)}
+  nav a.nl{color:var(--muted);font-size:14px;white-space:nowrap}
+  nav a.nl:hover{color:var(--sea);text-decoration:none}
+
+  /* ---------- Hero ---------- */
+  header.hero{position:relative;min-height:66vh;display:flex;align-items:flex-end;overflow:hidden}
+  header.hero .bg{position:absolute;inset:0}
+  header.hero .bg img{width:100%;height:100%;object-fit:cover;object-position:center 42%}
+  header.hero .bg::after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg,rgba(10,40,60,.10) 0%,rgba(10,40,60,.18) 45%,rgba(10,38,56,.78) 100%);
+  }
+  header.hero .inner{position:relative;z-index:2;width:100%;padding:64px 24px 54px;color:#fff;
+    max-width:1180px;margin:0 auto}
+  .hero .kicker{letter-spacing:.35em;font-size:13px;color:#ffd9a8;margin-bottom:14px}
+  .hero h1{font-size:clamp(30px,5.2vw,56px);line-height:1.25;font-weight:900;letter-spacing:.06em;text-shadow:0 2px 18px rgba(0,0,0,.35)}
+  .hero .sub{margin-top:14px;font-size:clamp(14px,1.6vw,17px);color:rgba(255,255,255,.92);max-width:46em}
+  .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+  .chip{
+    border:1px solid rgba(255,255,255,.45);border-radius:999px;
+    padding:6px 16px;font-size:13px;color:#fff;background:rgba(10,50,70,.35);backdrop-filter:blur(4px);
+  }
+  .photo-credit{font-size:11px;color:rgba(255,255,255,.72);margin-top:16px}
+
+  /* ---------- 通用区块 ---------- */
+  section{padding:72px 0 8px}
+  .sec-head{display:flex;align-items:baseline;gap:18px;margin-bottom:8px}
+  .sec-head .no{font-size:44px;font-weight:900;color:var(--sand);-webkit-text-stroke:1px var(--tile);line-height:1}
+  .sec-head h2{font-size:clamp(24px,3vw,34px);color:var(--sea-deep);letter-spacing:.08em}
+  .sec-sub{color:var(--muted);margin-bottom:30px;max-width:52em}
+  .sec-sub em{color:var(--tile);font-style:normal}
+
+  /* ---------- 行程速览 ---------- */
+  .glance{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .glance .g{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:22px 22px 18px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+  .glance .g::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--sea)}
+  .glance .g:nth-child(2)::before{background:var(--tile)}
+  .glance .g:nth-child(3)::before{background:var(--gold)}
+  .glance .d{font-size:13px;color:var(--muted);letter-spacing:.15em}
+  .glance .t{font-size:19px;font-weight:700;margin:6px 0 8px;color:var(--sea-deep)}
+  .glance .s{font-size:14px;color:var(--muted)}
+
+  /* ---------- 交通卡 ---------- */
+  .transport{display:grid;grid-template-columns:1.05fr .95fr;gap:0;background:var(--card);
+    border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);margin-bottom:40px}
+  .transport .txt{padding:30px 30px 24px}
+  .transport h3{font-size:20px;color:var(--sea-deep);margin-bottom:14px;display:flex;align-items:center;gap:10px}
+  .transport .opt{padding:14px 0;border-top:1px dashed var(--line)}
+  .transport .opt:first-of-type{border-top:none}
+  .transport .opt b{color:var(--tile)}
+  .transport .opt p{font-size:14.5px;color:var(--muted)}
+  .transport .pic{position:relative;min-height:280px}
+  .transport .pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .transport .pic figcaption{position:absolute;left:12px;bottom:10px;font-size:12px;color:#fff;
+    background:rgba(10,50,70,.55);padding:3px 10px;border-radius:999px}
+
+  /* ---------- 每日时间轴 ---------- */
+  .day{margin-bottom:56px}
+  .day-head{display:flex;align-items:center;gap:16px;margin-bottom:6px}
+  .day-head .date{
+    background:var(--sea-deep);color:#fff;border-radius:12px;padding:8px 14px;text-align:center;line-height:1.3;
+    box-shadow:var(--shadow)}
+  .day-head .date b{display:block;font-size:20px}
+  .day-head .date span{font-size:12px;opacity:.85}
+  .day-head h3{font-size:clamp(20px,2.4vw,27px);color:var(--ink)}
+  .day-head .theme{font-size:13px;color:var(--tile);letter-spacing:.2em;margin-top:2px}
+  .route{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:14px 0 22px;font-size:13px;color:var(--muted)}
+  .route .stop{background:var(--sand);border:1px solid var(--line);border-radius:999px;padding:4px 13px;color:var(--sea-deep)}
+  .route .arr{color:var(--tile)}
+
+  .timeline{border-left:2px solid var(--line);margin-left:8px;padding-left:26px}
+  .tl{position:relative;padding:0 0 22px}
+  .tl::before{content:"";position:absolute;left:-33px;top:8px;width:12px;height:12px;border-radius:50%;
+    background:var(--bg);border:3px solid var(--sea)}
+  .tl:nth-child(even)::before{border-color:var(--tile)}
+  .tl .time{font-size:13px;color:var(--tile);font-weight:700;letter-spacing:.08em}
+  .tl .spot{font-size:17.5px;font-weight:700;color:var(--sea-deep);margin:2px 0}
+  .tl .desc{font-size:14.5px;color:var(--muted);max-width:56em}
+  .tl .tag{display:inline-block;font-size:11.5px;border:1px solid var(--line);background:var(--sand);
+    color:var(--sea-deep);border-radius:6px;padding:1px 8px;margin-left:8px;vertical-align:2px}
+
+  .tipbox{background:#f0f6fa;border:1px solid #d3e4ee;border-left:4px solid var(--sea);
+    border-radius:10px;padding:14px 18px;font-size:14px;color:#33566b;margin:4px 0 26px}
+
+  /* ---------- 照片墙 ---------- */
+  .photos{display:grid;grid-template-columns:repeat(12,1fr);gap:14px;margin-top:8px}
+  .photos figure{position:relative;border-radius:14px;overflow:hidden;box-shadow:var(--shadow);
+    background:var(--sand);opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+  .photos figure.show{opacity:1;transform:none}
+  .photos img{width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.16,1,.3,1)}
+  .photos figure:hover img{transform:scale(1.045)}
+  .photos figcaption{position:absolute;left:0;right:0;bottom:0;padding:26px 14px 10px;font-size:13px;color:#fff;
+    background:linear-gradient(180deg,transparent,rgba(8,35,50,.75));letter-spacing:.04em}
+  .photos figcaption small{opacity:.7;font-size:10.5px;margin-left:6px}
+  .w4{grid-column:span 4;height:240px}.w6{grid-column:span 6;height:260px}
+  .w8{grid-column:span 8;height:300px}.w12{grid-column:span 12;height:340px}
+  .wt{height:340px}
+
+  /* ---------- 住宿 ---------- */
+  .hotels{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+  .hotel{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:26px 26px 20px;box-shadow:var(--shadow);border-top:5px solid var(--sea)}
+  .hotel:nth-child(2){border-top-color:var(--tile)}
+  .hotel:nth-child(3){border-top-color:var(--gold)}
+  .hotel:nth-child(4){border-top-color:var(--sea-deep)}
+  .hotel .area{font-size:12px;color:var(--tile);letter-spacing:.2em}
+  .hotel h4{font-size:20px;color:var(--sea-deep);margin:4px 0 10px}
+  .hotel p{font-size:14.5px;color:var(--muted)}
+  .hotel .meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+  .hotel .meta span{font-size:12px;background:var(--sand);border:1px solid var(--line);
+    border-radius:999px;padding:3px 12px;color:var(--sea-deep)}
+
+  /* ---------- 美食 ---------- */
+  .food-hero{border-radius:var(--radius);overflow:hidden;position:relative;box-shadow:var(--shadow);margin-bottom:26px;height:330px}
+  .food-hero img{width:100%;height:100%;object-fit:cover}
+  .food-hero .cap{position:absolute;left:0;right:0;bottom:0;padding:40px 24px 18px;color:#fff;
+    background:linear-gradient(180deg,transparent,rgba(8,35,50,.8))}
+  .food-hero .cap b{font-size:20px;letter-spacing:.06em}
+  .food-hero .cap p{font-size:13.5px;opacity:.92}
+  .dishes{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .dish{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;box-shadow:var(--shadow)}
+  .dish h5{font-size:16.5px;color:var(--sea-deep)}
+  .dish h5 small{color:var(--tile);font-size:12px;margin-left:8px;font-weight:400}
+  .dish p{font-size:13.5px;color:var(--muted);margin-top:4px}
+  .streets{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:18px}
+  .street{background:var(--sand);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+  .street b{color:var(--sea-deep);font-size:15px}
+  .street p{font-size:12.5px;color:var(--muted);margin-top:2px}
+
+  /* ---------- 贴士 ---------- */
+  .tips{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .tip{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px;box-shadow:var(--shadow)}
+  .tip h5{color:var(--tile);font-size:15.5px;margin-bottom:6px}
+  .tip p{font-size:13.5px;color:var(--muted)}
+
+  footer{margin:56px 0 0;border-top:1px solid var(--line);padding:26px 0 40px;
+    font-size:12.5px;color:var(--muted);text-align:center}
+
+  /* ---------- 动效 ---------- */
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s ease,transform .8s ease}
+  .reveal.show{opacity:1;transform:none}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto}
+    .reveal,.photos figure{opacity:1;transform:none;transition:none}
+    .photos img{transition:none}
+  }
+
+  /* ---------- 响应式 ---------- */
+  @media (max-width:900px){
+    .glance,.dishes,.tips{grid-template-columns:1fr 1fr}
+    .hotels,.streets{grid-template-columns:1fr 1fr}
+    .transport{grid-template-columns:1fr}
+    .transport .pic{min-height:220px}
+    .w4{grid-column:span 6}.w6{grid-column:span 12}.w8{grid-column:span 12}
+  }
+  @media (max-width:600px){
+    section{padding:54px 0 4px}
+    .glance,.dishes,.tips,.hotels,.streets{grid-template-columns:1fr}
+    .w4{grid-column:span 12;height:220px}
+    .w12{height:260px}
+    .day-head h3{font-size:19px}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">厦门三日<span> · </span>海上花园</div>
+    <a class="nl" href="#glance">行程速览</a>
+    <a class="nl" href="#day1">Day 1 鼓浪屿</a>
+    <a class="nl" href="#day2">Day 2 南普陀·环岛路</a>
+    <a class="nl" href="#day3">Day 3 八市·集美</a>
+    <a class="nl" href="#stay">住宿</a>
+    <a class="nl" href="#food">美食</a>
+    <a class="nl" href="#tips">实用贴士</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="bg"><img src="assets/xiamen/hero.jpg" alt="从海面远眺鼓浪屿日光岩与红顶建筑"></div>
+  <div class="inner">
+    <div class="kicker">XIAMEN · 三天两晚 · 日期待定</div>
+    <h1>城在海上，海在城中<br>三天两晚，把这座花园岛屿慢慢摇过去</h1>
+    <p class="sub">上海出发 · 从鼓浪屿的老别墅与钢琴声，到环岛路的椰风海韵，再到八市的市井鲜味——这是一座适合把节奏调成海浪频率的城市</p>
+    <div class="chips">
+      <span class="chip">三天两晚 · 日期待定</span>
+      <span class="chip">世遗鼓浪屿 × 文艺本岛</span>
+      <span class="chip">高铁 / 飞机双方案</span>
+      <span class="chip">真实照片 · 无 AI 生图</span>
+    </div>
+    <div class="photo-credit">头图：鼓浪屿日光岩远眺 —— 真实照片，来源 Wikimedia Commons</div>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- ===================== 行程速览 ===================== -->
+<section id="glance">
+  <div class="sec-head"><div class="no">00</div><h2>行程速览</h2></div>
+  <p class="sec-sub">三天一条<em>岛—海—市</em>的动线：<em>第一天上岛读建筑</em>，<em>第二天沿海边骑行</em>，<em>第三天钻进菜市场与嘉庚校园</em>。全程靠轮渡、地铁与一辆共享单车，轻松走完。</p>
+  <div class="glance">
+    <div class="g reveal"><div class="d">DAY 1 · 第 1 天</div><div class="t">抵达 · 登鼓浪屿</div>
+      <div class="s">厦门北站/站 → 八市午餐 → 轮渡上岛 → 日光岩 → 菽庄花园 → 中山路夜景</div></div>
+    <div class="g reveal"><div class="d">DAY 2 · 第 2 天</div><div class="t">南普陀 · 厦大 · 环岛路</div>
+      <div class="s">南普陀寺 → 厦门大学 → 沙坡尾 → 环岛路骑行 → 曾厝垵晚餐</div></div>
+    <div class="g reveal"><div class="d">DAY 3 · 第 3 天</div><div class="t">八市早味 · 集美学村</div>
+      <div class="s">八市早餐 → 集美学村（嘉庚建筑）→ 返程</div></div>
+  </div>
+</section>
+
+<!-- ===================== DAY 1 ===================== -->
+<section id="day1">
+  <div class="sec-head"><div class="no">01</div><h2>Day 1 · 上岛，走进万国建筑</h2></div>
+  <p class="sec-sub">关键词：<em>轮渡、日光岩、钢琴声、老别墅</em>。第一天以"顺利上岛"为主，把整座世遗小岛泡进一个下午。</p>
+
+  <div class="transport reveal">
+    <div class="txt">
+      <h3>怎么去厦门（上海出发）</h3>
+      <div class="opt"><b>方案 A · 高铁</b>
+        <p>上海虹桥 → 厦门北 / 厦门站，全程约 4.5–6 小时，二等座约 450–600 元（以 12306 为准）。白班车下午即达，晚上正好逛中山路；车票不算紧张，日期待定也从容。厦门北站离市区远，务必预留地铁 1 小时。</p></div>
+      <div class="opt"><b>方案 B · 飞机</b>
+        <p>上海浦东/虹桥 → 厦门高崎机场约 2 小时，票价随季节波动大，提前 2–3 周盯票。机场地铁 1 号线直达镇海路（中山路），全程约 40 分钟——想省时间选飞机。</p></div>
+      <div class="opt"><b>上岛衔接（重要）</b>
+        <p>游客白天乘轮渡须从<b>东渡邮轮中心厦鼓码头</b>出发（35 元往返，"厦门轮渡"公众号购票），夜间班次才从轮渡码头走；岛上步行即可，全程无机动车。</p></div>
+    </div>
+    <figure class="pic">
+      <img src="assets/xiamen/zhongshan.jpg" alt="厦门中山路骑楼步行街">
+      <figcaption>中山路 · 南洋骑楼</figcaption>
+    </figure>
+  </div>
+
+  <div class="day">
+    <div class="day-head">
+      <div class="date"><b>D1</b><span>第 1 天</span></div>
+      <div><h3>从八市到日光岩的登高</h3><div class="theme">老市场 · 轮渡 · 世遗小岛</div></div>
+    </div>
+    <div class="route">
+      <span class="stop">抵达厦门</span><span class="arr">→</span><span class="stop">八市午餐</span><span class="arr">→</span>
+      <span class="stop">邮轮中心上岛</span><span class="arr">→</span><span class="stop">日光岩</span><span class="arr">→</span>
+      <span class="stop">菽庄花园</span><span class="arr">→</span><span class="stop">中山路夜景</span>
+    </div>
+    <div class="timeline">
+      <div class="tl"><div class="time">12:30</div><div class="spot">抵达 · 八市（第八市场）午餐</div>
+        <div class="desc">行李寄存酒店，直接钻进骑楼下的老市场：海鲜加工店、老字号沙茶面、土笋冻摊子一字排开——厦门的第一口就从这开始。</div></div>
+      <div class="tl"><div class="time">14:00</div><div class="spot">轮渡上鼓浪屿<span class="tag">船票 35 元往返</span><span class="tag">需提前购票</span></div>
+        <div class="desc">从邮轮中心码头 20 分钟航程。上岛先别赶路，沿着内厝澳的小巷慢慢晃：三角梅从院墙上垂下来，钢琴声不知从哪扇窗里飘出。</div></div>
+      <div class="tl"><div class="time">15:00</div><div class="spot">日光岩<span class="tag">全岛制高点</span><span class="tag">门票含联票</span></div>
+        <div class="desc">92 米的花岗岩山顶是鼓浪屿的"屋顶"：360 度看红瓦老别墅铺满小岛，厦门本岛的天际线隔海相望——下午的光线最适合登顶拍照。</div></div>
+      <div class="tl"><div class="time">16:30</div><div class="spot">菽庄花园 · 钢琴博物馆<span class="tag">藏海于园</span></div>
+        <div class="desc">林尔嘉的四十四桥把大海圈进花园，涨潮时海浪就在脚下；园内钢琴博物馆陈列着百年古董钢琴，是"琴岛"注脚。</div></div>
+      <div class="tl"><div class="time">18:00</div><div class="spot">万国建筑漫步 → 傍晚轮渡返程</div>
+        <div class="desc">沿漳州路、福建路看领事馆旧址与华侨老别墅，走到三丘田码头乘夜班轮渡回本岛（日落时分的甲板视角别错过）。</div></div>
+      <div class="tl"><div class="time">19:30</div><div class="spot">中山路 · 晚餐</div>
+        <div class="desc">南洋骑楼步行街，沙茶面、海蛎煎、花生汤一路吃过去；骑楼背后的局口街更市井。</div></div>
+    </div>
+    <div class="tipbox">提示：鼓浪屿核心景点（日光岩、菽庄花园等）联票约 90–100 元；船票节假日紧张，定下出行日第一时间在"厦门轮渡"官方公众号购票。</div>
+    <div class="photos">
+      <figure class="w8"><img src="assets/xiamen/hero.jpg" alt="鼓浪屿日光岩远眺"><figcaption>鼓浪屿 · 日光岩<small>Wikimedia Commons</small></figcaption></figure>
+      <figure class="w4"><img src="assets/xiamen/sunlight.jpg" alt="日光岩顶"><figcaption>日光岩顶<small>Commons</small></figcaption></figure>
+      <figure class="w6"><img src="assets/xiamen/shuzhuang.jpg" alt="菽庄花园四十四桥"><figcaption>菽庄花园<small>Commons</small></figcaption></figure>
+      <figure class="w6"><img src="assets/xiamen/architecture.jpg" alt="鼓浪屿老别墅建筑"><figcaption>万国建筑<small>Commons</small></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== DAY 2 ===================== -->
+<section id="day2">
+  <div class="sec-head"><div class="no">02</div><h2>Day 2 · 从古刹到海岸线</h2></div>
+  <p class="sec-sub">关键词：<em>南普陀的香火、厦大的芙蓉湖、环岛路的椰风</em>。第二天在本岛东南角，把文化与海岸线连成一条线。</p>
+
+  <div class="day">
+    <div class="day-head">
+      <div class="date"><b>D2</b><span>第 2 天</span></div>
+      <div><h3>千年古刹、最美校园与一场骑行</h3><div class="theme">南普陀 · 厦大 · 环岛路</div></div>
+    </div>
+    <div class="route">
+      <span class="stop">南普陀寺</span><span class="arr">→</span><span class="stop">厦门大学</span><span class="arr">→</span>
+      <span class="stop">沙坡尾</span><span class="arr">→</span><span class="stop">环岛路骑行</span><span class="arr">→</span>
+      <span class="stop">曾厝垵</span>
+    </div>
+    <div class="timeline">
+      <div class="tl"><div class="time">08:30</div><div class="spot">南普陀寺<span class="tag">免费</span><span class="tag">闽南古刹</span></div>
+        <div class="desc">五代古刹背靠五老峰，香火极盛。寺后的登山步道半小时登顶，可俯瞰厦大与大海；素饼是一绝，出门记得带两盒。</div></div>
+      <div class="tl"><div class="time">10:00</div><div class="spot">厦门大学<span class="tag">"最美校园"</span><span class="tag">需预约</span></div>
+        <div class="desc">嘉庚楼群红瓦白墙、芙蓉湖畔凤凰木，背山面海的校园本身就是景点。从大南校门进，沿芙蓉湖走一段，芙蓉隧道的涂鸦墙也在校园深处（预约方式见贴士）。</div></div>
+      <div class="tl"><div class="time">12:30</div><div class="spot">沙坡尾 · 午餐<span class="tag">老渔港</span></div>
+        <div class="desc">厦大西边的老避风坞，渔船退场后成了文艺聚落：艺术西区、咖啡馆与老式酱油水大排档挤在一起，中午在坞边吃一顿海鲜。</div></div>
+      <div class="tl"><div class="time">14:30</div><div class="spot">环岛路骑行<span class="tag">最美海岸线</span><span class="tag">租车约 20–40 元</span></div>
+        <div class="desc">从白城沙滩出发，沿海岸线一路向南：椰林、木栈道、马拉松雕塑群与无遮挡的海景，骑到音乐广场一带找个沙滩躺下放空。</div></div>
+      <div class="tl"><div class="time">17:30</div><div class="spot">曾厝垵 · 晚餐<span class="tag">文创渔村</span></div>
+        <div class="desc">"中国最文艺渔村"，小吃店与文创铺密到走不动路：海蛎煎、炸五香、四果汤、烧烤——把晚饭吃成逛吃马拉松，看完灯火再回酒店。</div></div>
+      <div class="tl"><div class="time">可选</div><div class="spot">演武大桥观景平台 · 夜海</div>
+        <div class="desc">回程路过演武大桥观景平台，海浪就在桥下，对岸鼓浪屿的灯影浮在夜色里——厦门之夜最安静的收尾。</div></div>
+    </div>
+    <div class="tipbox">提示：厦门大学参观需实名预约（"U厦大"微信小程序，名额有限，节假日尤其紧俏，务必提前）；环岛路防晒是第一要务。</div>
+    <div class="photos">
+      <figure class="w6"><img src="assets/xiamen/nanputuo.jpg" alt="南普陀寺大悲殿"><figcaption>南普陀寺<small>Wikimedia Commons</small></figcaption></figure>
+      <figure class="w6"><img src="assets/xiamen/xmu.jpg" alt="厦门大学全景日落"><figcaption>厦门大学 · 全景<small>Commons</small></figcaption></figure>
+      <figure class="w6"><img src="assets/xiamen/shapowei.jpg" alt="沙坡尾避风坞渔船"><figcaption>沙坡尾 · 老渔港<small>Commons</small></figcaption></figure>
+      <figure class="w6"><img src="assets/xiamen/huandao.jpg" alt="环岛路海岸"><figcaption>环岛路<small>Commons</small></figcaption></figure>
+      <figure class="w12" style="height:260px"><img src="assets/xiamen/zengcuoan.jpg" alt="曾厝垵街巷"><figcaption>曾厝垵 · 文创渔村的夜<small>Commons</small></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== DAY 3 ===================== -->
+<section id="day3">
+  <div class="sec-head"><div class="no">03</div><h2>Day 3 · 早市烟火与嘉庚红楼</h2></div>
+  <p class="sec-sub">关键词：<em>八市的鲜、集美的红楼、跨海地铁</em>。最后一天把市井与学村一起收进行程，午后从容返程。</p>
+
+  <div class="day">
+    <div class="day-head">
+      <div class="date"><b>D3</b><span>第 3 天</span></div>
+      <div><h3>从菜市场到学村的红屋顶</h3><div class="theme">八市 · 集美学村 · 返程</div></div>
+    </div>
+    <div class="route">
+      <span class="stop">八市早餐</span><span class="arr">→</span><span class="stop">集美学村</span><span class="arr">→</span>
+      <span class="stop">龙舟池·鳌园</span><span class="arr">→</span><span class="stop">返程</span>
+    </div>
+    <div class="timeline">
+      <div class="tl"><div class="time">08:00</div><div class="spot">八市 · 海鲜早市早餐<span class="tag">本地生活</span></div>
+        <div class="desc">清晨的八市才是它的主场：满筐的虾蟹、现开的海蛎、阿婆的面线糊摊。点一碗面线糊加油条，站着吃完，厦门的清晨就这么定调了。</div></div>
+      <div class="tl"><div class="time">09:30</div><div class="spot">地铁 1 号线跨海去集美<span class="tag">"海上地铁"</span></div>
+        <div class="desc">地铁 1 号线过集美学村段时跃出海面——千与千寻同款海上列车，靠左窗坐。半小时即达。</div></div>
+      <div class="tl"><div class="time">10:00</div><div class="spot">集美学村 · 龙舟池 · 鳌园<span class="tag">嘉庚建筑</span><span class="tag">免费</span></div>
+        <div class="desc">陈嘉庚先生倾资兴学的百年学村：穿西装戴斗笠的"嘉庚建筑"红屋顶沿龙舟池一字排开，鳌园石雕与嘉庚公园都值得细看——比鼓浪屿安静许多的世外之地。</div></div>
+      <div class="tl"><div class="time">12:30</div><div class="spot">午餐 · 集美大社</div>
+        <div class="desc">学村旁边的大社老街，姜母鸭、炸五香、面线糊都有本地口碑小店。</div></div>
+      <div class="tl"><div class="time">14:00</div><div class="spot">返程</div>
+        <div class="desc">集美直接乘地铁 1 号线去厦门北站（约 40 分钟）；若从厦门站走，回本岛约 30 分钟。飞机从高崎机场走，集美出发反而更近。</div></div>
+    </div>
+    <div class="tipbox">提示：集美学村全天免费开放；龙舟池在傍晚涨潮时最美。若对嘉庚建筑兴趣一般，也可把上午换成<b>铁路文化公园 + 华新路老别墅区</b>的安静暴走。</div>
+    <div class="photos">
+      <figure class="w6"><img src="assets/xiamen/zhongshan.jpg" alt="中山路骑楼"><figcaption>中山路 · 骑楼街<small>Wikimedia Commons</small></figcaption></figure>
+      <figure class="w6"><img src="assets/xiamen/jimei.jpg" alt="集美学村嘉庚建筑"><figcaption>集美学村 · 嘉庚建筑<small>Commons</small></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 住宿 ===================== -->
+<section id="stay">
+  <div class="sec-head"><div class="no">04</div><h2>住在哪里</h2></div>
+  <p class="sec-sub">两个思路：<em>住中山路—沙坡尾一带</em>守着本岛的烟火与海岸；或<em>宿鼓浪屿</em>，在游客散去后独享一座世遗小岛。价格为常规参考区间，以预订平台实时价为准。</p>
+  <div class="hotels">
+    <div class="hotel reveal"><div class="area">中山路 · 镇海路</div><h4>中山路商圈酒店</h4>
+      <p>地铁 1 号线起点，去轮渡码头、八市、厦大都在三站内。夜逛中山路与早餐八市都是楼下的事，交通性价比最高。</p>
+      <div class="meta"><span>交通枢纽</span><span>近码头</span><span>约 ¥350–800/晚</span></div></div>
+    <div class="hotel reveal"><div class="area">沙坡尾 · 艺术西区</div><h4>沙坡尾设计民宿</h4>
+      <p>住在老渔港边的 loft 民宿里，楼下就是咖啡馆与大排档，傍晚沿着避风坞散步，是文艺旅行者的首选。</p>
+      <div class="meta"><span>文艺街区</span><span>近厦大</span><span>约 ¥400–900/晚</span></div></div>
+    <div class="hotel reveal"><div class="area">曾厝垵 · 环岛路</div><h4>环岛路海景民宿</h4>
+      <p>推开窗就是海与木栈道，晚上逛渔村夜市步行即达，第二天清晨还能去海边看日出——适合把"海边"住进每一刻。</p>
+      <div class="meta"><span>一线海景</span><span>夜市楼下</span><span>约 ¥400–1000/晚</span></div></div>
+    <div class="hotel reveal"><div class="area">鼓浪屿 · 岛上老别墅</div><h4>老别墅改造民宿</h4>
+      <p>傍晚的轮渡一开，游客散尽，整座小岛就是住客的：清晨在鸟鸣里吃早餐，巷子里只有猫。行李轻的强烈推荐体验一晚。</p>
+      <div class="meta"><span>世遗氛围</span><span>夜岛独享</span><span>约 ¥500–1200/晚</span></div></div>
+  </div>
+</section>
+
+<!-- ===================== 美食 ===================== -->
+<section id="food">
+  <div class="sec-head"><div class="no">05</div><h2>厦门味道</h2></div>
+  <p class="sec-sub">闽南的味道底色是<em>海鲜 + 沙茶 + 甜汤</em>：一碗沙茶面、一份海蛎煎、一杯四果汤——咸甜之间的平衡，就是厦门的味觉密码。</p>
+  <div class="food-hero reveal">
+    <img src="assets/xiamen/shapowei.jpg" alt="沙坡尾避风坞的渔船">
+    <div class="cap"><b>沙坡尾 · 老渔港的酱油水</b>
+      <p>厦门人管清蒸白灼叫"酱油水"——渔港边最朴素的鲜。坞边大排档按筐点鱼，现捞现做（真实照片 · 沙坡尾）。</p></div>
+  </div>
+  <div class="dishes">
+    <div class="dish reveal"><h5>沙茶面<small>乌糖 · 月华</small></h5><p>沙茶汤底配碱水面的国民早餐，加料自选：猪肝、豆腐、大肠、虾仁——每家老店的汤底配方都是秘密。</p></div>
+    <div class="dish reveal"><h5>海蛎煎<small>闽南经典</small></h5><p>现开海蛎裹地瓜粉煎到边脆，蘸甜辣酱——鼓浪屿与八市都有好手，趁热吃。</p></div>
+    <div class="dish reveal"><h5>土笋冻<small>勇敢者冷盘</small></h5><p>海边沙虫熬出的胶质冻，Q 弹清爽配芥末酱油——听着吓人，吃着上头，来厦门总要试一次。</p></div>
+    <div class="dish reveal"><h5>姜母鸭<small>大排档砂锅</small></h5><p>老姜与鸭肉在砂锅里炭火慢煨，焦香扑鼻——集美大社与本岛老店都值得专程一顿。</p></div>
+    <div class="dish reveal"><h5>面线糊<small>八市早餐</small></h5><p>细面线熬成糊，加醋肉、大肠、油条泡着吃，是厦门人清晨的仪式感。</p></div>
+    <div class="dish reveal"><h5>花生汤<small>黄则和</small></h5><p>花生炖到一抿就化，甜而不腻，加个鸡蛋更滑——中山路百年老铺，配油条是标准吃法。</p></div>
+    <div class="dish reveal"><h5>烧肉粽<small>1980 烧肉粽</small></h5><p>咸蛋黄、三层肉、香菇板栗裹进糯米，淋沙茶甜辣酱——闽南粽子的豪华版本。</p></div>
+    <div class="dish reveal"><h5>四果汤<small>曾厝垵</small></h5><p>仙草、芋圆、绿豆、石花膏任选四样浇蜜水——逛完夜市的解暑标配。</p></div>
+    <div class="dish reveal"><h5>炸五香<small>闽南小吃</small></h5><p>豆皮卷肉馅下锅炸，外酥里嫩蘸甜辣酱——酒席与小吃摊通吃的"硬通货"。</p></div>
+    <div class="dish reveal"><h5>鱼丸汤<small>鼓浪屿</small></h5><p>林记鱼丸的鲨鱼丸包肉馅，一咬爆汁，配清汤撒胡椒——上岛标配。</p></div>
+    <div class="dish reveal"><h5>凤梨酥 · 馅饼<small>伴手礼</small></h5><p>鼓浪屿馅饼（绿豆馅）与南普陀素饼是两大地标手信，认准老字号门店。</p></div>
+    <div class="dish reveal"><h5>海鲜大排档<small>先问价</small></h5><p>八市买好加工、或沙坡尾直接点，选明码标价的店；贝壳类按斤算，先确认时价再下单。</p></div>
+  </div>
+  <div class="streets">
+    <div class="street reveal"><b>八市 · 开禾路</b><p>海鲜加工与老字号扎堆，第一天午餐与第三天早餐都留在这。</p></div>
+    <div class="street reveal"><b>中山路 · 局口街</b><p>骑楼下的美食街巷，花生汤与烧肉粽老铺都在，配合夜逛。</p></div>
+    <div class="street reveal"><b>沙坡尾 · 大学路</b><p>咖啡馆与酱油水大排档混搭，午餐首选，饭后逛艺术西区。</p></div>
+    <div class="street reveal"><b>曾厝垵 · 文创村</b><p>小吃密度之王，四果汤、炸串、海鲜烧烤，夜市模式全开。</p></div>
+  </div>
+</section>
+
+<!-- ===================== 贴士 ===================== -->
+<section id="tips">
+  <div class="sec-head"><div class="no">06</div><h2>实用贴士</h2></div>
+  <p class="sec-sub">日期待定的海岛旅行，功课重点在船票、预约和台风季这三件事：</p>
+  <div class="tips">
+    <div class="tip reveal"><h5>船票是第一优先级</h5><p>上鼓浪屿的游客轮渡票需提前在"厦门轮渡"公众号实名购票（白天从邮轮中心码头出发），节假日船票比机票还紧俏——定下日期第一件事买船票。</p></div>
+    <div class="tip reveal"><h5>厦大要预约</h5><p>厦门大学参观通过"U厦大"小程序实名预约，名额有限、节假日秒光；没约上也别遗憾，芙蓉隧道外的大学路与南普陀后山同样精彩。</p></div>
+    <div class="tip reveal"><h5>台风季与天气</h5><p>7–9 月为台风季，出发前一周盯紧气象预警，台风前后船班停航；防晒是全年任务（帽子、防晒霜、墨镜三件套），夏季午后尽量安排室内。</p></div>
+    <div class="tip reveal"><h5>市内交通</h5><p>地铁 1/2/3 号线 + 公交覆盖全城，支付宝乘车码通用；网约车便宜且不打表争议少；本岛到集美务必体验 1 号线跨海段（海上列车）。</p></div>
+    <div class="tip reveal"><h5>吃海鲜避坑</h5><p>先问价再下单，选明码标价的排档；八市加工认准"加工费按做法计价"的明码店；景区门口的"海鲜大排档拉客"一律不理。</p></div>
+    <div class="tip reveal"><h5>节奏建议</h5><p>鼓浪屿一整天、环岛路一整天，第三天留在本岛与集美最从容；看日落推荐演武大桥观景平台与环岛路音乐广场段；返程预留厦门北站地铁 1 小时。</p></div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    厦门三日海上花园之旅 · 三天两晚 · 日期待定 · 上海出发<br>
+    行程与价格信息整理自公开资料，出行前请以官方与预订平台为准 · 照片 © 原作者，Wikimedia Commons
+  </div>
+</footer>
+
+<script>
+(function(){
+  var els = document.querySelectorAll('.reveal, .photos figure');
+  if (!('IntersectionObserver' in window)) {
+    els.forEach(function(e){ e.classList.add('show'); });
+    return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if (en.isIntersecting) { en.target.classList.add('show'); io.unobserve(en.target); }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px 240px 0px' });
+  els.forEach(function(e){ io.observe(e); });
+  /* 兜底：3 秒后无条件显示，避免任何环境下照片保持隐藏 */
+  setTimeout(function(){ els.forEach(function(e){ e.classList.add('show'); }); }, 3000);
+})();
+</script>
+</body>
+</html>

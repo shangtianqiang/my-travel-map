@@ -1,0 +1,101 @@
+{
+  "hero": {
+    "file": "hero.jpg",
+    "title": "File:Chengdu Sichuan China Panda-breeding-and-research-center-02.jpg",
+    "artist": "CEphoto, Uwe Aranas",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File%3AChengdu_Sichuan_China_Panda-breeding-and-research-center-02.jpg",
+    "width": 3529,
+    "height": 2353
+  },
+  "panda-b": {
+    "file": "panda-b.jpg",
+    "title": "File:Chengdu pandas eating.jpg",
+    "artist": "Hyjk2000",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File%3AChengdu_pandas_eating.jpg",
+    "width": 1024,
+    "height": 768
+  },
+  "heming": {
+    "file": "heming.jpg",
+    "title": "File:Teahouse in Peoples Park - Chengdu, China - DSC05348.jpg",
+    "artist": "Daderot",
+    "license": "CC0",
+    "source": "https://commons.wikimedia.org/wiki/File%3ATeahouse_in_Peoples_Park_-_Chengdu%2C_China_-_DSC05348.jpg",
+    "width": 5472,
+    "height": 3648
+  },
+  "jinli": {
+    "file": "jinli.jpg",
+    "title": "File:Chengdu Jinli-Straße 11.jpg",
+    "artist": "Zairon",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File%3AChengdu_Jinli-Stra%C3%9Fe_11.jpg",
+    "width": 4335,
+    "height": 3145
+  },
+  "dufu": {
+    "file": "dufu.jpg",
+    "title": "File:Chengdu Sichuan China Du-Fu-Thatched-Cottage-Park-01.jpg",
+    "artist": "CEphoto, Uwe Aranas",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File%3AChengdu_Sichuan_China_Du-Fu-Thatched-Cottage-Park-01.jpg",
+    "width": 3500,
+    "height": 2333
+  },
+  "taikoo": {
+    "file": "taikoo.jpg",
+    "title": "File:Sino-Ocean Taikoo Li Chengdu.jpg",
+    "artist": "Baycrest",
+    "license": "CC BY-SA 2.5",
+    "source": "https://commons.wikimedia.org/wiki/File%3ASino-Ocean_Taikoo_Li_Chengdu.jpg",
+    "width": 1200,
+    "height": 800
+  },
+  "jinsha": {
+    "file": "jinsha.jpg",
+    "title": "File:金沙遗址博物馆 Jinsha Site Museum 5.jpg",
+    "artist": "xiquinhosilva",
+    "license": "CC BY 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File%3A%E9%87%91%E6%B2%99%E9%81%97%E5%9D%80%E5%8D%9A%E7%89%A9%E9%A6%86_Jinsha_Site_Museum_5.jpg",
+    "width": 3000,
+    "height": 1702
+  },
+  "kuanzhai": {
+    "file": "kuanzhai.jpg",
+    "title": "File:Wide and Narrow Alleys, Chengdu (20240905).jpg",
+    "artist": "Fumikas Sagisavas",
+    "license": "CC0",
+    "source": "https://commons.wikimedia.org/wiki/File%3AWide_and_Narrow_Alleys%2C_Chengdu_%2820240905%29.jpg",
+    "width": 2400,
+    "height": 1080
+  },
+  "wuhou": {
+    "file": "wuhou.jpg",
+    "title": "File:Liu Bei statue in Wuhou Shrine - Chengdu, China - DSC05413.jpg",
+    "artist": "Daderot",
+    "license": "CC0",
+    "source": "https://commons.wikimedia.org/wiki/File%3ALiu_Bei_statue_in_Wuhou_Shrine_-_Chengdu%2C_China_-_DSC05413.jpg",
+    "width": 5472,
+    "height": 3648
+  },
+  "wenshu": {
+    "file": "wenshu.jpg",
+    "title": "File:文殊院 (雪景).jpg",
+    "artist": "Pauloleong2002",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File%3A%E6%96%87%E6%AE%8A%E9%99%A2_%28%E9%9B%AA%E6%99%AF%29.jpg",
+    "width": 3456,
+    "height": 4608
+  },
+  "opera": {
+    "file": "opera.jpg",
+    "title": "File:Sichuan Opera Performance Chongqing Chuanjuyuan David McBride 0080.jpg",
+    "artist": "Davidmcbride",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File%3ASichuan_Opera_Performance_Chongqing_Chuanjuyuan_David_McBride_0080.jpg",
+    "width": 2048,
+    "height": 1365
+  }
+}

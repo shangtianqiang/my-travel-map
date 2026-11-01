@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>苏州三日 · 咫尺之内再造乾坤 | 园林古城之旅（日期待定）</title>
+<style>
+  :root{
+    --bg:#ffffff; --card:#ffffff; --ink:#1d2f3c; --muted:#5d6d78;
+    --sea:#0e5a7d; --sea-deep:#0a3f59; --tile:#b5442f; --sand:#f1f4f6;
+    --line:#e2e8ec; --gold:#c8a24a;
+    --shadow:0 10px 30px rgba(29,47,60,.08);
+    --radius:18px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:"Noto Serif SC","Songti SC","STSong","SimSun",serif;
+    background:var(--bg); color:var(--ink); line-height:1.75;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{display:block;max-width:100%}
+  a{color:var(--sea);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+
+  /* ---------- 顶部导航 ---------- */
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(255,255,255,.9);backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{display:flex;align-items:center;gap:28px;height:58px;overflow-x:auto}
+  nav .brand{font-weight:700;letter-spacing:.12em;color:var(--sea-deep);white-space:nowrap}
+  nav .brand span{color:var(--tile)}
+  nav a.nl{color:var(--muted);font-size:14px;white-space:nowrap}
+  nav a.nl:hover{color:var(--sea);text-decoration:none}
+
+  /* ---------- Hero ---------- */
+  header.hero{position:relative;min-height:66vh;display:flex;align-items:flex-end;overflow:hidden}
+  header.hero .bg{position:absolute;inset:0}
+  header.hero .bg img{width:100%;height:100%;object-fit:cover;object-position:center 42%}
+  header.hero .bg::after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg,rgba(10,40,60,.10) 0%,rgba(10,40,60,.18) 45%,rgba(10,38,56,.78) 100%);
+  }
+  header.hero .inner{position:relative;z-index:2;width:100%;padding:64px 24px 54px;color:#fff;
+    max-width:1180px;margin:0 auto}
+  .hero .kicker{letter-spacing:.35em;font-size:13px;color:#ffd9a8;margin-bottom:14px}
+  .hero h1{font-size:clamp(30px,5.2vw,56px);line-height:1.25;font-weight:900;letter-spacing:.06em;text-shadow:0 2px 18px rgba(0,0,0,.35)}
+  .hero .sub{margin-top:14px;font-size:clamp(14px,1.6vw,17px);color:rgba(255,255,255,.92);max-width:46em}
+  .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+  .chip{
+    border:1px solid rgba(255,255,255,.45);border-radius:999px;
+    padding:6px 16px;font-size:13px;color:#fff;background:rgba(10,50,70,.35);backdrop-filter:blur(4px);
+  }
+  .photo-credit{font-size:11px;color:rgba(255,255,255,.72);margin-top:16px}
+
+  /* ---------- 通用区块 ---------- */
+  section{padding:72px 0 8px}
+  .sec-head{display:flex;align-items:baseline;gap:18px;margin-bottom:8px}
+  .sec-head .no{font-size:44px;font-weight:900;color:var(--sand);-webkit-text-stroke:1px var(--tile);line-height:1}
+  .sec-head h2{font-size:clamp(24px,3vw,34px);color:var(--sea-deep);letter-spacing:.08em}
+  .sec-sub{color:var(--muted);margin-bottom:30px;max-width:52em}
+  .sec-sub em{color:var(--tile);font-style:normal}
+
+  /* ---------- 行程速览 ---------- */
+  .glance{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .glance .g{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:22px 22px 18px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+  .glance .g::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--sea)}
+  .glance .g:nth-child(2)::before{background:var(--tile)}
+  .glance .g:nth-child(3)::before{background:var(--gold)}
+  .glance .d{font-size:13px;color:var(--muted);letter-spacing:.15em}
+  .glance .t{font-size:19px;font-weight:700;margin:6px 0 8px;color:var(--sea-deep)}
+  .glance .s{font-size:14px;color:var(--muted)}
+
+  /* ---------- 交通卡 ---------- */
+  .transport{display:grid;grid-template-columns:1.05fr .95fr;gap:0;background:var(--card);
+    border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);margin-bottom:40px}
+  .transport .txt{padding:30px 30px 24px}
+  .transport h3{font-size:20px;color:var(--sea-deep);margin-bottom:14px;display:flex;align-items:center;gap:10px}
+  .transport .opt{padding:14px 0;border-top:1px dashed var(--line)}
+  .transport .opt:first-of-type{border-top:none}
+  .transport .opt b{color:var(--tile)}
+  .transport .opt p{font-size:14.5px;color:var(--muted)}
+  .transport .pic{position:relative;min-height:280px}
+  .transport .pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .transport .pic figcaption{position:absolute;left:12px;bottom:10px;font-size:12px;color:#fff;
+    background:rgba(10,50,70,.55);padding:3px 10px;border-radius:999px}
+
+  /* ---------- 每日时间轴 ---------- */
+  .day{margin-bottom:56px}
+  .day-head{display:flex;align-items:center;gap:16px;margin-bottom:6px}
+  .day-head .date{
+    background:var(--sea-deep);color:#fff;border-radius:12px;padding:8px 14px;text-align:center;line-height:1.3;
+    box-shadow:var(--shadow)}
+  .day-head .date b{display:block;font-size:20px}
+  .day-head .date span{font-size:12px;opacity:.85}
+  .day-head h3{font-size:clamp(20px,2.4vw,27px);color:var(--ink)}
+  .day-head .theme{font-size:13px;color:var(--tile);letter-spacing:.2em;margin-top:2px}
+  .route{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:14px 0 22px;font-size:13px;color:var(--muted)}
+  .route .stop{background:var(--sand);border:1px solid var(--line);border-radius:999px;padding:4px 13px;color:var(--sea-deep)}
+  .route .arr{color:var(--tile)}
+
+  .timeline{border-left:2px solid var(--line);margin-left:8px;padding-left:26px}
+  .tl{position:relative;padding:0 0 22px}
+  .tl::before{content:"";position:absolute;left:-33px;top:8px;width:12px;height:12px;border-radius:50%;
+    background:var(--bg);border:3px solid var(--sea)}
+  .tl:nth-child(even)::before{border-color:var(--tile)}
+  .tl .time{font-size:13px;color:var(--tile);font-weight:700;letter-spacing:.08em}
+  .tl .spot{font-size:17.5px;font-weight:700;color:var(--sea-deep);margin:2px 0}
+  .tl .desc{font-size:14.5px;color:var(--muted);max-width:56em}
+  .tl .tag{display:inline-block;font-size:11.5px;border:1px solid var(--line);background:var(--sand);
+    color:var(--sea-deep);border-radius:6px;padding:1px 8px;margin-left:8px;vertical-align:2px}
+
+  .tipbox{background:#f0f6fa;border:1px solid #d3e4ee;border-left:4px solid var(--sea);
+    border-radius:10px;padding:14px 18px;font-size:14px;color:#33566b;margin:4px 0 26px}
+
+  /* ---------- 照片墙 ---------- */
+  .photos{display:grid;grid-template-columns:repeat(12,1fr);gap:14px;margin-top:8px}
+  .photos figure{position:relative;border-radius:14px;overflow:hidden;box-shadow:var(--shadow);
+    background:var(--sand);opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+  .photos figure.show{opacity:1;transform:none}
+  .photos img{width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.16,1,.3,1)}
+  .photos figure:hover img{transform:scale(1.045)}
+  .photos figcaption{position:absolute;left:0;right:0;bottom:0;padding:26px 14px 10px;font-size:13px;color:#fff;
+    background:linear-gradient(180deg,transparent,rgba(8,35,50,.75));letter-spacing:.04em}
+  .photos figcaption small{opacity:.7;font-size:10.5px;margin-left:6px}
+  .w4{grid-column:span 4;height:240px}.w6{grid-column:span 6;height:260px}
+  .w8{grid-column:span 8;height:300px}.w12{grid-column:span 12;height:340px}
+  .wt{height:340px}
+
+  /* ---------- 住宿 ---------- */
+  .hotels{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+  .hotel{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:26px 26px 20px;box-shadow:var(--shadow);border-top:5px solid var(--sea)}
+  .hotel:nth-child(2){border-top-color:var(--tile)}
+  .hotel:nth-child(3){border-top-color:var(--gold)}
+  .hotel:nth-child(4){border-top-color:var(--sea-deep)}
+  .hotel .area{font-size:12px;color:var(--tile);letter-spacing:.2em}
+  .hotel h4{font-size:20px;color:var(--sea-deep);margin:4px 0 10px}
+  .hotel p{font-size:14.5px;color:var(--muted)}
+  .hotel .meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+  .hotel .meta span{font-size:12px;background:var(--sand);border:1px solid var(--line);
+    border-radius:999px;padding:3px 12px;color:var(--sea-deep)}
+
+  /* ---------- 美食 ---------- */
+  .food-hero{border-radius:var(--radius);overflow:hidden;position:relative;box-shadow:var(--shadow);margin-bottom:26px;height:330px}
+  .food-hero img{width:100%;height:100%;object-fit:cover}
+  .food-hero .cap{position:absolute;left:0;right:0;bottom:0;padding:40px 24px 18px;color:#fff;
+    background:linear-gradient(180deg,transparent,rgba(8,35,50,.8))}
+  .food-hero .cap b{font-size:20px;letter-spacing:.06em}
+  .food-hero .cap p{font-size:13.5px;opacity:.92}
+  .dishes{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .dish{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;box-shadow:var(--shadow)}
+  .dish h5{font-size:16.5px;color:var(--sea-deep)}
+  .dish h5 small{color:var(--tile);font-size:12px;margin-left:8px;font-weight:400}
+  .dish p{font-size:13.5px;color:var(--muted);margin-top:4px}
+  .streets{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:18px}
+  .street{background:var(--sand);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+  .street b{color:var(--sea-deep);font-size:15px}
+  .street p{font-size:12.5px;color:var(--muted);margin-top:2px}
+
+  /* ---------- 贴士 ---------- */
+  .tips{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .tip{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px;box-shadow:var(--shadow)}
+  .tip h5{color:var(--tile);font-size:15.5px;margin-bottom:6px}
+  .tip p{font-size:13.5px;color:var(--muted)}
+
+  footer{margin:56px 0 0;border-top:1px solid var(--line);padding:26px 0 40px;
+    font-size:12.5px;color:var(--muted);text-align:center}
+
+  /* ---------- 动效 ---------- */
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s ease,transform .8s ease}
+  .reveal.show{opacity:1;transform:none}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto}
+    .reveal,.photos figure{opacity:1;transform:none;transition:none}
+    .photos img{transition:none}
+  }
+
+  /* ---------- 响应式 ---------- */
+  @media (max-width:900px){
+    .glance,.dishes,.tips{grid-template-columns:1fr 1fr}
+    .hotels,.streets{grid-template-columns:1fr 1fr}
+    .transport{grid-template-columns:1fr}
+    .transport .pic{min-height:220px}
+    .w4{grid-column:span 6}.w6{grid-column:span 12}.w8{grid-column:span 12}
+  }
+  @media (max-width:600px){
+    section{padding:54px 0 4px}
+    .glance,.dishes,.tips,.hotels,.streets{grid-template-columns:1fr}
+    .w4{grid-column:span 12;height:220px}
+    .w12{height:260px}
+    .day-head h3{font-size:19px}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">苏州三日<span> · </span>园林古城</div>
+    <a class="nl" href="#glance">行程速览</a>
+    <a class="nl" href="#day1">Day 1 园林·平江路</a>
+    <a class="nl" href="#day2">Day 2 虎丘·山塘</a>
+    <a class="nl" href="#day3">Day 3 沧浪亭·盘门</a>
+    <a class="nl" href="#stay">住宿</a>
+    <a class="nl" href="#food">美食</a>
+    <a class="nl" href="#tips">实用贴士</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="bg"><img src="assets/suzhou/hero.jpg" alt="苏州拙政园亭台与池水"></div>
+  <div class="inner">
+    <div class="kicker">SUZHOU · 三天两晚 · 日期待定</div>
+    <h1>咫尺之内，再造乾坤<br>三天两晚，把园林之城的精致走一遍</h1>
+    <p class="sub">上海出发 · 高铁半小时即达 · 从拙政园的移步换景，到平江路的水巷摇橹，再到山塘街的灯火与寒山寺的钟声</p>
+    <div class="chips">
+      <span class="chip">三天两晚 · 日期待定</span>
+      <span class="chip">古典园林 × 水巷人家</span>
+      <span class="chip">高铁直达 · 说走就走</span>
+      <span class="chip">真实照片 · 无 AI 生图</span>
+    </div>
+    <div class="photo-credit">头图：拙政园 —— 真实照片，来源 Wikimedia Commons</div>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- ===================== 行程速览 ===================== -->
+<section id="glance">
+  <div class="sec-head"><div class="no">00</div><h2>行程速览</h2></div>
+  <p class="sec-sub">三天一条<em>园—街—水</em>的经典线：<em>第一天看最顶级的园林</em>，<em>第二天访虎丘与古寺</em>，<em>第三天在城墙上收官</em>。所有重点都在古城区 5 公里内，共享单车就能串联。</p>
+  <div class="glance">
+    <div class="g reveal"><div class="d">DAY 1 · 第 1 天</div><div class="t">抵达 · 拙政园与平江路</div>
+      <div class="s">苏州站 → 拙政园 → 苏州博物馆 → 平江路 → 七里山塘夜景</div></div>
+    <div class="g reveal"><div class="d">DAY 2 · 第 2 天</div><div class="t">虎丘访古 · 寒山听钟</div>
+      <div class="s">虎丘 → 留园 → 寒山寺 → 网师园夜花园（可选）· 金鸡湖夜景（可选）</div></div>
+    <div class="g reveal"><div class="d">DAY 3 · 第 3 天</div><div class="t">沧浪亭 · 盘门 · 返程</div>
+      <div class="s">沧浪亭 → 盘门三景 → 双塔市集午餐 → 返程</div></div>
+  </div>
+</section>
+
+<!-- ===================== DAY 1 ===================== -->
+<section id="day1">
+  <div class="sec-head"><div class="no">01</div><h2>Day 1 · 从四大名园之首到水巷人家</h2></div>
+  <p class="sec-sub">关键词：<em>拙政园、贝聿铭的封山之作、平江路的橹声</em>。第一天把古城区东北角的精华串成一条步行线。</p>
+
+  <div class="transport reveal">
+    <div class="txt">
+      <h3>怎么去苏州（上海出发）</h3>
+      <div class="opt"><b>方案 A · 高铁（推荐）</b>
+        <p>上海虹桥 / 上海站 → 苏州站，最快约 25 分钟、二等座约 40–60 元（以 12306 为准）——通勤级的距离，<b>比上海市内通勤还快</b>。选终到"苏州站"的车次，出站就是古城区北缘，拙政园方向步行或打车一刻钟。</p></div>
+      <div class="opt"><b>方案 B · 自驾</b>
+        <p>上海 → G2/G50 → 苏州，约 100 公里、1.5–2 小时。但古城区道路窄、停车位紧张且部分区域限行，园林周边强烈建议打车或骑行，车停在酒店即可。</p></div>
+      <div class="opt"><b>市内移动</b>
+        <p>地铁 1/4 号线 + 共享单车是古城区黄金组合；本行程所有点位都在地铁 1 公里圈内，几乎不需要打车。</p></div>
+    </div>
+    <figure class="pic">
+      <img src="assets/suzhou/pingjiang.jpg" alt="平江路水巷">
+      <figcaption>平江路 · 水巷与石桥</figcaption>
+    </figure>
+  </div>
+
+  <div class="day">
+    <div class="day-head">
+      <div class="date"><b>D1</b><span>第 1 天</span></div>
+      <div><h3>园林、苏博与一条活着的古街</h3><div class="theme">拙政园 · 苏州博物馆 · 平江路</div></div>
+    </div>
+    <div class="route">
+      <span class="stop">苏州站</span><span class="arr">→</span><span class="stop">拙政园</span><span class="arr">→</span>
+      <span class="stop">苏州博物馆</span><span class="arr">→</span><span class="stop">平江路</span><span class="arr">→</span>
+      <span class="stop">七里山塘</span>
+    </div>
+    <div class="timeline">
+      <div class="tl"><div class="time">12:00</div><div class="spot">抵达苏州站</div>
+        <div class="desc">酒店寄存行李，先在站前或观前街吃一碗苏式面，下午的园林之旅从这里开始。</div></div>
+      <div class="tl"><div class="time">13:00</div><div class="spot">拙政园<span class="tag">四大名园之首</span><span class="tag">门票约 70–90 元</span></div>
+        <div class="desc">中国私家园林的巅峰之作，500 年的池岛亭榭。进门先看远借北寺塔的"借景"，再沿池走"与谁同坐轩"——移步换景这四个字，在这里是物理现实（旺季务必提前网上购票）。</div></div>
+      <div class="tl"><div class="time">15:30</div><div class="spot">苏州博物馆<span class="tag">贝聿铭封山之作</span><span class="tag">免费 · 需预约</span></div>
+        <div class="desc">"中而新，苏而新"——片石假山以壁为纸、以石为绘，是古城区最现代的一笔。馆藏的秘色瓷莲花碗与文徵明手植紫藤都值得细看。</div></div>
+      <div class="tl"><div class="time">17:00</div><div class="spot">平江路历史街区<span class="tag">免费</span><span class="tag">宋代格局</span></div>
+        <div class="desc">八百年没有变过的水陆双棋盘：摇橹船从桥下过，评弹声从茶馆里飘出来。挑一家临河茶馆坐下，听一段《声声慢》，等夜色落下来。</div></div>
+      <div class="tl"><div class="time">19:00</div><div class="spot">七里山塘 · 夜游<span class="tag">免费街区</span></div>
+        <div class="desc">打车或地铁到山塘街——曹雪芹笔下的"红尘中一二等富贵风流之地"。红灯笼沿河一路铺到星桥头，倒影碎在水里，是苏州夜色最盛的地方。</div></div>
+      <div class="tl"><div class="time">20:30</div><div class="spot">晚餐 · 山塘街 / 石路商圈</div>
+        <div class="desc">松鹤楼或得月楼点一份松鼠桂鱼；街边再来一串海棠糕收尾。</div></div>
+    </div>
+    <div class="tipbox">提示：拙政园旺季（含节假日）实行分时段预约购票，务必提前 1–7 天在"苏州园林旅游"官方渠道买票；苏州博物馆免费但预约极抢手，放票日蹲守。</div>
+    <div class="photos">
+      <figure class="w8"><img src="assets/suzhou/humble.jpg" alt="拙政园亭台水榭"><figcaption>拙政园 · 借景与框景<small>Wikimedia Commons</small></figcaption></figure>
+      <figure class="w4"><img src="assets/suzhou/museum.jpg" alt="苏州博物馆山水庭院"><figcaption>苏州博物馆<small>Commons</small></figcaption></figure>
+      <figure class="w6"><img src="assets/suzhou/pingjiang.jpg" alt="平江路水巷夜景"><figcaption>平江路<small>Commons</small></figcaption></figure>
+      <figure class="w6"><img src="assets/suzhou/shantang.jpg" alt="七里山塘夜景"><figcaption>七里山塘 · 灯影<small>Commons</small></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== DAY 2 ===================== -->
+<section id="day2">
+  <div class="sec-head"><div class="no">02</div><h2>Day 2 · 虎丘访古，寒山听钟</h2></div>
+  <p class="sec-sub">关键词：<em>吴王阖闾的墓、东方斜塔、枫桥夜泊</em>。第二天往古城西北走，把最厚重的历史一次走完。</p>
+
+  <div class="day">
+    <div class="day-head">
+      <div class="date"><b>D2</b><span>第 2 天</span></div>
+      <div><h3>从吴中第一名胜到枫桥钟声</h3><div class="theme">虎丘 · 留园 · 寒山寺</div></div>
+    </div>
+    <div class="route">
+      <span class="stop">虎丘</span><span class="arr">→</span><span class="stop">留园</span><span class="arr">→</span>
+      <span class="stop">寒山寺</span><span class="arr">→</span><span class="stop">网师园夜花园 / 金鸡湖（可选）</span>
+    </div>
+    <div class="timeline">
+      <div class="tl"><div class="time">08:30</div><div class="spot">虎丘<span class="tag">"吴中第一名胜"</span><span class="tag">门票约 60–70 元</span></div>
+        <div class="desc">苏东坡说"到苏州不游虎丘乃憾事也"。山里的虎丘塔是五代砖塔、微微倾斜的"东方比萨斜塔"；剑池之下相传就是吴王阖闾的墓，崖壁"虎丘剑池"四个字传为颜真卿所书。</div></div>
+      <div class="tl"><div class="time">11:00</div><div class="spot">留园<span class="tag">四大名园</span><span class="tag">门票约 45–55 元</span></div>
+        <div class="desc">与拙政园并称的"江南园林甲天下，苏州园林甲江南"另一半：建筑空间变化之精妙冠绝江南，冠云峰是江南园林里最高大的太湖石。中午前入园，人少好拍。</div></div>
+      <div class="tl"><div class="time">13:00</div><div class="spot">午餐 · 石路 / 山塘西段</div>
+        <div class="desc">石路商圈选择多，或者回山塘街吃苏式小吃：哑巴生煎配一杯绿豆汤。</div></div>
+      <div class="tl"><div class="time">14:30</div><div class="spot">寒山寺<span class="tag">门票约 20 元</span><span class="tag">枫桥夜泊</span></div>
+        <div class="desc">"姑苏城外寒山寺，夜半钟声到客船"——一首《枫桥夜泊》让这座古寺名扬千年。摸一摸寒拾殿前的碑刻，听一口钟声，枫桥就在旁边。</div></div>
+      <div class="tl"><div class="time">16:30</div><div class="spot">返回古城区 · 小憩</div>
+        <div class="desc">回酒店歇脚整理，晚上的两个方向二选一（体力允许也可都要）。</div></div>
+      <div class="tl"><div class="time">18:30</div><div class="spot">可选 A · 网师园夜花园<span class="tag">夜游（季节性）</span></div>
+        <div class="desc">夜花园把评弹、昆曲、古琴放进真实的厅堂里，跟着导览穿过一进进院子——体验"园林夜话"的最佳方式（多在春秋季开放，以官方公告为准）。</div></div>
+      <div class="tl"><div class="time">18:30</div><div class="spot">可选 B · 金鸡湖夜景<span class="tag">现代苏州</span></div>
+        <div class="desc">地铁直达园区：东方之门的"秋裤楼"、苏州之眼摩天轮与湖畔灯光，是古城之外的另一个苏州。诚品书店就在湖边，可以带一本书回家。</div></div>
+    </div>
+    <div class="tipbox">提示：虎丘、留园可现场购票也可线上；寒山寺除夕听钟声活动需单独关注官方信息。园林类景点 17:00 左右停止入园，夜游与日游不要排同一家。</div>
+    <div class="photos">
+      <figure class="w6"><img src="assets/suzhou/tiger.jpg" alt="虎丘塔"><figcaption>虎丘塔 · 东方斜塔<small>Wikimedia Commons</small></figcaption></figure>
+      <figure class="w6"><img src="assets/suzhou/lingering.jpg" alt="留园冠云峰"><figcaption>留园 · 冠云峰<small>Commons</small></figcaption></figure>
+      <figure class="w6"><img src="assets/suzhou/hanshan.jpg" alt="寒山寺"><figcaption>寒山寺<small>Commons</small></figcaption></figure>
+      <figure class="w6"><img src="assets/suzhou/master.jpg" alt="网师园彩霞池"><figcaption>网师园 · 彩霞池<small>Commons</small></figcaption></figure>
+      <figure class="w12" style="height:260px"><img src="assets/suzhou/jinji.jpg" alt="金鸡湖夜景与东方之门"><figcaption>可选 · 金鸡湖与东方之门<small>Commons</small></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== DAY 3 ===================== -->
+<section id="day3">
+  <div class="sec-head"><div class="no">03</div><h2>Day 3 · 小园与大城的告别式</h2></div>
+  <p class="sec-sub">关键词：<em>沧浪亭、盘门三景、双塔市集</em>。最后一天不追大景点，把苏州的"小而美"慢慢收进背包。</p>
+
+  <div class="day">
+    <div class="day-head">
+      <div class="date"><b>D3</b><span>第 3 天</span></div>
+      <div><h3>从最古老的园林到水陆城门</h3><div class="theme">沧浪亭 · 盘门 · 双塔市集</div></div>
+    </div>
+    <div class="route">
+      <span class="stop">沧浪亭</span><span class="arr">→</span><span class="stop">盘门三景</span><span class="arr">→</span>
+      <span class="stop">双塔市集</span><span class="arr">→</span><span class="stop">返程</span>
+    </div>
+    <div class="timeline">
+      <div class="tl"><div class="time">08:30</div><div class="spot">沧浪亭<span class="tag">苏州现存最古老园林</span><span class="tag">门票约 15–20 元</span></div>
+        <div class="desc">北宋庆历年间苏舜钦的宅园，"未入园门先得景"——一湾清水绕园而过，复廊上漏窗借景，是四大名园里最安静的一座，也最便宜。</div></div>
+      <div class="tl"><div class="time">10:00</div><div class="spot">盘门三景<span class="tag">水陆城门</span><span class="tag">门票约 40 元</span></div>
+        <div class="desc">全国仅存的水陆并联城门：盘门城楼、吴门桥、瑞光塔三景同框。登上城垛看运河船来船往，还能走走 300 米的水上城门洞——古城区的"隐藏款"。</div></div>
+      <div class="tl"><div class="time">12:00</div><div class="spot">双塔市集 · 午餐<span class="tag">菜场改造</span></div>
+        <div class="desc">由老菜场改造的网红市集：酒酿、糖粥、苏式面点、文创摊位挤在一处，一楼吃二楼逛，把苏州的市井味打包带走。</div></div>
+      <div class="tl"><div class="time">13:30</div><div class="spot">返程</div>
+        <div class="desc">双塔市集离地铁 1 号线相门站不远，苏州站或苏州北站都方便；半小时一班的高铁，把半天的富余时间留给候车也从容。若下午还有兴致，可加一站<b>苏州丝绸博物馆</b>（免费，人民路沿线）。</div></div>
+    </div>
+    <div class="tipbox">提示：苏州博物馆若第一天没约到，第三天上午也可作替换项；周一注意各博物馆闭馆安排，园林不受影响。</div>
+    <div class="photos">
+      <figure class="w6"><img src="assets/suzhou/canglang.jpg" alt="沧浪亭全景"><figcaption>沧浪亭 · 现存最古老<small>Wikimedia Commons</small></figcaption></figure>
+      <figure class="w6"><img src="assets/suzhou/wumen.jpg" alt="盘门水陆城门"><figcaption>盘门 · 水陆城门<small>Commons</small></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 住宿 ===================== -->
+<section id="stay">
+  <div class="sec-head"><div class="no">04</div><h2>住在哪里</h2></div>
+  <p class="sec-sub">这趟行程的精髓都在古城区，首选<em>平江路一带的老宅民宿</em>；预算充足也可以住进园林式酒店。价格为常规参考区间，以预订平台实时价为准。</p>
+  <div class="hotels">
+    <div class="hotel reveal"><div class="area">平江路 · 古城核心</div><h4>平江路老宅民宿</h4>
+      <p>住进白墙黛瓦的苏式老宅，天井里晒着太阳，晚上推门就是平江路的橹声灯影。行程前两天的所有点位都在步行范围。</p>
+      <div class="meta"><span>苏式老宅</span><span>步行核心</span><span>约 ¥400–900/晚</span></div></div>
+    <div class="hotel reveal"><div class="area">观前街 · 市中心</div><h4>观前街商圈酒店</h4>
+      <p>苏州最传统的商业中心，吃喝购物一站解决，地铁 1 号线直达。性价比与便利度最平衡的选择。</p>
+      <div class="meta"><span>交通便利</span><span>商圈成熟</span><span>约 ¥300–600/晚</span></div></div>
+    <div class="hotel reveal"><div class="area">金鸡湖 · 园区湖畔</div><h4>金鸡湖畔高端酒店</h4>
+      <p>如果 Day 2 晚上选了金鸡湖，不如住进湖景房：东方之门的灯光、摩天轮的夜色都在窗外，体验"另一个苏州"的现代感。</p>
+      <div class="meta"><span>湖景房</span><span>现代苏州</span><span>约 ¥600–1500/晚</span></div></div>
+    <div class="hotel reveal"><div class="area">山塘街 · 阊门外</div><h4>山塘街水巷客栈</h4>
+      <p>枕着山塘河入睡，清晨的七里山塘没有游客只有扫街人，虎丘方向动线也顺——适合把 Day 2 走得更从容。</p>
+      <div class="meta"><span>枕河人家</span><span>近虎丘</span><span>约 ¥300–700/晚</span></div></div>
+  </div>
+</section>
+
+<!-- ===================== 美食 ===================== -->
+<section id="food">
+  <div class="sec-head"><div class="no">05</div><h2>姑苏味道</h2></div>
+  <p class="sec-sub">苏州菜的口味是<em>甜鲜为主</em>：一条松鼠桂鱼、一碗枫镇大肉面、一块海棠糕——精致之外，市井的甜同样动人。</p>
+  <div class="food-hero reveal">
+    <img src="assets/suzhou/shantang.jpg" alt="山塘街的夜与河">
+    <div class="cap"><b>山塘夜色 · 灯笼下的小吃江湖</b>
+      <p>七里山塘的夜，是海棠糕的甜、糖粥的糯和评弹的软糯一起熬出来的（真实照片 · 山塘街）。</p></div>
+  </div>
+  <div class="dishes">
+    <div class="dish reveal"><h5>松鼠桂鱼<small>松鹤楼</small></h5><p>苏帮菜的门面：桂鱼剞花刀炸成松鼠状，浇糖醋卤汁"吱吱"作响。松鹤楼（乾隆吃过的老字号）是原点。</p></div>
+    <div class="dish reveal"><h5>苏式汤面<small>同得兴 · 裕兴记</small></h5><p>"宽汤硬面重浇头"，枫镇大肉面的白汤要提前吊一整夜；裕兴记的三虾面是夏季限定的高级款。</p></div>
+    <div class="dish reveal"><h5>哑巴生煎<small>临顿路</small></h5><p>皮薄底脆、一咬爆汁的苏式生煎，本地人从小吃到大，配一碗咖喱牛肉汤正好。</p></div>
+    <div class="dish reveal"><h5>响油鳝糊<small>得月楼</small></h5><p>热鳝糊上桌浇一勺滚油"滋啦"作响，甜咸口的下饭神器，与响油鳝丝同源不同形。</p></div>
+    <div class="dish reveal"><h5>樱桃肉 · 酱汁肉<small>春季时令</small></h5><p>红烧到酥烂发亮的方肉，苏州人"不时不食"的代表，春天到夏天老字号才有。</p></div>
+    <div class="dish reveal"><h5>海棠糕 · 梅花糕<small>山塘街</small></h5><p>模具里现烤的甜糕，豆沙馅、糖猪油心，撒松子与红丝——拿在手里是童年的形状。</p></div>
+    <div class="dish reveal"><h5>糖粥<small>潘玉麟糖粥</small></h5><p>赤豆糊配糯米白粥，"骆驼担子"传下来的老味道，皮市街的小摊常年排队。</p></div>
+    <div class="dish reveal"><h5>赤豆小圆子<small>平江路</small></h5><p>红豆沙煮小圆子，撒一点桂花——平江路上边走边吃的甜蜜担当。</p></div>
+    <div class="dish reveal"><h5>苏式绿豆汤<small>夏季限定</small></h5><p>绿豆、糯米、蜜枣、冬瓜糖泡薄荷水，是苏州人夏天的"续命水"，冰凉解暑。</p></div>
+    <div class="dish reveal"><h5>蟹壳黄<small>老字号饼铺</small></h5><p>层层起酥的小烧饼，咸甜两吃，刚出炉时最香，做伴手礼也体面。</p></div>
+    <div class="dish reveal"><h5>碧螺春<small>茶·伴手礼</small></h5><p>洞庭东西山的"吓煞人香"，一芽一叶卷成螺——苏州人的待客茶，认准产区与明前标识。</p></div>
+    <div class="dish reveal"><h5>采芝斋糖果<small>伴手礼</small></h5><p>百年老字号的苏式糖果与粽子糖，松子软糖、玫瑰瓜子都是带回家的体面手信。</p></div>
+  </div>
+  <div class="streets">
+    <div class="street reveal"><b>平江路 · 大儒巷</b><p>小食与茶馆密度最高，边走边吃就能吃饱，第一天傍晚就在这。</p></div>
+    <div class="street reveal"><b>山塘街 · 石路</b><p>海棠糕、梅花糕与老字号集中，配合夜游刚刚好。</p></div>
+    <div class="street reveal"><b>十全街 · 凤凰街</b><p>本地人觅食带：苏式面馆、私房菜与咖啡馆混搭。</p></div>
+    <div class="street reveal"><b>双塔市集</b><p>老菜场改造的美食集合地，最后一天把小吃一次吃全。</p></div>
+  </div>
+</section>
+
+<!-- ===================== 贴士 ===================== -->
+<section id="tips">
+  <div class="sec-head"><div class="no">06</div><h2>实用贴士</h2></div>
+  <p class="sec-sub">日期待定，但下面这几件事无论哪天出发都用得上：</p>
+  <div class="tips">
+    <div class="tip reveal"><h5>预约优先级</h5><p>苏州博物馆免费但预约最抢手（官方公众号，通常提前 7 天放票）；拙政园旺季分时段购票；其余园林现场可买。定下日期先约苏博。</p></div>
+    <div class="tip reveal"><h5>避开周一</h5><p>苏州博物馆等博物馆类周一闭馆（节假日除外），园林类不受影响。行程撞上周一，就把苏博挪到其他日子，园林顺序随意调。</p></div>
+    <div class="tip reveal"><h5>季节选择</h5><p>园林四季皆景：春有紫藤牡丹、夏有荷、秋有桂与银杏、冬雪配粉墙黛瓦最出片。梅雨季（6–7 月）闷湿，备伞与防滑鞋。</p></div>
+    <div class="tip reveal"><h5>交通要点</h5><p>古城区单行道多、停车贵，地铁 1/4 号线 + 共享单车是最优解；苏州站比苏州北站离古城区近得多，购票时看清站名。</p></div>
+    <div class="tip reveal"><h5>避坑指南</h5><p>街头"茶农带路买茶""评弹茶座拉客"先问清价格再坐下；园林门口"黄牛快速通道"一律不理；三虾面等时令高价菜先确认时价。</p></div>
+    <div class="tip reveal"><h5>节奏建议</h5><p>园林 9 点开园即入，前一小时是黄金安静期；拙政园与苏博同在东北街步行可达，务必排同一天；返程高峰在周日傍晚，高铁提前 30 分钟到站。</p></div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    苏州三日园林古城之旅 · 三天两晚 · 日期待定 · 上海出发<br>
+    行程与价格信息整理自公开资料，出行前请以官方与预订平台为准 · 照片 © 原作者，Wikimedia Commons
+  </div>
+</footer>
+
+<script>
+(function(){
+  var els = document.querySelectorAll('.reveal, .photos figure');
+  if (!('IntersectionObserver' in window)) {
+    els.forEach(function(e){ e.classList.add('show'); });
+    return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if (en.isIntersecting) { en.target.classList.add('show'); io.unobserve(en.target); }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px 240px 0px' });
+  els.forEach(function(e){ io.observe(e); });
+  /* 兜底：3 秒后无条件显示，避免任何环境下照片保持隐藏 */
+  setTimeout(function(){ els.forEach(function(e){ e.classList.add('show'); }); }, 3000);
+})();
+</script>
+</body>
+</html>

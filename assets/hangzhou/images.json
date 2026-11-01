@@ -1,0 +1,110 @@
+{
+  "hero": {
+    "file": "hero.jpg",
+    "title": "File:West Lake Panorama at Dusk.jpg",
+    "artist": "Yinweichen",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File%3AWest_Lake_Panorama_at_Dusk.jpg",
+    "width": 9409,
+    "height": 2986
+  },
+  "duanqiao": {
+    "file": "duanqiao.jpg",
+    "title": "File:Huanglong & Broken Bridge - Hangzhou City & West Lake near Broken Bridge.jpg",
+    "artist": "User:CatOnMars",
+    "license": "CC BY 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File%3AHuanglong_%26_Broken_Bridge_-_Hangzhou_City_%26_West_Lake_near_Broken_Bridge.jpg",
+    "width": 3936,
+    "height": 2624
+  },
+  "santan": {
+    "file": "santan.jpg",
+    "title": "File:Three Pools Mirroring the Moon-pool.JPG",
+    "artist": "未知作者",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File%3AThree_Pools_Mirroring_the_Moon-pool.JPG",
+    "width": 1856,
+    "height": 1392
+  },
+  "hefang": {
+    "file": "hefang.jpg",
+    "title": "File:Hangzhou street 1.jpg",
+    "artist": "Jakob Montrasio",
+    "license": "CC BY 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File%3AHangzhou_street_1.jpg",
+    "width": 1600,
+    "height": 1062
+  },
+  "lingyin": {
+    "file": "lingyin.jpg",
+    "title": "File:Lingyin Temple, Hangzhou 20161003.jpg",
+    "artist": "Tyg728",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File%3ALingyin_Temple%2C_Hangzhou_20161003.jpg",
+    "width": 2560,
+    "height": 1600
+  },
+  "feilaifeng": {
+    "file": "feilaifeng.jpg",
+    "title": "File:Feilaifeng zaoxiang 7577.jpg",
+    "artist": "Doctoroftcm",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File%3AFeilaifeng_zaoxiang_7577.jpg",
+    "width": 1800,
+    "height": 1200
+  },
+  "longjing": {
+    "file": "longjing.jpg",
+    "title": "File:Longjing tea village Hangzhou.jpg",
+    "artist": "Niklas Dougherty",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File%3ALongjing_tea_village_Hangzhou.jpg",
+    "width": 5616,
+    "height": 3744
+  },
+  "jiuxi": {
+    "file": "jiuxi.jpg",
+    "title": "File:杭州. 九溪十八涧（九溪烟树） - panoramio (1).jpg",
+    "artist": "zhiyin586@163.com",
+    "license": "CC BY 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File%3A%E6%9D%AD%E5%B7%9E._%E4%B9%9D%E6%BA%AA%E5%8D%81%E5%85%AB%E6%B6%A7%EF%BC%88%E4%B9%9D%E6%BA%AA%E7%83%9F%E6%A0%91%EF%BC%89_-_panoramio_%281%29.jpg",
+    "width": 1280,
+    "height": 960
+  },
+  "sucauseway": {
+    "file": "sucauseway.jpg",
+    "title": "File:西湖 苏堤 Su Di, Xi Hu, Hangzhou - panoramio.jpg",
+    "artist": "wanghongliu",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File%3A%E8%A5%BF%E6%B9%96_%E8%8B%8F%E5%A0%A4_Su_Di%2C_Xi_Hu%2C_Hangzhou_-_panoramio.jpg",
+    "width": 2800,
+    "height": 1867
+  },
+  "leifeng": {
+    "file": "leifeng.jpg",
+    "title": "File:Hangzhou Leifeng Pagoda 20161006.jpg",
+    "artist": "Tyg728",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File%3AHangzhou_Leifeng_Pagoda_20161006.jpg",
+    "width": 2560,
+    "height": 1920
+  },
+  "canal": {
+    "file": "canal.jpg",
+    "title": "File:20231122 Gongchen Bridge 04.jpg",
+    "artist": "Windmemories",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File%3A20231122_Gongchen_Bridge_04.jpg",
+    "width": 1800,
+    "height": 1200
+  },
+  "xixi": {
+    "file": "xixi.jpg",
+    "title": "File:Xixi Wetland Park, Hangzhou, China.jpg",
+    "artist": "Yoshi Canopus",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File%3AXixi_Wetland_Park%2C_Hangzhou%2C_China.jpg",
+    "width": 2816,
+    "height": 1880
+  }
+}

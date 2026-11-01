@@ -1,0 +1,101 @@
+{
+  "hero": {
+    "file": "hero.jpg",
+    "title": "File:Hongya Cave 20180520.jpg",
+    "artist": "xiquinhosilva",
+    "license": "CC BY 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File%3AHongya_Cave_20180520.jpg",
+    "width": 3000,
+    "height": 2000
+  },
+  "cableway": {
+    "file": "cableway.jpg",
+    "title": "File:重庆长江索道 - Chongqing Yangtze River Cableway - 2015.04 - panoramio.jpg",
+    "artist": "rheins",
+    "license": "CC BY 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File%3A%E9%87%8D%E5%BA%86%E9%95%BF%E6%B1%9F%E7%B4%A2%E9%81%93_-_Chongqing_Yangtze_River_Cableway_-_2015.04_-_panoramio.jpg",
+    "width": 4608,
+    "height": 3456
+  },
+  "nanshan": {
+    "file": "nanshan.jpg",
+    "title": "File:Chongqing Night Yuzhong.jpg",
+    "artist": "Jonipoon",
+    "license": "CC BY 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File%3AChongqing_Night_Yuzhong.jpg",
+    "width": 2000,
+    "height": 1333
+  },
+  "eling": {
+    "file": "eling.jpg",
+    "title": "File:鹅岭公园 - Eling Park - 2016.03 - panoramio.jpg",
+    "artist": "Chen Huang",
+    "license": "CC BY 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File%3A%E9%B9%85%E5%B2%AD%E5%85%AC%E5%9B%AD_-_Eling_Park_-_2016.03_-_panoramio.jpg",
+    "width": 3929,
+    "height": 2947
+  },
+  "ciqikou": {
+    "file": "ciqikou.jpg",
+    "title": "File:重庆磁器口.jpg",
+    "artist": "Zfzf",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File%3A%E9%87%8D%E5%BA%86%E7%A3%81%E5%99%A8%E5%8F%A3.jpg",
+    "width": 3456,
+    "height": 4608
+  },
+  "chaotianmen": {
+    "file": "chaotianmen.jpg",
+    "title": "File:Raffles City Chongqing 2019-9.jpg",
+    "artist": "Junyi Lou",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File%3ARaffles_City_Chongqing_2019-9.jpg",
+    "width": 3668,
+    "height": 3110
+  },
+  "greathall": {
+    "file": "greathall.jpg",
+    "title": "File:Chongqing Great Hall of the People 20240721 135702 (2).jpg",
+    "artist": "HoweyYuan",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File%3AChongqing_Great_Hall_of_the_People_20240721_135702_%282%29.jpg",
+    "width": 4092,
+    "height": 2378
+  },
+  "hotpot": {
+    "file": "hotpot.jpg",
+    "title": "File:Chongqing hotpot.1.jpg",
+    "artist": "Hawyih",
+    "license": "Public domain",
+    "source": "https://commons.wikimedia.org/wiki/File%3AChongqing_hotpot.1.jpg",
+    "width": 2848,
+    "height": 2134
+  },
+  "liziba": {
+    "file": "liziba.jpg",
+    "title": "File:Liziba Station with 02031 (20191224152311).jpg",
+    "artist": "N509FZ",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File%3ALiziba_Station_with_02031_%2820191224152311%29.jpg",
+    "width": 7323,
+    "height": 4882
+  },
+  "shancheng": {
+    "file": "shancheng.jpg",
+    "title": "File:Shancheng Alley, Chongqing.jpg",
+    "artist": "HoweyYuan",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File%3AShancheng_Alley%2C_Chongqing.jpg",
+    "width": 8192,
+    "height": 6144
+  },
+  "jiefangbei": {
+    "file": "jiefangbei.jpg",
+    "title": "File:The Monument to the Liberation of the People at Midnight.jpg",
+    "artist": "Aiden Dermot Young",
+    "license": "CC0",
+    "source": "https://commons.wikimedia.org/wiki/File%3AThe_Monument_to_the_Liberation_of_the_People_at_Midnight.jpg",
+    "width": 2110,
+    "height": 3750
+  }
+}

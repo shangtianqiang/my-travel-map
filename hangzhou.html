@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>杭州三日 · 淡妆浓抹总相宜 | 西湖·灵隐·运河之旅（日期待定）</title>
+<style>
+  :root{
+    --bg:#ffffff; --card:#ffffff; --ink:#1d2f3c; --muted:#5d6d78;
+    --sea:#0e5a7d; --sea-deep:#0a3f59; --tile:#b5442f; --sand:#f1f4f6;
+    --line:#e2e8ec; --gold:#c8a24a;
+    --shadow:0 10px 30px rgba(29,47,60,.08);
+    --radius:18px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:"Noto Serif SC","Songti SC","STSong","SimSun",serif;
+    background:var(--bg); color:var(--ink); line-height:1.75;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{display:block;max-width:100%}
+  a{color:var(--sea);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+
+  /* ---------- 顶部导航 ---------- */
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(255,255,255,.9);backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{display:flex;align-items:center;gap:28px;height:58px;overflow-x:auto}
+  nav .brand{font-weight:700;letter-spacing:.12em;color:var(--sea-deep);white-space:nowrap}
+  nav .brand span{color:var(--tile)}
+  nav a.nl{color:var(--muted);font-size:14px;white-space:nowrap}
+  nav a.nl:hover{color:var(--sea);text-decoration:none}
+
+  /* ---------- Hero ---------- */
+  header.hero{position:relative;min-height:66vh;display:flex;align-items:flex-end;overflow:hidden}
+  header.hero .bg{position:absolute;inset:0}
+  header.hero .bg img{width:100%;height:100%;object-fit:cover;object-position:center 42%}
+  header.hero .bg::after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg,rgba(10,40,60,.10) 0%,rgba(10,40,60,.18) 45%,rgba(10,38,56,.78) 100%);
+  }
+  header.hero .inner{position:relative;z-index:2;width:100%;padding:64px 24px 54px;color:#fff;
+    max-width:1180px;margin:0 auto}
+  .hero .kicker{letter-spacing:.35em;font-size:13px;color:#ffd9a8;margin-bottom:14px}
+  .hero h1{font-size:clamp(30px,5.2vw,56px);line-height:1.25;font-weight:900;letter-spacing:.06em;text-shadow:0 2px 18px rgba(0,0,0,.35)}
+  .hero .sub{margin-top:14px;font-size:clamp(14px,1.6vw,17px);color:rgba(255,255,255,.92);max-width:46em}
+  .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+  .chip{
+    border:1px solid rgba(255,255,255,.45);border-radius:999px;
+    padding:6px 16px;font-size:13px;color:#fff;background:rgba(10,50,70,.35);backdrop-filter:blur(4px);
+  }
+  .photo-credit{font-size:11px;color:rgba(255,255,255,.72);margin-top:16px}
+
+  /* ---------- 通用区块 ---------- */
+  section{padding:72px 0 8px}
+  .sec-head{display:flex;align-items:baseline;gap:18px;margin-bottom:8px}
+  .sec-head .no{font-size:44px;font-weight:900;color:var(--sand);-webkit-text-stroke:1px var(--tile);line-height:1}
+  .sec-head h2{font-size:clamp(24px,3vw,34px);color:var(--sea-deep);letter-spacing:.08em}
+  .sec-sub{color:var(--muted);margin-bottom:30px;max-width:52em}
+  .sec-sub em{color:var(--tile);font-style:normal}
+
+  /* ---------- 行程速览 ---------- */
+  .glance{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .glance .g{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:22px 22px 18px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+  .glance .g::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--sea)}
+  .glance .g:nth-child(2)::before{background:var(--tile)}
+  .glance .g:nth-child(3)::before{background:var(--gold)}
+  .glance .d{font-size:13px;color:var(--muted);letter-spacing:.15em}
+  .glance .t{font-size:19px;font-weight:700;margin:6px 0 8px;color:var(--sea-deep)}
+  .glance .s{font-size:14px;color:var(--muted)}
+
+  /* ---------- 交通卡 ---------- */
+  .transport{display:grid;grid-template-columns:1.05fr .95fr;gap:0;background:var(--card);
+    border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);margin-bottom:40px}
+  .transport .txt{padding:30px 30px 24px}
+  .transport h3{font-size:20px;color:var(--sea-deep);margin-bottom:14px;display:flex;align-items:center;gap:10px}
+  .transport .opt{padding:14px 0;border-top:1px dashed var(--line)}
+  .transport .opt:first-of-type{border-top:none}
+  .transport .opt b{color:var(--tile)}
+  .transport .opt p{font-size:14.5px;color:var(--muted)}
+  .transport .pic{position:relative;min-height:280px}
+  .transport .pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .transport .pic figcaption{position:absolute;left:12px;bottom:10px;font-size:12px;color:#fff;
+    background:rgba(10,50,70,.55);padding:3px 10px;border-radius:999px}
+
+  /* ---------- 每日时间轴 ---------- */
+  .day{margin-bottom:56px}
+  .day-head{display:flex;align-items:center;gap:16px;margin-bottom:6px}
+  .day-head .date{
+    background:var(--sea-deep);color:#fff;border-radius:12px;padding:8px 14px;text-align:center;line-height:1.3;
+    box-shadow:var(--shadow)}
+  .day-head .date b{display:block;font-size:20px}
+  .day-head .date span{font-size:12px;opacity:.85}
+  .day-head h3{font-size:clamp(20px,2.4vw,27px);color:var(--ink)}
+  .day-head .theme{font-size:13px;color:var(--tile);letter-spacing:.2em;margin-top:2px}
+  .route{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:14px 0 22px;font-size:13px;color:var(--muted)}
+  .route .stop{background:var(--sand);border:1px solid var(--line);border-radius:999px;padding:4px 13px;color:var(--sea-deep)}
+  .route .arr{color:var(--tile)}
+
+  .timeline{border-left:2px solid var(--line);margin-left:8px;padding-left:26px}
+  .tl{position:relative;padding:0 0 22px}
+  .tl::before{content:"";position:absolute;left:-33px;top:8px;width:12px;height:12px;border-radius:50%;
+    background:var(--bg);border:3px solid var(--sea)}
+  .tl:nth-child(even)::before{border-color:var(--tile)}
+  .tl .time{font-size:13px;color:var(--tile);font-weight:700;letter-spacing:.08em}
+  .tl .spot{font-size:17.5px;font-weight:700;color:var(--sea-deep);margin:2px 0}
+  .tl .desc{font-size:14.5px;color:var(--muted);max-width:56em}
+  .tl .tag{display:inline-block;font-size:11.5px;border:1px solid var(--line);background:var(--sand);
+    color:var(--sea-deep);border-radius:6px;padding:1px 8px;margin-left:8px;vertical-align:2px}
+
+  .tipbox{background:#f0f6fa;border:1px solid #d3e4ee;border-left:4px solid var(--sea);
+    border-radius:10px;padding:14px 18px;font-size:14px;color:#33566b;margin:4px 0 26px}
+
+  /* ---------- 照片墙 ---------- */
+  .photos{display:grid;grid-template-columns:repeat(12,1fr);gap:14px;margin-top:8px}
+  .photos figure{position:relative;border-radius:14px;overflow:hidden;box-shadow:var(--shadow);
+    background:var(--sand);opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+  .photos figure.show{opacity:1;transform:none}
+  .photos img{width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.16,1,.3,1)}
+  .photos figure:hover img{transform:scale(1.045)}
+  .photos figcaption{position:absolute;left:0;right:0;bottom:0;padding:26px 14px 10px;font-size:13px;color:#fff;
+    background:linear-gradient(180deg,transparent,rgba(8,35,50,.75));letter-spacing:.04em}
+  .photos figcaption small{opacity:.7;font-size:10.5px;margin-left:6px}
+  .w4{grid-column:span 4;height:240px}.w6{grid-column:span 6;height:260px}
+  .w8{grid-column:span 8;height:300px}.w12{grid-column:span 12;height:340px}
+  .wt{height:340px}
+
+  /* ---------- 住宿 ---------- */
+  .hotels{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+  .hotel{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:26px 26px 20px;box-shadow:var(--shadow);border-top:5px solid var(--sea)}
+  .hotel:nth-child(2){border-top-color:var(--tile)}
+  .hotel:nth-child(3){border-top-color:var(--gold)}
+  .hotel:nth-child(4){border-top-color:var(--sea-deep)}
+  .hotel .area{font-size:12px;color:var(--tile);letter-spacing:.2em}
+  .hotel h4{font-size:20px;color:var(--sea-deep);margin:4px 0 10px}
+  .hotel p{font-size:14.5px;color:var(--muted)}
+  .hotel .meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+  .hotel .meta span{font-size:12px;background:var(--sand);border:1px solid var(--line);
+    border-radius:999px;padding:3px 12px;color:var(--sea-deep)}
+
+  /* ---------- 美食 ---------- */
+  .food-hero{border-radius:var(--radius);overflow:hidden;position:relative;box-shadow:var(--shadow);margin-bottom:26px;height:330px}
+  .food-hero img{width:100%;height:100%;object-fit:cover}
+  .food-hero .cap{position:absolute;left:0;right:0;bottom:0;padding:40px 24px 18px;color:#fff;
+    background:linear-gradient(180deg,transparent,rgba(8,35,50,.8))}
+  .food-hero .cap b{font-size:20px;letter-spacing:.06em}
+  .food-hero .cap p{font-size:13.5px;opacity:.92}
+  .dishes{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .dish{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;box-shadow:var(--shadow)}
+  .dish h5{font-size:16.5px;color:var(--sea-deep)}
+  .dish h5 small{color:var(--tile);font-size:12px;margin-left:8px;font-weight:400}
+  .dish p{font-size:13.5px;color:var(--muted);margin-top:4px}
+  .streets{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:18px}
+  .street{background:var(--sand);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+  .street b{color:var(--sea-deep);font-size:15px}
+  .street p{font-size:12.5px;color:var(--muted);margin-top:2px}
+
+  /* ---------- 贴士 ---------- */
+  .tips{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .tip{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px;box-shadow:var(--shadow)}
+  .tip h5{color:var(--tile);font-size:15.5px;margin-bottom:6px}
+  .tip p{font-size:13.5px;color:var(--muted)}
+
+  footer{margin:56px 0 0;border-top:1px solid var(--line);padding:26px 0 40px;
+    font-size:12.5px;color:var(--muted);text-align:center}
+
+  /* ---------- 动效 ---------- */
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s ease,transform .8s ease}
+  .reveal.show{opacity:1;transform:none}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto}
+    .reveal,.photos figure{opacity:1;transform:none;transition:none}
+    .photos img{transition:none}
+  }
+
+  /* ---------- 响应式 ---------- */
+  @media (max-width:900px){
+    .glance,.dishes,.tips{grid-template-columns:1fr 1fr}
+    .hotels,.streets{grid-template-columns:1fr 1fr}
+    .transport{grid-template-columns:1fr}
+    .transport .pic{min-height:220px}
+    .w4{grid-column:span 6}.w6{grid-column:span 12}.w8{grid-column:span 12}
+  }
+  @media (max-width:600px){
+    section{padding:54px 0 4px}
+    .glance,.dishes,.tips,.hotels,.streets{grid-template-columns:1fr}
+    .w4{grid-column:span 12;height:220px}
+    .w12{height:260px}
+    .day-head h3{font-size:19px}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">杭州三日<span> · </span>人间天堂</div>
+    <a class="nl" href="#glance">行程速览</a>
+    <a class="nl" href="#day1">Day 1 西湖</a>
+    <a class="nl" href="#day2">Day 2 灵隐·龙井</a>
+    <a class="nl" href="#day3">Day 3 苏堤·运河</a>
+    <a class="nl" href="#stay">住宿</a>
+    <a class="nl" href="#food">美食</a>
+    <a class="nl" href="#tips">实用贴士</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="bg"><img src="assets/hangzhou/hero.jpg" alt="杭州西湖黄昏全景，雷峰塔与集贤亭剪影"></div>
+  <div class="inner">
+    <div class="kicker">HANGZHOU · 三天两晚 · 日期待定</div>
+    <h1>欲把西湖比西子<br>淡妆浓抹总相宜——三天走完一座天堂</h1>
+    <p class="sub">上海出发 · 高铁一小时即达 · 从断桥白堤的晨雾，到灵隐飞来峰的香火，再到大运河的桨声，最后以苏堤的落日收尾</p>
+    <div class="chips">
+      <span class="chip">三天两晚 · 日期待定</span>
+      <span class="chip">西湖十景 × 禅茶一味</span>
+      <span class="chip">高铁直达 · 说走就走</span>
+      <span class="chip">真实照片 · 无 AI 生图</span>
+    </div>
+    <div class="photo-credit">头图：西湖黄昏，远处雷峰塔 —— 真实照片，来源 Wikimedia Commons</div>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- ===================== 行程速览 ===================== -->
+<section id="glance">
+  <div class="sec-head"><div class="no">00</div><h2>行程速览</h2></div>
+  <p class="sec-sub">三天一条<em>湖—禅—河</em>的人文线：<em>第一天环湖读史</em>，<em>第二天进山问茶</em>，<em>第三天沿苏堤告别、去运河收梢</em>。节奏松，地铁 + 步行 + 一段骑行就能走完。</p>
+  <div class="glance">
+    <div class="g reveal"><div class="d">DAY 1 · 第 1 天</div><div class="t">抵达 · 白堤与三潭印月</div>
+      <div class="s">杭州东 → 湖滨 → 断桥 → 白堤 → 乘船三潭印月 → 河坊街夜色</div></div>
+    <div class="g reveal"><div class="d">DAY 2 · 第 2 天</div><div class="t">灵隐问禅 · 龙井问茶</div>
+      <div class="s">飞来峰 → 灵隐寺 → 龙井村 → 九溪烟树 → 武林夜市（可选）</div></div>
+    <div class="g reveal"><div class="d">DAY 3 · 第 3 天</div><div class="t">苏堤晨走 · 运河告别</div>
+      <div class="s">苏堤 → 花港观鱼 → 雷峰塔 → 拱宸桥·桥西直街 → 返程</div></div>
+  </div>
+</section>
+
+<!-- ===================== DAY 1 ===================== -->
+<section id="day1">
+  <div class="sec-head"><div class="no">01</div><h2>Day 1 · 环西湖，从断桥开始</h2></div>
+  <p class="sec-sub">关键词：<em>断桥、白堤、三潭印月、河坊街</em>。第一天沿着苏东坡与白居易走过的湖岸，把西湖的经典面慢慢展开。</p>
+
+  <div class="transport reveal">
+    <div class="txt">
+      <h3>怎么去杭州（上海出发）</h3>
+      <div class="opt"><b>方案 A · 高铁（推荐）</b>
+        <p>上海虹桥 / 上海东 → 杭州东，最快约 45 分钟、多数车次 1 小时上下，二等座约 73–110 元（以 12306 为准）。班次密集，杭州东站地铁 1 号线直达湖滨——<b>当天决定当天走都来得及</b>，正适合日期待定的这趟。</p></div>
+      <div class="opt"><b>方案 B · 自驾</b>
+        <p>上海 → G60 沪昆高速 → 杭州，全程约 180 公里、2.5 小时上下。注意西湖景区周末与节假日实行单双号限行、灵隐一带管控更严，抵达后建议车停酒店、改地铁与骑行出行。</p></div>
+      <div class="opt"><b>市内移动</b>
+        <p>地铁 1/3/4/7 号线覆盖主要区域；西湖环湖靠步行与公共自行车（小红车扫码即骑），运河、西溪都在地铁沿线。</p></div>
+    </div>
+    <figure class="pic">
+      <img src="assets/hangzhou/duanqiao.jpg" alt="西湖断桥一带湖景">
+      <figcaption>断桥 · 白堤起点</figcaption>
+    </figure>
+  </div>
+
+  <div class="day">
+    <div class="day-head">
+      <div class="date"><b>D1</b><span>第 1 天</span></div>
+      <div><h3>从断桥走到湖心的三座塔</h3><div class="theme">白堤 · 游船 · 南宋御街</div></div>
+    </div>
+    <div class="route">
+      <span class="stop">杭州东站</span><span class="arr">→</span><span class="stop">湖滨</span><span class="arr">→</span>
+      <span class="stop">断桥</span><span class="arr">→</span><span class="stop">白堤·平湖秋月</span><span class="arr">→</span>
+      <span class="stop">三潭印月</span><span class="arr">→</span><span class="stop">河坊街</span>
+    </div>
+    <div class="timeline">
+      <div class="tl"><div class="time">12:30</div><div class="spot">抵达杭州东 · 湖滨午餐</div>
+        <div class="desc">地铁 1 号线到龙翔桥，行李放酒店。湖滨银泰一带先解决午饭，步行两分钟就是西湖东岸。</div></div>
+      <div class="tl"><div class="time">13:30</div><div class="spot">断桥 · 白堤 · 平湖秋月<span class="tag">免费</span><span class="tag">西湖十景</span></div>
+        <div class="desc">从断桥残雪碑出发沿白堤慢走：左手是里西湖的荷，右手是保俶塔的山。"断桥不断"的典故、孤山脚下西泠印社的刻石，都值得停下来细看。</div></div>
+      <div class="tl"><div class="time">15:30</div><div class="spot">西湖游船 · 三潭印月<span class="tag">船票约 55–70 元</span></div>
+        <div class="desc">从中山公园或花港码头上船，登湖心岛看"三潭印月"——一元纸币背面的风景。岛上层叠的亭榭与石塔，是西湖最经典的构图。</div></div>
+      <div class="tl"><div class="time">17:30</div><div class="spot">雷峰夕照（外观）· 长桥公园</div>
+        <div class="desc">沿湖岸走到南线，隔水望雷峰塔的剪影。"雷峰夕照"是十景里最诗意的一幕，明晚再登塔细看。</div></div>
+      <div class="tl"><div class="time">19:00</div><div class="spot">河坊街 · 南宋御街<span class="tag">免费</span><span class="tag">老城烟火</span></div>
+        <div class="desc">清河坊的灯笼次第亮起：定胜糕、龙须糖、胡庆余堂的药香、老字号的幌子。拐进南宋御街的青石板，南宋临安的市井气就回来了。</div></div>
+      <div class="tl"><div class="time">20:30</div><div class="spot">晚餐 · 高银街</div>
+        <div class="desc">知味观的总店就在仁和路：西湖醋鱼、东坡肉、猫耳朵一次点齐；或者去奎元馆来一碗虾仁鳝片面。</div></div>
+    </div>
+    <div class="tipbox">提示：西湖环湖免费开放；游船分画舫与手划船，想上三潭印月认准含上岛的船票；节假日下午湖滨人最多，傍晚以后反而舒服。</div>
+    <div class="photos">
+      <figure class="w8"><img src="assets/hangzhou/santan.jpg" alt="三潭印月石塔"><figcaption>三潭印月 · 湖心三塔<small>Wikimedia Commons</small></figcaption></figure>
+      <figure class="w4"><img src="assets/hangzhou/duanqiao.jpg" alt="断桥白堤"><figcaption>断桥 · 白堤<small>Commons</small></figcaption></figure>
+      <figure class="w6"><img src="assets/hangzhou/hefang.jpg" alt="清河坊历史街区"><figcaption>清河坊 · 南宋市井<small>Commons</small></figcaption></figure>
+      <figure class="w6"><img src="assets/hangzhou/leifeng.jpg" alt="雷峰塔"><figcaption>雷峰塔 · 雷峰夕照<small>Commons</small></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== DAY 2 ===================== -->
+<section id="day2">
+  <div class="sec-head"><div class="no">02</div><h2>Day 2 · 进山问禅，下村问茶</h2></div>
+  <p class="sec-sub">关键词：<em>飞来峰石刻、灵隐香火、龙井茶园、九溪烟树</em>。离开湖面往西边的山里走，是西湖以西最有味道的一天。</p>
+
+  <div class="day">
+    <div class="day-head">
+      <div class="date"><b>D2</b><span>第 2 天</span></div>
+      <div><h3>从灵隐寺走到九溪的溪水里</h3><div class="theme">禅寺 · 茶园 · 溪涧</div></div>
+    </div>
+    <div class="route">
+      <span class="stop">飞来峰</span><span class="arr">→</span><span class="stop">灵隐寺</span><span class="arr">→</span>
+      <span class="stop">龙井村</span><span class="arr">→</span><span class="stop">九溪烟树</span><span class="arr">→</span>
+      <span class="stop">武林夜市（可选）</span>
+    </div>
+    <div class="timeline">
+      <div class="tl"><div class="time">08:00</div><div class="spot">飞来峰造像<span class="tag">门票约 45 元</span><span class="tag">五代石刻</span></div>
+        <div class="desc">灵隐溪畔的山崖上藏着三百多尊五代至元的摩崖造像，大肚弥勒是其中最有名的一尊。赶早进景区，溪水、石佛和晨雾都是独享。</div></div>
+      <div class="tl"><div class="time">09:30</div><div class="spot">灵隐寺<span class="tag">"江南禅宗之首"</span><span class="tag">香花券约 30 元</span></div>
+        <div class="desc">东晋古刹，天王殿、大雄宝殿一路香火绵延。在药师殿前看香客往来，或在五百罗汉堂里找个角落静一静——灵隐的好，一半在建筑，一半在氛围。</div></div>
+      <div class="tl"><div class="time">11:30</div><div class="spot">龙井村 · 茶园午餐<span class="tag">免费进村</span></div>
+        <div class="desc">公交或打车翻过山就是龙井村——西湖龙井的核心产区。找一家村民茶室坐下，点一杯明前茶配农家菜，窗外就是层层的茶田。</div></div>
+      <div class="tl"><div class="time">14:00</div><div class="spot">九溪烟树<span class="tag">免费</span><span class="tag">徒步</span></div>
+        <div class="desc">从龙井村沿山路步行下山（约 40 分钟）入九溪十八涧：溪水在茶田与枫杨间穿行，夏天赤脚踩水、秋天满山红叶，是杭州人私藏的"洗肺"路线。</div></div>
+      <div class="tl"><div class="time">17:00</div><div class="spot">返回市区 · 小憩</div>
+        <div class="desc">九溪口打车或公交回市区，回酒店歇个脚——这两天走路不少，晚上留着体力逛夜市。</div></div>
+      <div class="tl"><div class="time">19:00</div><div class="spot">可选 · 钱江新城灯光秀 或 武林夜市</div>
+        <div class="desc">想看现代杭州，去城市阳台看钱江新城的楼体灯光秀（通常周五至周日晚有场次，以官方公告为准）；想吃烟火气，去武林夜市从头吃到尾。</div></div>
+    </div>
+    <div class="tipbox">提示：灵隐寺门票体系 = 飞来峰景区门票 + 寺庙香花券，两道都要买；想要清静请赶 8 点前进山。龙井村买茶先问价、少量试，别被"茶农自产"话术带节奏。</div>
+    <div class="photos">
+      <figure class="w6"><img src="assets/hangzhou/lingyin.jpg" alt="灵隐寺天王殿"><figcaption>灵隐寺<small>Wikimedia Commons</small></figcaption></figure>
+      <figure class="w6"><img src="assets/hangzhou/feilaifeng.jpg" alt="飞来峰摩崖造像"><figcaption>飞来峰 · 摩崖造像<small>Commons</small></figcaption></figure>
+      <figure class="w6"><img src="assets/hangzhou/longjing.jpg" alt="龙井村茶园"><figcaption>龙井村 · 茶园<small>Commons</small></figcaption></figure>
+      <figure class="w6"><img src="assets/hangzhou/jiuxi.jpg" alt="九溪烟树溪涧"><figcaption>九溪烟树<small>Commons</small></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== DAY 3 ===================== -->
+<section id="day3">
+  <div class="sec-head"><div class="no">03</div><h2>Day 3 · 苏堤晨走，运河收梢</h2></div>
+  <p class="sec-sub">关键词：<em>苏堤六桥、雷峰塔登顶、拱宸桥</em>。上午把西湖最后一段经典走完，下午去大运河边喝杯咖啡，从容返程。</p>
+
+  <div class="day">
+    <div class="day-head">
+      <div class="date"><b>D3</b><span>第 3 天</span></div>
+      <div><h3>从苏堤的晨雾到运河的暮色</h3><div class="theme">苏堤 · 雷峰塔 · 京杭大运河</div></div>
+    </div>
+    <div class="route">
+      <span class="stop">苏堤</span><span class="arr">→</span><span class="stop">花港观鱼</span><span class="arr">→</span>
+      <span class="stop">雷峰塔</span><span class="arr">→</span><span class="stop">拱宸桥·桥西直街</span><span class="arr">→</span><span class="stop">返程</span>
+    </div>
+    <div class="timeline">
+      <div class="tl"><div class="time">07:30</div><div class="spot">苏堤春晓 · 晨走<span class="tag">免费</span><span class="tag">西湖十景</span></div>
+        <div class="desc">清晨的苏堤属于晨跑的人和白鹭：映波、锁澜、望山……六座石桥一字排开，两侧水鸟贴着湖面飞。走完 2.8 公里，西湖的美好就都带走了。</div></div>
+      <div class="tl"><div class="time">09:00</div><div class="spot">花港观鱼<span class="tag">免费</span></div>
+        <div class="desc">苏堤南端的红鱼池，锦鲤成群，牡丹园与蒋庄老宅都值得绕一绕——西湖南线最松弛的一站。</div></div>
+      <div class="tl"><div class="time">10:00</div><div class="spot">雷峰塔登顶<span class="tag">门票约 40 元</span></div>
+        <div class="desc">现代重建的塔内保留着吴越国塔基遗址，电梯直达顶层——俯瞰西湖全景的最佳机位：苏堤如带，湖心三塔点点，保俶塔在北岸相望。</div></div>
+      <div class="tl"><div class="time">11:30</div><div class="spot">午餐 · 南山路线</div>
+        <div class="desc">南山路一带咖啡馆与杭帮菜馆密集，找家临湖的把午饭吃成告别宴。</div></div>
+      <div class="tl"><div class="time">13:30</div><div class="spot">拱宸桥 · 桥西历史街区<span class="tag">免费</span><span class="tag">京杭大运河</span></div>
+        <div class="desc">地铁到拱宸桥东，站在 300 多年的石拱桥上看货船缓缓驶过——京杭大运河到杭州的最后一段。桥西直街的老厂房里藏着刀剪剑、伞、扇三座免费博物馆，随便逛一座都值。</div></div>
+      <div class="tl"><div class="time">16:00</div><div class="spot">返程</div>
+        <div class="desc">桥西打车或地铁直达杭州东站，一个多小时的高铁就把你送回上海。若时间充裕，可加一站<b>西溪湿地</b>（地铁 3 号线可达，摇橹船配芦苇荡，是《非诚勿扰》取景地）。</div></div>
+    </div>
+    <div class="tipbox">提示：苏堤与花港观鱼免费；雷峰塔登顶建议留到最后一天——把全景留在记忆里。返程高峰是周日傍晚，杭州东站提前 30 分钟到即可。</div>
+    <div class="photos">
+      <figure class="w6"><img src="assets/hangzhou/sucauseway.jpg" alt="苏堤湖景"><figcaption>苏堤 · 六桥烟柳<small>Wikimedia Commons</small></figcaption></figure>
+      <figure class="w6"><img src="assets/hangzhou/leifeng.jpg" alt="雷峰塔近景"><figcaption>雷峰塔<small>Commons</small></figcaption></figure>
+      <figure class="w6"><img src="assets/hangzhou/canal.jpg" alt="拱宸桥与大运河"><figcaption>拱宸桥 · 京杭大运河<small>Commons</small></figcaption></figure>
+      <figure class="w6"><img src="assets/hangzhou/xixi.jpg" alt="西溪湿地水道"><figcaption>备选 · 西溪湿地<small>Commons</small></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 住宿 ===================== -->
+<section id="stay">
+  <div class="sec-head"><div class="no">04</div><h2>住在哪里</h2></div>
+  <p class="sec-sub">两个思路：<em>住湖滨</em>推窗见湖、步行环湖；<em>住运河或茶园</em>图一份清静。价格为常规参考区间，以预订平台实时价为准。</p>
+  <div class="hotels">
+    <div class="hotel reveal"><div class="area">湖滨 · 西湖东岸</div><h4>湖滨商圈湖景酒店</h4>
+      <p>龙翔桥地铁站上盖，出门就是西湖。Day 1 全程步行可达，清晨下楼就是断桥——住这里等于把西湖变成自家后院。</p>
+      <div class="meta"><span>推窗见湖</span><span>地铁上盖</span><span>约 ¥500–1500/晚</span></div></div>
+    <div class="hotel reveal"><div class="area">河坊街 · 吴山脚下</div><h4>老城精品民宿</h4>
+      <p>住在南宋御街的巷子里，晚上逛河坊街不用赶末班车，清晨还能去吴山城隍阁看日出，烟火气十足。</p>
+      <div class="meta"><span>老城肌理</span><span>夜市楼下</span><span>约 ¥300–700/晚</span></div></div>
+    <div class="hotel reveal"><div class="area">龙井 · 茶园山间</div><h4>龙井茶园民宿</h4>
+      <p>睡在茶田上方的山宿里，清晨被鸟叫醒，推窗就是雾气缭绕的茶山。适合想把 Day 2 过成"茶之旅"的人。</p>
+      <div class="meta"><span>茶山景观</span><span>山间清静</span><span>约 ¥500–1200/晚</span></div></div>
+    <div class="hotel reveal"><div class="area">拱宸桥 · 运河畔</div><h4>桥西设计酒店</h4>
+      <p>老厂房改造的运河边酒店，晚上沿着河走一圈，看货船灯火与拱宸桥的倒影。第三天返程动线最顺。</p>
+      <div class="meta"><span>运河夜景</span><span>近博物馆群</span><span>约 ¥400–800/晚</span></div></div>
+  </div>
+</section>
+
+<!-- ===================== 美食 ===================== -->
+<section id="food">
+  <div class="sec-head"><div class="no">05</div><h2>杭州味道</h2></div>
+  <p class="sec-sub">杭帮菜的底色是<em>清鲜本味</em>：一条醋鱼、一盏龙井、一碗片儿川——这三样吃明白了，杭州就吃明白了一半。</p>
+  <div class="food-hero reveal">
+    <img src="assets/hangzhou/longjing.jpg" alt="龙井村的茶园与茶室">
+    <div class="cap"><b>龙井问茶 · 茶园里的农家餐桌</b>
+      <p>一杯明前龙井、几道茶香农家菜，坐在层叠的茶田边——这是杭州独有的吃饭方式（真实照片 · 龙井村）。</p></div>
+  </div>
+  <div class="dishes">
+    <div class="dish reveal"><h5>西湖醋鱼<small>楼外楼</small></h5><p>草鱼饿养两日再烹，浇糖醋汁——评判标准是"有蟹味"。孤山脚下的楼外楼是百年原产地。</p></div>
+    <div class="dish reveal"><h5>东坡肉<small>知味观</small></h5><p>方块五花肉慢火焖到酥而不碎，色泽红亮入口即化，配一碗白饭就是杭州的待客之道。</p></div>
+    <div class="dish reveal"><h5>龙井虾仁<small>杭帮菜馆</small></h5><p>河虾仁配明前茶芽，清淡里透着茶香——想同时喝到茶与吃到江南，点它。</p></div>
+    <div class="dish reveal"><h5>片儿川<small>奎元馆</small></h5><p>雪菜、笋片、瘦肉浇头的碱水面，杭州人的一天从这碗面开始。百年老店奎元馆是标准的打卡处。</p></div>
+    <div class="dish reveal"><h5>葱包桧<small>街头小吃</small></h5><p>春卷皮裹油条与葱段在铁板上压烤，刷甜面酱——名字里压着对秦桧的怨念，是杭州最市井的下午茶。</p></div>
+    <div class="dish reveal"><h5>定胜糕<small>河坊街</small></h5><p>米粉蒸成的小糕，粉粉的莲花形，豆沙馅微甜——南宋传下来的"出征必胜"彩头。</p></div>
+    <div class="dish reveal"><h5>虾爆鳝面<small>奎元馆</small></h5><p>河虾过油、鳝背爆炒，浇头铺满一碗——"江南面王"的看家本领。</p></div>
+    <div class="dish reveal"><h5>猫耳朵<small>知味观</small></h5><p>形似猫耳的小面疙瘩配火腿虾仁，杭州面食里最俏皮的一道，乾隆下江南的传说给它加了不少分。</p></div>
+    <div class="dish reveal"><h5>桂花糖藕 · 栗羹<small>秋季限定</small></h5><p>桂花是杭州秋天的主题：糖藕淋桂花蜜、糖炒栗子配一袋边走边吃，季节感拉满。</p></div>
+    <div class="dish reveal"><h5>叫花鸡<small>杭帮菜馆</small></h5><p>荷叶裹整鸡带泥煨烤，敲开泥壳的瞬间满桌荷香——适合人多的餐桌分食。</p></div>
+    <div class="dish reveal"><h5>西湖龙井<small>伴手礼</small></h5><p>明前茶金贵、雨前茶实惠，认准正规茶庄与包装标识；买散茶先试后买，少量为宜。</p></div>
+    <div class="dish reveal"><h5>九曲红梅<small>小众伴手礼</small></h5><p>杭州自己的红茶，产自双灵村，汤色琥珀、蜜香柔和——比龙井冷门，却常给人惊喜。</p></div>
+  </div>
+  <div class="streets">
+    <div class="street reveal"><b>河坊街 · 高银街</b><p>老字号密度最高，知味观总店与小吃摊都扎堆在这，第一晚就安排。</p></div>
+    <div class="street reveal"><b>奎元馆 · 解放路</b><p>百年面馆，片儿川与虾爆鳝面二选一，中午去不用排长队。</p></div>
+    <div class="street reveal"><b>大兜路 · 运河边</b><p>香积寺旁的运河美食街，环境好、适合晚餐收尾，与拱宸桥连成一线。</p></div>
+    <div class="street reveal"><b>武林夜市</b><p>武林广场附近的夜市街，小吃与手作摊齐全，Day 2 晚上的好去处。</p></div>
+  </div>
+</section>
+
+<!-- ===================== 贴士 ===================== -->
+<section id="tips">
+  <div class="sec-head"><div class="no">06</div><h2>实用贴士</h2></div>
+  <p class="sec-sub">日期待定，先把"坑"摸清楚——预约、限行和买茶这三件事最值得提前做功课：</p>
+  <div class="tips">
+    <div class="tip reveal"><h5>票务与预约</h5><p>西湖环湖免费；灵隐 = 飞来峰门票 + 香花券两道票；雷峰塔、三潭印月船票现场或官方渠道购买即可，无需抢约。</p></div>
+    <div class="tip reveal"><h5>景区限行</h5><p>西湖风景区周末与节假日对小型车实施单双号限行，灵隐、南山路一带管控更严——自驾务必把车停酒店，景区内靠地铁、公交与骑行。</p></div>
+    <div class="tip reveal"><h5>季节选择</h5><p>春季桃柳夹岸、苏堤最美但人最多；秋季满陇桂雨、九溪红叶；夏季看荷但闷热；冬季断桥残雪可遇不可求。雨天的西湖别有味道，备一把伞不亏。</p></div>
+    <div class="tip reveal"><h5>买茶避坑</h5><p>龙井村买茶先问价、少量试、别信"家传御茶"；想稳妥就去正规茶庄或知味观、狮峰门店。明前与雨前差价大，自饮选雨前更划算。</p></div>
+    <div class="tip reveal"><h5>骑行与步行</h5><p>环湖骑行用公共自行车（小红车）扫码最方便，注意白堤、苏堤禁止骑行只能推行；景区台阶多，穿舒适的鞋。</p></div>
+    <div class="tip reveal"><h5>节奏建议</h5><p>灵隐赶早、苏堤赶早，人少是杭州最好的滤镜；避开法定节假日的湖滨午后人潮；返程高峰在周日傍晚，杭州东站提前 30–40 分钟到。</p></div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    杭州三日西湖禅茶之旅 · 三天两晚 · 日期待定 · 上海出发<br>
+    行程与价格信息整理自公开资料，出行前请以官方与预订平台为准 · 照片 © 原作者，Wikimedia Commons
+  </div>
+</footer>
+
+<script>
+(function(){
+  var els = document.querySelectorAll('.reveal, .photos figure');
+  if (!('IntersectionObserver' in window)) {
+    els.forEach(function(e){ e.classList.add('show'); });
+    return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if (en.isIntersecting) { en.target.classList.add('show'); io.unobserve(en.target); }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px 240px 0px' });
+  els.forEach(function(e){ io.observe(e); });
+  /* 兜底：3 秒后无条件显示，避免任何环境下照片保持隐藏 */
+  setTimeout(function(){ els.forEach(function(e){ e.classList.add('show'); }); }, 3000);
+})();
+</script>
+</body>
+</html>

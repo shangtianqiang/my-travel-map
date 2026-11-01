@@ -1,0 +1,101 @@
+{
+  "hero": {
+    "file": "hero.jpg",
+    "title": "File:厦门鼓浪屿轮渡望鼓浪屿地标 - 日光岩 - panoramio.jpg",
+    "artist": "Tiger@西北",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File%3A%E5%8E%A6%E9%97%A8%E9%BC%93%E6%B5%AA%E5%B1%BF%E8%BD%AE%E6%B8%A1%E6%9C%9B%E9%BC%93%E6%B5%AA%E5%B1%BF%E5%9C%B0%E6%A0%87_-_%E6%97%A5%E5%85%89%E5%B2%A9_-_panoramio.jpg",
+    "width": 1600,
+    "height": 1200
+  },
+  "sunlight": {
+    "file": "sunlight.jpg",
+    "title": "File:鼓浪屿日光岩 - panoramio.jpg",
+    "artist": "江上清风1961",
+    "license": "CC BY 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File%3A%E9%BC%93%E6%B5%AA%E5%B1%BF%E6%97%A5%E5%85%89%E5%B2%A9_-_panoramio.jpg",
+    "width": 1280,
+    "height": 960
+  },
+  "shuzhuang": {
+    "file": "shuzhuang.jpg",
+    "title": "File:厦门鼓浪屿菽庄花园 - panoramio.jpg",
+    "artist": "Tiger@西北",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File%3A%E5%8E%A6%E9%97%A8%E9%BC%93%E6%B5%AA%E5%B1%BF%E8%8F%BD%E5%BA%84%E8%8A%B1%E5%9B%AD_-_panoramio.jpg",
+    "width": 1600,
+    "height": 1200
+  },
+  "architecture": {
+    "file": "architecture.jpg",
+    "title": "File:Gulangyu mansion 2011 12.jpg",
+    "artist": "Rolfmueller",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File%3AGulangyu_mansion_2011_12.jpg",
+    "width": 3456,
+    "height": 2304
+  },
+  "nanputuo": {
+    "file": "nanputuo.jpg",
+    "title": "File:南普陀寺 - South Putuo Temple - 2014.01 - panoramio.jpg",
+    "artist": "rheins",
+    "license": "CC BY 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File%3A%E5%8D%97%E6%99%AE%E9%99%80%E5%AF%BA_-_South_Putuo_Temple_-_2014.01_-_panoramio.jpg",
+    "width": 5187,
+    "height": 2776
+  },
+  "shapowei": {
+    "file": "shapowei.jpg",
+    "title": "File:Fishing boats in Shapowei, Xiamen.jpg",
+    "artist": "mojojo.cn",
+    "license": "CC BY-SA 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File%3AFishing_boats_in_Shapowei%2C_Xiamen.jpg",
+    "width": 2800,
+    "height": 1575
+  },
+  "huandao": {
+    "file": "huandao.jpg",
+    "title": "File:Huandao Rd.JPG",
+    "artist": "Xmhaoyu",
+    "license": "CC BY 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File%3AHuandao_Rd.JPG",
+    "width": 1600,
+    "height": 1067
+  },
+  "jimei": {
+    "file": "jimei.jpg",
+    "title": "File:厦门集美学村 01.jpg",
+    "artist": "DragonSamYU",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File%3A%E5%8E%A6%E9%97%A8%E9%9B%86%E7%BE%8E%E5%AD%A6%E6%9D%91_01.jpg",
+    "width": 4240,
+    "height": 2832
+  },
+  "zengcuoan": {
+    "file": "zengcuoan.jpg",
+    "title": "File:曾厝垵092633.jpg",
+    "artist": "Augustohai",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File%3A%E6%9B%BE%E5%8E%9D%E5%9E%B5092633.jpg",
+    "width": 4000,
+    "height": 2667
+  },
+  "zhongshan": {
+    "file": "zhongshan.jpg",
+    "title": "File:Zhongshan Road, Xiamen 8.jpg",
+    "artist": "Slyronit",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File%3AZhongshan_Road%2C_Xiamen_8.jpg",
+    "width": 4857,
+    "height": 3238
+  },
+  "xmu": {
+    "file": "xmu.jpg",
+    "title": "File:Panoramatic view of xiamen university at sunset.jpg",
+    "artist": "Ratvirgin",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File%3APanoramatic_view_of_xiamen_university_at_sunset.jpg",
+    "width": 1600,
+    "height": 854
+  }
+}

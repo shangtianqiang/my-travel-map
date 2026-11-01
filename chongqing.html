@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>重庆三日 · 山即是城，城即是山 | 8D魔幻山城之旅（日期待定）</title>
+<style>
+  :root{
+    --bg:#ffffff; --card:#ffffff; --ink:#1d2f3c; --muted:#5d6d78;
+    --sea:#0e5a7d; --sea-deep:#0a3f59; --tile:#b5442f; --sand:#f1f4f6;
+    --line:#e2e8ec; --gold:#c8a24a;
+    --shadow:0 10px 30px rgba(29,47,60,.08);
+    --radius:18px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:"Noto Serif SC","Songti SC","STSong","SimSun",serif;
+    background:var(--bg); color:var(--ink); line-height:1.75;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{display:block;max-width:100%}
+  a{color:var(--sea);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+
+  /* ---------- 顶部导航 ---------- */
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(255,255,255,.9);backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{display:flex;align-items:center;gap:28px;height:58px;overflow-x:auto}
+  nav .brand{font-weight:700;letter-spacing:.12em;color:var(--sea-deep);white-space:nowrap}
+  nav .brand span{color:var(--tile)}
+  nav a.nl{color:var(--muted);font-size:14px;white-space:nowrap}
+  nav a.nl:hover{color:var(--sea);text-decoration:none}
+
+  /* ---------- Hero ---------- */
+  header.hero{position:relative;min-height:66vh;display:flex;align-items:flex-end;overflow:hidden}
+  header.hero .bg{position:absolute;inset:0}
+  header.hero .bg img{width:100%;height:100%;object-fit:cover;object-position:center 40%}
+  header.hero .bg::after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg,rgba(10,40,60,.10) 0%,rgba(10,40,60,.18) 45%,rgba(10,38,56,.78) 100%);
+  }
+  header.hero .inner{position:relative;z-index:2;width:100%;padding:64px 24px 54px;color:#fff;
+    max-width:1180px;margin:0 auto}
+  .hero .kicker{letter-spacing:.35em;font-size:13px;color:#ffd9a8;margin-bottom:14px}
+  .hero h1{font-size:clamp(30px,5.2vw,56px);line-height:1.25;font-weight:900;letter-spacing:.06em;text-shadow:0 2px 18px rgba(0,0,0,.35)}
+  .hero .sub{margin-top:14px;font-size:clamp(14px,1.6vw,17px);color:rgba(255,255,255,.92);max-width:46em}
+  .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+  .chip{
+    border:1px solid rgba(255,255,255,.45);border-radius:999px;
+    padding:6px 16px;font-size:13px;color:#fff;background:rgba(10,50,70,.35);backdrop-filter:blur(4px);
+  }
+  .photo-credit{font-size:11px;color:rgba(255,255,255,.72);margin-top:16px}
+
+  /* ---------- 通用区块 ---------- */
+  section{padding:72px 0 8px}
+  .sec-head{display:flex;align-items:baseline;gap:18px;margin-bottom:8px}
+  .sec-head .no{font-size:44px;font-weight:900;color:var(--sand);-webkit-text-stroke:1px var(--tile);line-height:1}
+  .sec-head h2{font-size:clamp(24px,3vw,34px);color:var(--sea-deep);letter-spacing:.08em}
+  .sec-sub{color:var(--muted);margin-bottom:30px;max-width:52em}
+  .sec-sub em{color:var(--tile);font-style:normal}
+
+  /* ---------- 行程速览 ---------- */
+  .glance{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .glance .g{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:22px 22px 18px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+  .glance .g::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--sea)}
+  .glance .g:nth-child(2)::before{background:var(--tile)}
+  .glance .g:nth-child(3)::before{background:var(--gold)}
+  .glance .d{font-size:13px;color:var(--muted);letter-spacing:.15em}
+  .glance .t{font-size:19px;font-weight:700;margin:6px 0 8px;color:var(--sea-deep)}
+  .glance .s{font-size:14px;color:var(--muted)}
+
+  /* ---------- 交通卡 ---------- */
+  .transport{display:grid;grid-template-columns:1.05fr .95fr;gap:0;background:var(--card);
+    border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);margin-bottom:40px}
+  .transport .txt{padding:30px 30px 24px}
+  .transport h3{font-size:20px;color:var(--sea-deep);margin-bottom:14px;display:flex;align-items:center;gap:10px}
+  .transport .opt{padding:14px 0;border-top:1px dashed var(--line)}
+  .transport .opt:first-of-type{border-top:none}
+  .transport .opt b{color:var(--tile)}
+  .transport .opt p{font-size:14.5px;color:var(--muted)}
+  .transport .pic{position:relative;min-height:280px}
+  .transport .pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .transport .pic figcaption{position:absolute;left:12px;bottom:10px;font-size:12px;color:#fff;
+    background:rgba(10,50,70,.55);padding:3px 10px;border-radius:999px}
+
+  /* ---------- 每日时间轴 ---------- */
+  .day{margin-bottom:56px}
+  .day-head{display:flex;align-items:center;gap:16px;margin-bottom:6px}
+  .day-head .date{
+    background:var(--sea-deep);color:#fff;border-radius:12px;padding:8px 14px;text-align:center;line-height:1.3;
+    box-shadow:var(--shadow)}
+  .day-head .date b{display:block;font-size:20px}
+  .day-head .date span{font-size:12px;opacity:.85}
+  .day-head h3{font-size:clamp(20px,2.4vw,27px);color:var(--ink)}
+  .day-head .theme{font-size:13px;color:var(--tile);letter-spacing:.2em;margin-top:2px}
+  .route{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:14px 0 22px;font-size:13px;color:var(--muted)}
+  .route .stop{background:var(--sand);border:1px solid var(--line);border-radius:999px;padding:4px 13px;color:var(--sea-deep)}
+  .route .arr{color:var(--tile)}
+
+  .timeline{border-left:2px solid var(--line);margin-left:8px;padding-left:26px}
+  .tl{position:relative;padding:0 0 22px}
+  .tl::before{content:"";position:absolute;left:-33px;top:8px;width:12px;height:12px;border-radius:50%;
+    background:var(--bg);border:3px solid var(--sea)}
+  .tl:nth-child(even)::before{border-color:var(--tile)}
+  .tl .time{font-size:13px;color:var(--tile);font-weight:700;letter-spacing:.08em}
+  .tl .spot{font-size:17.5px;font-weight:700;color:var(--sea-deep);margin:2px 0}
+  .tl .desc{font-size:14.5px;color:var(--muted);max-width:56em}
+  .tl .tag{display:inline-block;font-size:11.5px;border:1px solid var(--line);background:var(--sand);
+    color:var(--sea-deep);border-radius:6px;padding:1px 8px;margin-left:8px;vertical-align:2px}
+
+  .tipbox{background:#f0f6fa;border:1px solid #d3e4ee;border-left:4px solid var(--sea);
+    border-radius:10px;padding:14px 18px;font-size:14px;color:#33566b;margin:4px 0 26px}
+
+  /* ---------- 照片墙 ---------- */
+  .photos{display:grid;grid-template-columns:repeat(12,1fr);gap:14px;margin-top:8px}
+  .photos figure{position:relative;border-radius:14px;overflow:hidden;box-shadow:var(--shadow);
+    background:var(--sand);opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+  .photos figure.show{opacity:1;transform:none}
+  .photos img{width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.16,1,.3,1)}
+  .photos figure:hover img{transform:scale(1.045)}
+  .photos figcaption{position:absolute;left:0;right:0;bottom:0;padding:26px 14px 10px;font-size:13px;color:#fff;
+    background:linear-gradient(180deg,transparent,rgba(8,35,50,.75));letter-spacing:.04em}
+  .photos figcaption small{opacity:.7;font-size:10.5px;margin-left:6px}
+  .w4{grid-column:span 4;height:240px}.w6{grid-column:span 6;height:260px}
+  .w8{grid-column:span 8;height:300px}.w12{grid-column:span 12;height:340px}
+  .wt{height:340px}
+
+  /* ---------- 住宿 ---------- */
+  .hotels{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+  .hotel{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:26px 26px 20px;box-shadow:var(--shadow);border-top:5px solid var(--sea)}
+  .hotel:nth-child(2){border-top-color:var(--tile)}
+  .hotel:nth-child(3){border-top-color:var(--gold)}
+  .hotel:nth-child(4){border-top-color:var(--sea-deep)}
+  .hotel .area{font-size:12px;color:var(--tile);letter-spacing:.2em}
+  .hotel h4{font-size:20px;color:var(--sea-deep);margin:4px 0 10px}
+  .hotel p{font-size:14.5px;color:var(--muted)}
+  .hotel .meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+  .hotel .meta span{font-size:12px;background:var(--sand);border:1px solid var(--line);
+    border-radius:999px;padding:3px 12px;color:var(--sea-deep)}
+
+  /* ---------- 美食 ---------- */
+  .food-hero{border-radius:var(--radius);overflow:hidden;position:relative;box-shadow:var(--shadow);margin-bottom:26px;height:330px}
+  .food-hero img{width:100%;height:100%;object-fit:cover}
+  .food-hero .cap{position:absolute;left:0;right:0;bottom:0;padding:40px 24px 18px;color:#fff;
+    background:linear-gradient(180deg,transparent,rgba(8,35,50,.8))}
+  .food-hero .cap b{font-size:20px;letter-spacing:.06em}
+  .food-hero .cap p{font-size:13.5px;opacity:.92}
+  .dishes{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .dish{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;box-shadow:var(--shadow)}
+  .dish h5{font-size:16.5px;color:var(--sea-deep)}
+  .dish h5 small{color:var(--tile);font-size:12px;margin-left:8px;font-weight:400}
+  .dish p{font-size:13.5px;color:var(--muted);margin-top:4px}
+  .streets{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:18px}
+  .street{background:var(--sand);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+  .street b{color:var(--sea-deep);font-size:15px}
+  .street p{font-size:12.5px;color:var(--muted);margin-top:2px}
+
+  /* ---------- 贴士 ---------- */
+  .tips{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .tip{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px;box-shadow:var(--shadow)}
+  .tip h5{color:var(--tile);font-size:15.5px;margin-bottom:6px}
+  .tip p{font-size:13.5px;color:var(--muted)}
+
+  footer{margin:56px 0 0;border-top:1px solid var(--line);padding:26px 0 40px;
+    font-size:12.5px;color:var(--muted);text-align:center}
+
+  /* ---------- 动效 ---------- */
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s ease,transform .8s ease}
+  .reveal.show{opacity:1;transform:none}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto}
+    .reveal,.photos figure{opacity:1;transform:none;transition:none}
+    .photos img{transition:none}
+  }
+
+  /* ---------- 响应式 ---------- */
+  @media (max-width:900px){
+    .glance,.dishes,.tips{grid-template-columns:1fr 1fr}
+    .hotels,.streets{grid-template-columns:1fr 1fr}
+    .transport{grid-template-columns:1fr}
+    .transport .pic{min-height:220px}
+    .w4{grid-column:span 6}.w6{grid-column:span 12}.w8{grid-column:span 12}
+  }
+  @media (max-width:600px){
+    section{padding:54px 0 4px}
+    .glance,.dishes,.tips,.hotels,.streets{grid-template-columns:1fr}
+    .w4{grid-column:span 12;height:220px}
+    .w12{height:260px}
+    .day-head h3{font-size:19px}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">重庆三日<span> · </span>8D山城</div>
+    <a class="nl" href="#glance">行程速览</a>
+    <a class="nl" href="#day1">Day 1 夜景</a>
+    <a class="nl" href="#day2">Day 2 老城轻轨</a>
+    <a class="nl" href="#day3">Day 3 礼堂·博物馆</a>
+    <a class="nl" href="#stay">住宿</a>
+    <a class="nl" href="#food">美食</a>
+    <a class="nl" href="#tips">实用贴士</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="bg"><img src="assets/chongqing/hero.jpg" alt="重庆洪崖洞夜景，层叠的吊脚楼灯火"></div>
+  <div class="inner">
+    <div class="kicker">CHONGQING · 三天两晚 · 日期待定</div>
+    <h1>山即是城，城即是山<br>三天两晚，在 8D 魔幻城市里上上下下</h1>
+    <p class="sub">上海出发 · 从轻轨穿楼与过江索道，到洪崖洞的千与千寻夜色，再到磁器口的老街烟火——重庆是一座连地图都会迷路的城市</p>
+    <div class="chips">
+      <span class="chip">三天两晚 · 日期待定</span>
+      <span class="chip">赛博夜景 × 山城步道</span>
+      <span class="chip">飞机 / 高铁双方案</span>
+      <span class="chip">真实照片 · 无 AI 生图</span>
+    </div>
+    <div class="photo-credit">头图：洪崖洞夜景 —— 真实照片，来源 Wikimedia Commons</div>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- ===================== 行程速览 ===================== -->
+<section id="glance">
+  <div class="sec-head"><div class="no">00</div><h2>行程速览</h2></div>
+  <p class="sec-sub">三天一条<em>夜景—老城—文脉</em>的线：<em>第一天用江景与灯火开场</em>，<em>第二天钻老街坐轻轨</em>，<em>第三天在礼堂与博物馆里读懂重庆</em>。导航在这里经常失灵，跟着感觉走就对了。</p>
+  <div class="glance">
+    <div class="g reveal"><div class="d">DAY 1 · 第 1 天</div><div class="t">抵达 · 江与夜的开场</div>
+      <div class="s">机场/北站 → 解放碑 → 长江索道 → 南山一棵树 → 洪崖洞夜景</div></div>
+    <div class="g reveal"><div class="d">DAY 2 · 第 2 天</div><div class="t">磁器口 · 穿楼轻轨 · 山城步道</div>
+      <div class="s">磁器口 → 李子坝 → 鹅岭公园 → 山城巷 → 两江夜游（可选）</div></div>
+    <div class="g reveal"><div class="d">DAY 3 · 第 3 天</div><div class="t">大礼堂 · 三峡博物馆 · 返程</div>
+      <div class="s">人民大礼堂 → 三峡博物馆 → 来福士/朝天门 → 返程</div></div>
+  </div>
+</section>
+
+<!-- ===================== DAY 1 ===================== -->
+<section id="day1">
+  <div class="sec-head"><div class="no">01</div><h2>Day 1 · 从江上索道到千与千寻</h2></div>
+  <p class="sec-sub">关键词：<em>解放碑、过江索道、南山夜景、洪崖洞</em>。第一天从白天亮到深夜，把重庆最著名的几盏灯全部点亮。</p>
+
+  <div class="transport reveal">
+    <div class="txt">
+      <h3>怎么去重庆（上海出发）</h3>
+      <div class="opt"><b>方案 A · 飞机（推荐）</b>
+        <p>上海浦东 / 虹桥 → 重庆江北机场约 3 小时，票价随季节波动（约 ¥500–1300），提前 2–3 周出票。机场 3 号线直达市中心，江北机场离渝中半岛仅 30 分钟车程，是几座内陆城市里"落地最顺"的一个。</p></div>
+      <div class="opt"><b>方案 B · 高铁</b>
+        <p>上海虹桥 → 重庆北 / 重庆西，最快约 7–10 小时，二等座约 800 元起（以 12306 为准）。赶时间不建议，但若想一路沿江看山，卧铺夜车还能省一晚房费。</p></div>
+      <div class="opt"><b>市内移动</b>
+        <p>轻轨 1/2/3/6 号线本身即景点（2 号线穿楼、3 号线跨江）；打车便宜但导航常失灵，问路比问地图快——"魔幻 8D"名不虚传。</p></div>
+    </div>
+    <figure class="pic">
+      <img src="assets/chongqing/cableway.jpg" alt="重庆长江索道缆车跨江">
+      <figcaption>长江索道 · 空中过江</figcaption>
+    </figure>
+  </div>
+
+  <div class="day">
+    <div class="day-head">
+      <div class="date"><b>D1</b><span>第 1 天</span></div>
+      <div><h3>从碑到江，再到一整片灯火</h3><div class="theme">解放碑 · 索道 · 洪崖洞</div></div>
+    </div>
+    <div class="route">
+      <span class="stop">抵达重庆</span><span class="arr">→</span><span class="stop">解放碑</span><span class="arr">→</span>
+      <span class="stop">长江索道</span><span class="arr">→</span><span class="stop">南山一棵树</span><span class="arr">→</span>
+      <span class="stop">洪崖洞夜景</span>
+    </div>
+    <div class="timeline">
+      <div class="tl"><div class="time">13:00</div><div class="spot">抵达 · 落地一碗小面</div>
+        <div class="desc">地铁进城放行李，街边小面馆点二两小面——"重庆人的一天从面开始"，你也从面开始。</div></div>
+      <div class="tl"><div class="time">14:00</div><div class="spot">解放碑 · 八一好吃街<span class="tag">商业原点</span></div>
+        <div class="desc">中国唯一纪念全民族抗战胜利的纪念碑，如今被摩天楼群环绕——碑还是那座碑，周围已是赛博森林。步行街旁的八一好吃街先垫一点：酸辣粉、山城汤圆。</div></div>
+      <div class="tl"><div class="time">16:00</div><div class="spot">长江索道<span class="tag">"万里长江第一条空中走廊"</span><span class="tag">单程 20 / 往返 30 元</span></div>
+        <div class="desc">从新华路站登上老式缆车，4 分钟横跨长江——脚下是江面与朝天门的船阵，身后的渝中半岛层层叠叠。建议只买单程，过江后从南岸打车继续（排队高峰在工作日晚间较短）。</div></div>
+      <div class="tl"><div class="time">17:30</div><div class="spot">南山一棵树观景台<span class="tag">门票约 30 元</span><span class="tag">最佳夜景机位</span></div>
+        <div class="desc">南山上等日落：渝中半岛在暮色里一层层亮起来——"小香港"的名场面就是这里。提前 40 分钟占位，日落加华灯初上一次看全。</div></div>
+      <div class="tl"><div class="time">20:00</div><div class="spot">洪崖洞夜景 · 千厮门大桥<span class="tag">免费</span><span class="tag">《千与千寻》同款</span></div>
+        <div class="desc">11 层吊脚楼建筑群的灯全亮时，就是宫崎骏画里的场景。最佳机位不在楼下，而在<b>千厮门大桥上</b>与对岸南滨路；注意 1 楼和 11 楼都是马路——这就是重庆。</div></div>
+      <div class="tl"><div class="time">21:30</div><div class="spot">夜宵 · 江湖菜或火锅</div>
+        <div class="desc">第一晚正式开锅：牛油九宫格火锅，或街边江湖菜来一份辣子鸡、毛血旺，配唯怡豆奶。</div></div>
+    </div>
+    <div class="tipbox">提示：长江索道节假日排队可达 1–2 小时，可线上购票错峰；南山一棵树看夜景尽量避开雨天；洪崖洞 22:30 左右熄灯，看完别拖。</div>
+    <div class="photos">
+      <figure class="w8"><img src="assets/chongqing/hero.jpg" alt="洪崖洞夜景"><figcaption>洪崖洞 · 吊脚楼灯火<small>Wikimedia Commons</small></figcaption></figure>
+      <figure class="w4"><img src="assets/chongqing/jiefangbei.jpg" alt="解放碑夜景"><figcaption>解放碑<small>Commons</small></figcaption></figure>
+      <figure class="w6"><img src="assets/chongqing/cableway.jpg" alt="长江索道"><figcaption>长江索道<small>Commons</small></figcaption></figure>
+      <figure class="w6"><img src="assets/chongqing/nanshan.jpg" alt="渝中半岛夜景"><figcaption>南山看渝中夜景<small>Commons</small></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== DAY 2 ===================== -->
+<section id="day2">
+  <div class="sec-head"><div class="no">02</div><h2>Day 2 · 老街、轻轨与山城步道</h2></div>
+  <p class="sec-sub">关键词：<em>磁器口的麻花、李子坝的穿楼列车、山城巷的石梯</em>。第二天全部是"重庆名场面"，走路配轻轨刚好。</p>
+
+  <div class="day">
+    <div class="day-head">
+      <div class="date"><b>D2</b><span>第 2 天</span></div>
+      <div><h3>千年磁器口与穿楼的轻轨</h3><div class="theme">磁器口 · 李子坝 · 山城巷</div></div>
+    </div>
+    <div class="route">
+      <span class="stop">磁器口</span><span class="arr">→</span><span class="stop">李子坝</span><span class="arr">→</span>
+      <span class="stop">鹅岭公园</span><span class="arr">→</span><span class="stop">山城巷</span><span class="arr">→</span>
+      <span class="stop">两江夜游（可选）</span>
+    </div>
+    <div class="timeline">
+      <div class="tl"><div class="time">09:00</div><div class="spot">磁器口古镇<span class="tag">免费</span><span class="tag">千年水陆码头</span></div>
+        <div class="desc">轻轨 1 号线直达。"一条石板路，千年磁器口"：陈麻花的现烤香、古镇茶馆的川剧座唱、江边的旧码头遗址都在这里。赶早避开人潮，先吃一碗酸辣粉开胃。</div></div>
+      <div class="tl"><div class="time">12:00</div><div class="spot">李子坝 · 轻轨穿楼<span class="tag">免费观景平台</span></div>
+        <div class="desc">2 号线李子坝站——列车从 8 层居民楼中间穿过的名场面。楼下观景平台已修好，火车 5–10 分钟一班，拍"吃轻轨"视频的人永远比列车多。</div></div>
+      <div class="tl"><div class="time">13:30</div><div class="spot">鹅岭公园 · 瞰胜楼<span class="tag">免费（登楼约 5 元）</span></div>
+        <div class="desc">渝中半岛最高点的老公园：瞰胜楼上两江环抱尽收眼底，午后光线正好把江面拍成银色。旁边的二厂文创园（老印刷厂改造）可以喝杯咖啡。</div></div>
+      <div class="tl"><div class="time">16:00</div><div class="spot">山城巷 · 第三步道<span class="tag">免费</span><span class="tag">老重庆样本</span></div>
+        <div class="desc">从石库门沿崖壁栈道往下走：一边是百年老宅与领事馆旧址，一边是长江在脚下转弯——这是最有"山城味道"的一段路，也是对腿脚最诚实的一段。</div></div>
+      <div class="tl"><div class="time">18:30</div><div class="spot">晚餐 · 朝天门附近</div>
+        <div class="desc">来一顿地道江湖菜：泉水鸡、豆花饭、烤苕皮；或者去朝天门码头看看两江交汇的"鸳鸯锅"水色。</div></div>
+      <div class="tl"><div class="time">20:00</div><div class="spot">可选 · 两江夜游游船<span class="tag">船票约 100–160 元</span></div>
+        <div class="desc">从朝天门码头上船，一小时看遍渝中半岛、洪崖洞、千厮门大桥的夜色——如果昨晚在山上看，今晚就在水上换个角度（选班次晚场，风大备外套）。</div></div>
+    </div>
+    <div class="tipbox">提示：磁器口全天免费开放；李子坝观景平台不要翻越护栏拍车；山城步道台阶多，务必穿运动鞋，雨天石板湿滑格外小心。</div>
+    <div class="photos">
+      <figure class="w6"><img src="assets/chongqing/ciqikou.jpg" alt="磁器口古镇"><figcaption>磁器口 · 千年老街<small>Wikimedia Commons</small></figcaption></figure>
+      <figure class="w6"><img src="assets/chongqing/liziba.jpg" alt="李子坝轻轨穿楼"><figcaption>李子坝 · 轻轨穿楼<small>Commons</small></figcaption></figure>
+      <figure class="w6"><img src="assets/chongqing/eling.jpg" alt="鹅岭公园"><figcaption>鹅岭公园<small>Commons</small></figcaption></figure>
+      <figure class="w6"><img src="assets/chongqing/shancheng.jpg" alt="山城巷步道"><figcaption>山城巷 · 崖壁步道<small>Commons</small></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== DAY 3 ===================== -->
+<section id="day3">
+  <div class="sec-head"><div class="no">03</div><h2>Day 3 · 礼堂、博物馆与两江交汇</h2></div>
+  <p class="sec-sub">关键词：<em>人民大礼堂、三峡博物馆、朝天门</em>。最后一天读懂"重庆从哪里来"，午后从容返程。</p>
+
+  <div class="day">
+    <div class="day-head">
+      <div class="date"><b>D3</b><span>第 3 天</span></div>
+      <div><h3>在两江交汇处说再见</h3><div class="theme">大礼堂 · 三峡博物馆 · 朝天门</div></div>
+    </div>
+    <div class="route">
+      <span class="stop">人民大礼堂</span><span class="arr">→</span><span class="stop">三峡博物馆</span><span class="arr">→</span>
+      <span class="stop">朝天门 · 来福士</span><span class="arr">→</span><span class="stop">返程</span>
+    </div>
+    <div class="timeline">
+      <div class="tl"><div class="time">09:00</div><div class="spot">重庆人民大礼堂<span class="tag">外观免费</span><span class="tag">1950年代地标</span></div>
+        <div class="desc">仿天坛与天安门的中式穹顶建筑，人民广场上晨练的市民与鸽群——重庆最有年代感的一张正面照。</div></div>
+      <div class="tl"><div class="time">09:40</div><div class="spot">重庆中国三峡博物馆<span class="tag">免费 · 需预约</span><span class="tag">周一闭馆</span></div>
+        <div class="desc">大礼堂正对面：壮丽三峡、远古巴渝、抗战岁月四个常设展把重庆的历史讲透；环幕电影《大三峡》值得一看，预留两小时。</div></div>
+      <div class="tl"><div class="time">12:30</div><div class="spot">午餐 · 上清寺/两路口</div>
+        <div class="desc">老城区的苍蝇馆子随便挑：小面、豆花饭、烧白——最后一顿留给家常川渝味。</div></div>
+      <div class="tl"><div class="time">14:00</div><div class="spot">朝天门 · 来福士<span class="tag">两江交汇</span></div>
+        <div class="desc">长江与嘉陵江在朝天门交汇，两色江水泾渭分明；来福士"横向摩天楼"的水晶连廊可以登顶（门票约 100–180 元），在 250 米高空看两江穿城。</div></div>
+      <div class="tl"><div class="time">16:00</div><div class="spot">返程</div>
+        <div class="desc">朝天门地铁直达机场约 40 分钟、到重庆北站约 20 分钟。若傍晚的班次，把行李寄存酒店，还能去弹子石老街看一眼对岸的渝中夜景再走。</div></div>
+    </div>
+    <div class="tipbox">提示：三峡博物馆周一闭馆（节假日除外），撞上周一可与 Day 2 对调；博物馆免费但需在官方公众号预约；水晶连廊恐高慎选，夜景更佳。</div>
+    <div class="photos">
+      <figure class="w6"><img src="assets/chongqing/greathall.jpg" alt="重庆人民大礼堂"><figcaption>人民大礼堂<small>Wikimedia Commons</small></figcaption></figure>
+      <figure class="w6"><img src="assets/chongqing/chaotianmen.jpg" alt="朝天门来福士"><figcaption>朝天门 · 来福士<small>Commons</small></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 住宿 ===================== -->
+<section id="stay">
+  <div class="sec-head"><div class="no">04</div><h2>住在哪里</h2></div>
+  <p class="sec-sub">重庆选住宿先想清楚一件事：<em>要不要推开窗就是夜景</em>。渝中半岛最方便，南滨路最出片。价格为常规参考区间，以预订平台实时价为准。</p>
+  <div class="hotels">
+    <div class="hotel reveal"><div class="area">解放碑 · 洪崖洞</div><h4>解放碑商圈酒店</h4>
+      <p>住在城市原点：楼下就是步行街与好吃街，洪崖洞步行可达，两条轻轨线交汇——三天行程从这里出发都顺。</p>
+      <div class="meta"><span>步行核心</span><span>轻轨枢纽</span><span>约 ¥350–800/晚</span></div></div>
+    <div class="hotel reveal"><div class="area">南滨路 · 江景房</div><h4>南滨路江景酒店</h4>
+      <p>对岸就是渝中半岛的整片灯火，躺在床上看洪崖洞亮灯——重庆夜景"从对岸看才完整"，住这边等于承包观景台。</p>
+      <div class="meta"><span>一线江景</span><span>正对渝中</span><span>约 ¥500–1200/晚</span></div></div>
+    <div class="hotel reveal"><div class="area">观音桥 · 江北</div><h4>观音桥商圈酒店</h4>
+      <p>本地人的夜生活主场：商圈热闹、物价友好，3 号线直达机场与火车站，适合把预算留给火锅的务实派。</p>
+      <div class="meta"><span>性价比</span><span>近机场</span><span>约 ¥300–600/晚</span></div></div>
+    <div class="hotel reveal"><div class="area">磁器口 · 沙坪坝</div><h4>古镇民宿</h4>
+      <p>住在千年古镇里，清晨的青石板路属于住客；1 号线进城半小时，适合行程后半段想"慢半拍"的安排。</p>
+      <div class="meta"><span>古镇氛围</span><span>清晨独享</span><span>约 ¥300–700/晚</span></div></div>
+  </div>
+</section>
+
+<!-- ===================== 美食 ===================== -->
+<section id="food">
+  <div class="sec-head"><div class="no">05</div><h2>山城味道</h2></div>
+  <p class="sec-sub">重庆的味道只有一个字：<em>辣</em>。但辣也有层次——牛油火锅是重锤，小面是日常，冰粉凉虾是台阶。照着吃不会错。</p>
+  <div class="food-hero reveal">
+    <img src="assets/chongqing/hotpot.jpg" alt="重庆火锅九宫格">
+    <div class="cap"><b>重庆火锅 · 牛油九宫格的江湖</b>
+      <p>牛油厚重、花椒麻香，毛肚鸭肠是永恒主角——在重庆吃火锅，微辣是底线也是起点（真实照片 · 重庆火锅）。</p></div>
+  </div>
+  <div class="dishes">
+    <div class="dish reveal"><h5>重庆火锅<small>九宫格</small></h5><p>牛油锅底不用点鸳鸯是本地尊严，但外地胃点鸳鸯完全OK；毛肚"七上八下"、鸭肠涮三秒。</p></div>
+    <div class="dish reveal"><h5>重庆小面<small>二两提黄</small></h5><p>麻辣鲜香全在佐料里：豌豆杂酱、牛肉、肥肠浇头任选，"提黄"（面偏硬）是老饕暗号。</p></div>
+    <div class="dish reveal"><h5>酸辣粉<small>手工红薯粉</small></h5><p>酸辣开胃、粉条筋道，磁器口与八一好吃街都有名店，站着嗦完一碗才算来过。</p></div>
+    <div class="dish reveal"><h5>辣子鸡<small>歌乐山</small></h5><p>辣椒堆里"寻宝"的快感：鸡丁炸得酥脆，越翻越香——歌乐山是发源地，市区江湖菜馆都有。</p></div>
+    <div class="dish reveal"><h5>毛血旺<small>磁器口</small></h5><p>鸭血、毛肚、黄喉、午餐肉烩成一盆红油江湖——重庆下水菜的天花板。</p></div>
+    <div class="dish reveal"><h5>泉水鸡<small>南山一条街</small></h5><p>南山脚下的招牌：泉水焖煮、一鸡三吃，看夜景前正好在山腰吃一顿。</p></div>
+    <div class="dish reveal"><h5>豆花饭<small>苍蝇馆子</small></h5><p>嫩豆花蘸油碟配甑子饭，十几块钱吃出老重庆的日常——午饭性价比之王。</p></div>
+    <div class="dish reveal"><h5>抄手<small>红油 · 清汤</small></h5><p>重庆版馄饨，红油抄手香辣过瘾，清汤抄手温柔解围——两样都点不冲突。</p></div>
+    <div class="dish reveal"><h5>烤苕皮<small>夜市顶流</small></h5><p>烤到起泡的红薯粉皮刷辣酱卷酸萝卜，近年最火的街头小吃，夜市人手一串。</p></div>
+    <div class="dish reveal"><h5>冰粉 · 凉虾<small>解辣台阶</small></h5><p>红糖冰粉、山楂冰粉、凉虾配醪糟——重庆辣度的安全出口。</p></div>
+    <div class="dish reveal"><h5>陈麻花<small>磁器口伴手礼</small></h5><p>现烤的蜂蜜麻花酥到掉渣，原味、麻辣、巧克力三选，排队最长的那家就对。</p></div>
+    <div class="dish reveal"><h5>火锅底料<small>伴手礼</small></h5><p>超市买两块正规品牌的牛油底料，回家就能复刻重庆之夜——比特产店实惠。</p></div>
+  </div>
+  <div class="streets">
+    <div class="street reveal"><b>八一好吃街</b><p>解放碑旁的小吃集散地，酸辣粉与汤圆老铺集中，第一天先开胃。</p></div>
+    <div class="street reveal"><b>磁器口</b><p>陈麻花、古镇鸡杂与酸辣粉的原产地，第二天顺路解决。</p></div>
+    <div class="street reveal"><b>观音桥 · 九街</b><p>本地夜宵大本营：火锅、烧烤与夜市全开，适合第二晚。</p></div>
+    <div class="street reveal"><b>南山 · 泉水鸡一条街</b><p>看夜景前的晚餐据点，泉水鸡配山风，吃完正好上山。</p></div>
+  </div>
+</section>
+
+<!-- ===================== 贴士 ===================== -->
+<section id="tips">
+  <div class="sec-head"><div class="no">06</div><h2>实用贴士</h2></div>
+  <p class="sec-sub">日期待定的山城之旅，功课重点在"防迷路、防暴汗、防排队"：</p>
+  <div class="tips">
+    <div class="tip reveal"><h5>防迷路指南</h5><p>重庆导航经常"失灵"：地图 100 米可能是 11 层楼。定位认"轻轨站名"而非门牌号，问本地人比问手机快；1 楼不在 1 楼是常态，接受它。</p></div>
+    <div class="tip reveal"><h5>季节与天气</h5><p>夏季是"火炉"模式（可达 40°C），务必防暑；冬季多雾，夜景可见度看运气；春秋最舒服。夜景行程尽量排在晴朗天，雨后有时反而出"平流雾"大片。</p></div>
+    <div class="tip reveal"><h5>预约与排队</h5><p>三峡博物馆免费需预约且周一闭馆；长江索道、两江夜游旺季排队久，线上购票选错峰时段；洪崖洞看灯免费，22:30 左右熄灯，别去太晚。</p></div>
+    <div class="tip reveal"><h5>交通要点</h5><p>轻轨是最稳的选择（2 号线、3 号线本身就是景点）；打车便宜但上下坡单行道多；江北机场到渝中约 30–40 分钟，比多数大城市友好。</p></div>
+    <div class="tip reveal"><h5>吃辣管理</h5><p>重庆的"微辣"≈其他城市的"特辣"；点单直接说"不要辣"也完全没问题；冰粉、唯怡豆奶随时备着，肠胃敏感当天别空腹吃火锅。</p></div>
+    <div class="tip reveal"><h5>体力与装备</h5><p>山城 = 天然爬楼机：运动鞋是刚需，护膝党自备；夏天随身带水，手机电量注意（导航耗电快）；行李箱尽量选轻的——上坡你会感谢自己。</p></div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    重庆三日魔幻山城之旅 · 三天两晚 · 日期待定 · 上海出发<br>
+    行程与价格信息整理自公开资料，出行前请以官方与预订平台为准 · 照片 © 原作者，Wikimedia Commons
+  </div>
+</footer>
+
+<script>
+(function(){
+  var els = document.querySelectorAll('.reveal, .photos figure');
+  if (!('IntersectionObserver' in window)) {
+    els.forEach(function(e){ e.classList.add('show'); });
+    return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if (en.isIntersecting) { en.target.classList.add('show'); io.unobserve(en.target); }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px 240px 0px' });
+  els.forEach(function(e){ io.observe(e); });
+  /* 兜底：3 秒后无条件显示，避免任何环境下照片保持隐藏 */
+  setTimeout(function(){ els.forEach(function(e){ e.classList.add('show'); }); }, 3000);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>南京三日 · 一眼六朝，半部民国 | 人文古都之旅（日期待定）</title>
+<style>
+  :root{
+    --bg:#ffffff; --card:#ffffff; --ink:#1d2f3c; --muted:#5d6d78;
+    --sea:#0e5a7d; --sea-deep:#0a3f59; --tile:#b5442f; --sand:#f1f4f6;
+    --line:#e2e8ec; --gold:#c8a24a;
+    --shadow:0 10px 30px rgba(29,47,60,.08);
+    --radius:18px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:"Noto Serif SC","Songti SC","STSong","SimSun",serif;
+    background:var(--bg); color:var(--ink); line-height:1.75;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{display:block;max-width:100%}
+  a{color:var(--sea);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+
+  /* ---------- 顶部导航 ---------- */
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(255,255,255,.9);backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{display:flex;align-items:center;gap:28px;height:58px;overflow-x:auto}
+  nav .brand{font-weight:700;letter-spacing:.12em;color:var(--sea-deep);white-space:nowrap}
+  nav .brand span{color:var(--tile)}
+  nav a.nl{color:var(--muted);font-size:14px;white-space:nowrap}
+  nav a.nl:hover{color:var(--sea);text-decoration:none}
+
+  /* ---------- Hero ---------- */
+  header.hero{position:relative;min-height:66vh;display:flex;align-items:flex-end;overflow:hidden}
+  header.hero .bg{position:absolute;inset:0}
+  header.hero .bg img{width:100%;height:100%;object-fit:cover;object-position:center 42%}
+  header.hero .bg::after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg,rgba(10,40,60,.10) 0%,rgba(10,40,60,.18) 45%,rgba(10,38,56,.78) 100%);
+  }
+  header.hero .inner{position:relative;z-index:2;width:100%;padding:64px 24px 54px;color:#fff;
+    max-width:1180px;margin:0 auto}
+  .hero .kicker{letter-spacing:.35em;font-size:13px;color:#ffd9a8;margin-bottom:14px}
+  .hero h1{font-size:clamp(30px,5.2vw,56px);line-height:1.25;font-weight:900;letter-spacing:.06em;text-shadow:0 2px 18px rgba(0,0,0,.35)}
+  .hero .sub{margin-top:14px;font-size:clamp(14px,1.6vw,17px);color:rgba(255,255,255,.92);max-width:46em}
+  .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+  .chip{
+    border:1px solid rgba(255,255,255,.45);border-radius:999px;
+    padding:6px 16px;font-size:13px;color:#fff;background:rgba(10,50,70,.35);backdrop-filter:blur(4px);
+  }
+  .photo-credit{font-size:11px;color:rgba(255,255,255,.72);margin-top:16px}
+
+  /* ---------- 通用区块 ---------- */
+  section{padding:72px 0 8px}
+  .sec-head{display:flex;align-items:baseline;gap:18px;margin-bottom:8px}
+  .sec-head .no{font-size:44px;font-weight:900;color:var(--sand);-webkit-text-stroke:1px var(--tile);line-height:1}
+  .sec-head h2{font-size:clamp(24px,3vw,34px);color:var(--sea-deep);letter-spacing:.08em}
+  .sec-sub{color:var(--muted);margin-bottom:30px;max-width:52em}
+  .sec-sub em{color:var(--tile);font-style:normal}
+
+  /* ---------- 行程速览 ---------- */
+  .glance{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .glance .g{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:22px 22px 18px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+  .glance .g::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--sea)}
+  .glance .g:nth-child(2)::before{background:var(--tile)}
+  .glance .g:nth-child(3)::before{background:var(--gold)}
+  .glance .d{font-size:13px;color:var(--muted);letter-spacing:.15em}
+  .glance .t{font-size:19px;font-weight:700;margin:6px 0 8px;color:var(--sea-deep)}
+  .glance .s{font-size:14px;color:var(--muted)}
+
+  /* ---------- 交通卡 ---------- */
+  .transport{display:grid;grid-template-columns:1.05fr .95fr;gap:0;background:var(--card);
+    border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);margin-bottom:40px}
+  .transport .txt{padding:30px 30px 24px}
+  .transport h3{font-size:20px;color:var(--sea-deep);margin-bottom:14px;display:flex;align-items:center;gap:10px}
+  .transport .opt{padding:14px 0;border-top:1px dashed var(--line)}
+  .transport .opt:first-of-type{border-top:none}
+  .transport .opt b{color:var(--tile)}
+  .transport .opt p{font-size:14.5px;color:var(--muted)}
+  .transport .pic{position:relative;min-height:280px}
+  .transport .pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .transport .pic figcaption{position:absolute;left:12px;bottom:10px;font-size:12px;color:#fff;
+    background:rgba(10,50,70,.55);padding:3px 10px;border-radius:999px}
+
+  /* ---------- 每日时间轴 ---------- */
+  .day{margin-bottom:56px}
+  .day-head{display:flex;align-items:center;gap:16px;margin-bottom:6px}
+  .day-head .date{
+    background:var(--sea-deep);color:#fff;border-radius:12px;padding:8px 14px;text-align:center;line-height:1.3;
+    box-shadow:var(--shadow)}
+  .day-head .date b{display:block;font-size:20px}
+  .day-head .date span{font-size:12px;opacity:.85}
+  .day-head h3{font-size:clamp(20px,2.4vw,27px);color:var(--ink)}
+  .day-head .theme{font-size:13px;color:var(--tile);letter-spacing:.2em;margin-top:2px}
+  .route{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:14px 0 22px;font-size:13px;color:var(--muted)}
+  .route .stop{background:var(--sand);border:1px solid var(--line);border-radius:999px;padding:4px 13px;color:var(--sea-deep)}
+  .route .arr{color:var(--tile)}
+
+  .timeline{border-left:2px solid var(--line);margin-left:8px;padding-left:26px}
+  .tl{position:relative;padding:0 0 22px}
+  .tl::before{content:"";position:absolute;left:-33px;top:8px;width:12px;height:12px;border-radius:50%;
+    background:var(--bg);border:3px solid var(--sea)}
+  .tl:nth-child(even)::before{border-color:var(--tile)}
+  .tl .time{font-size:13px;color:var(--tile);font-weight:700;letter-spacing:.08em}
+  .tl .spot{font-size:17.5px;font-weight:700;color:var(--sea-deep);margin:2px 0}
+  .tl .desc{font-size:14.5px;color:var(--muted);max-width:56em}
+  .tl .tag{display:inline-block;font-size:11.5px;border:1px solid var(--line);background:var(--sand);
+    color:var(--sea-deep);border-radius:6px;padding:1px 8px;margin-left:8px;vertical-align:2px}
+
+  .tipbox{background:#f0f6fa;border:1px solid #d3e4ee;border-left:4px solid var(--sea);
+    border-radius:10px;padding:14px 18px;font-size:14px;color:#33566b;margin:4px 0 26px}
+
+  /* ---------- 照片墙 ---------- */
+  .photos{display:grid;grid-template-columns:repeat(12,1fr);gap:14px;margin-top:8px}
+  .photos figure{position:relative;border-radius:14px;overflow:hidden;box-shadow:var(--shadow);
+    background:var(--sand);opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+  .photos figure.show{opacity:1;transform:none}
+  .photos img{width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.16,1,.3,1)}
+  .photos figure:hover img{transform:scale(1.045)}
+  .photos figcaption{position:absolute;left:0;right:0;bottom:0;padding:26px 14px 10px;font-size:13px;color:#fff;
+    background:linear-gradient(180deg,transparent,rgba(8,35,50,.75));letter-spacing:.04em}
+  .photos figcaption small{opacity:.7;font-size:10.5px;margin-left:6px}
+  .w4{grid-column:span 4;height:240px}.w6{grid-column:span 6;height:260px}
+  .w8{grid-column:span 8;height:300px}.w12{grid-column:span 12;height:340px}
+  .wt{height:340px}
+
+  /* ---------- 住宿 ---------- */
+  .hotels{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+  .hotel{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:26px 26px 20px;box-shadow:var(--shadow);border-top:5px solid var(--sea)}
+  .hotel:nth-child(2){border-top-color:var(--tile)}
+  .hotel:nth-child(3){border-top-color:var(--gold)}
+  .hotel:nth-child(4){border-top-color:var(--sea-deep)}
+  .hotel .area{font-size:12px;color:var(--tile);letter-spacing:.2em}
+  .hotel h4{font-size:20px;color:var(--sea-deep);margin:4px 0 10px}
+  .hotel p{font-size:14.5px;color:var(--muted)}
+  .hotel .meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+  .hotel .meta span{font-size:12px;background:var(--sand);border:1px solid var(--line);
+    border-radius:999px;padding:3px 12px;color:var(--sea-deep)}
+
+  /* ---------- 美食 ---------- */
+  .food-hero{border-radius:var(--radius);overflow:hidden;position:relative;box-shadow:var(--shadow);margin-bottom:26px;height:330px}
+  .food-hero img{width:100%;height:100%;object-fit:cover}
+  .food-hero .cap{position:absolute;left:0;right:0;bottom:0;padding:40px 24px 18px;color:#fff;
+    background:linear-gradient(180deg,transparent,rgba(8,35,50,.8))}
+  .food-hero .cap b{font-size:20px;letter-spacing:.06em}
+  .food-hero .cap p{font-size:13.5px;opacity:.92}
+  .dishes{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .dish{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;box-shadow:var(--shadow)}
+  .dish h5{font-size:16.5px;color:var(--sea-deep)}
+  .dish h5 small{color:var(--tile);font-size:12px;margin-left:8px;font-weight:400}
+  .dish p{font-size:13.5px;color:var(--muted);margin-top:4px}
+  .streets{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:18px}
+  .street{background:var(--sand);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+  .street b{color:var(--sea-deep);font-size:15px}
+  .street p{font-size:12.5px;color:var(--muted);margin-top:2px}
+
+  /* ---------- 贴士 ---------- */
+  .tips{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .tip{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px;box-shadow:var(--shadow)}
+  .tip h5{color:var(--tile);font-size:15.5px;margin-bottom:6px}
+  .tip p{font-size:13.5px;color:var(--muted)}
+
+  footer{margin:56px 0 0;border-top:1px solid var(--line);padding:26px 0 40px;
+    font-size:12.5px;color:var(--muted);text-align:center}
+
+  /* ---------- 动效 ---------- */
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s ease,transform .8s ease}
+  .reveal.show{opacity:1;transform:none}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto}
+    .reveal,.photos figure{opacity:1;transform:none;transition:none}
+    .photos img{transition:none}
+  }
+
+  /* ---------- 响应式 ---------- */
+  @media (max-width:900px){
+    .glance,.dishes,.tips{grid-template-columns:1fr 1fr}
+    .hotels,.streets{grid-template-columns:1fr 1fr}
+    .transport{grid-template-columns:1fr}
+    .transport .pic{min-height:220px}
+    .w4{grid-column:span 6}.w6{grid-column:span 12}.w8{grid-column:span 12}
+  }
+  @media (max-width:600px){
+    section{padding:54px 0 4px}
+    .glance,.dishes,.tips,.hotels,.streets{grid-template-columns:1fr}
+    .w4{grid-column:span 12;height:220px}
+    .w12{height:260px}
+    .day-head h3{font-size:19px}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">南京三日<span> · </span>六朝烟水</div>
+    <a class="nl" href="#glance">行程速览</a>
+    <a class="nl" href="#day1">Day 1 老城南</a>
+    <a class="nl" href="#day2">Day 2 钟山</a>
+    <a class="nl" href="#day3">Day 3 民国与湖</a>
+    <a class="nl" href="#stay">住宿</a>
+    <a class="nl" href="#food">美食</a>
+    <a class="nl" href="#tips">实用贴士</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="bg"><img src="assets/nanjing/hero.jpg" alt="南京中山陵蓝琉璃顶祭堂与墓道台阶"></div>
+  <div class="inner">
+    <div class="kicker">NANJING · 三天两晚 · 日期待定</div>
+    <h1>一眼六朝，半部民国<br>三天两晚，把金陵的城事慢慢读完</h1>
+    <p class="sub">上海出发 · 高铁一小时内直达 · 从老城南的烟火，到钟山的林荫，再到总统府的民国往事——这座古都适合用脚步慢慢读</p>
+    <div class="chips">
+      <span class="chip">三天两晚 · 日期待定</span>
+      <span class="chip">六朝古都 × 民国风华</span>
+      <span class="chip">高铁直达 · 说走就走</span>
+      <span class="chip">真实照片 · 无 AI 生图</span>
+    </div>
+    <div class="photo-credit">头图：中山陵祭堂与墓道 —— 真实照片，来源 Wikimedia Commons</div>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- ===================== 行程速览 ===================== -->
+<section id="glance">
+  <div class="sec-head"><div class="no">00</div><h2>行程速览</h2></div>
+  <p class="sec-sub">三天一条由内向外的人文线：<em>第一天泡进老城南的烟火</em>，<em>第二天上钟山读六朝与民国</em>，<em>第三天从总统府走到玄武湖收尾</em>。节奏松，地铁串起全部，基本不走回头路。</p>
+  <div class="glance">
+    <div class="g reveal"><div class="d">DAY 1 · 第 1 天</div><div class="t">抵达 · 老城南与夜秦淮</div>
+      <div class="s">南京南站 → 老门东 → 中华门瓮城 → 夫子庙 → 秦淮河画舫</div></div>
+    <div class="g reveal"><div class="d">DAY 2 · 第 2 天</div><div class="t">钟山一日 · 从中山陵到颐和路</div>
+      <div class="s">中山陵 → 明孝陵 → 石象路 → 美龄宫 → 颐和路公馆区 → 先锋书店</div></div>
+    <div class="g reveal"><div class="d">DAY 3 · 第 3 天</div><div class="t">总统府 · 鸡鸣寺 · 玄武湖告别</div>
+      <div class="s">总统府 → 鸡鸣寺 → 台城明城墙 → 玄武湖 → 返程</div></div>
+  </div>
+</section>
+
+<!-- ===================== DAY 1 ===================== -->
+<section id="day1">
+  <div class="sec-head"><div class="no">01</div><h2>Day 1 · 落进城南的烟火</h2></div>
+  <p class="sec-sub">关键词：<em>青砖小瓦马头墙、六百年瓮城、桨声灯影</em>。抵达后不赶路，把老城南从白天逛到夜里。</p>
+
+  <div class="transport reveal">
+    <div class="txt">
+      <h3>怎么去南京（上海出发）</h3>
+      <div class="opt"><b>方案 A · 高铁（推荐）</b>
+        <p>上海虹桥 / 上海站 → 南京南站，G 字头最快约 1 小时出头，多数车次 1.5 小时内，二等座约 135–230 元（以 12306 为准）。班次密如公交，<b>不用提前太久抢票</b>，临时起意也走得成——正适合日期待定的这趟。</p></div>
+      <div class="opt"><b>方案 B · 自驾</b>
+        <p>上海 → G2 京沪高速 → 南京，全程约 300 公里、4 小时上下。南京市内对苏A以外车牌无常态限行，但老城南停车位紧张，抵达后建议车停酒店，全程地铁出行。</p></div>
+      <div class="opt"><b>市内移动</b>
+        <p>地铁 1/2/3/4 号线覆盖全部行程要点，支付宝/微信乘车码直接刷。南京南站是枢纽，去夫子庙（3 号线）、钟山（2 号线）、玄武湖（1 号线南京站）都很顺。</p></div>
+    </div>
+    <figure class="pic">
+      <img src="assets/nanjing/zhonghuamen.jpg" alt="南京中华门瓮城城楼">
+      <figcaption>中华门 · 现存规模最大的古城门</figcaption>
+    </figure>
+  </div>
+
+  <div class="day">
+    <div class="day-head">
+      <div class="date"><b>D1</b><span>第 1 天</span></div>
+      <div><h3>老门东走到秦淮河的灯影里</h3><div class="theme">老城南 · 城墙 · 夜秦淮</div></div>
+    </div>
+    <div class="route">
+      <span class="stop">南京南站</span><span class="arr">→</span><span class="stop">老门东</span><span class="arr">→</span>
+      <span class="stop">中华门瓮城</span><span class="arr">→</span><span class="stop">夫子庙</span><span class="arr">→</span>
+      <span class="stop">秦淮河画舫</span>
+    </div>
+    <div class="timeline">
+      <div class="tl"><div class="time">12:30</div><div class="spot">抵达南京南站</div>
+        <div class="desc">地铁 3 号线直达夫子庙一带，酒店寄存行李，找家鸭血粉丝汤先垫垫肚子。</div></div>
+      <div class="tl"><div class="time">13:30</div><div class="spot">老门东历史街区<span class="tag">免费</span><span class="tag">青砖小瓦</span></div>
+        <div class="desc">门东是老城南保存最好的街巷：马头墙、木门板、老字号和新书店混在一起。蒋有记的牛肉锅贴、小郑酥烧饼的队都值得排，边走边吃正合适。</div></div>
+      <div class="tl"><div class="time">15:30</div><div class="spot">中华门瓮城<span class="tag">明代城墙</span><span class="tag">门票约 50 元</span></div>
+        <div class="desc">中国现存规模最大的古城堡式城门，三道瓮城层层设防，27 个藏兵洞幽深清凉。登上城垛，一侧是老城南的黛瓦，一侧是长江方向的天际线。</div></div>
+      <div class="tl"><div class="time">17:30</div><div class="spot">夫子庙景区 · 大成殿 · 江南贡院<span class="tag">街区免费</span></div>
+        <div class="desc">华灯初上时分进景区最好。科举博物馆（江南贡院）值得一进——下沉式展厅像一座地下书库，讲透了一部科举史。</div></div>
+      <div class="tl"><div class="time">19:00</div><div class="spot">秦淮河画舫夜游<span class="tag">约 80 元</span><span class="tag">经典</span></div>
+        <div class="desc">从泮池码头上船，朱雀桥边、乌衣巷口，灯笼一路铺进水里。朱自清写《桨声灯影里的秦淮河》，坐一回船才懂什么叫"晃荡着蔷薇色的历史"。</div></div>
+      <div class="tl"><div class="time">20:30</div><div class="spot">晚餐 · 老门东 / 贡院街</div>
+        <div class="desc">盐水鸭、鸭血粉丝汤、赤豆元宵、梅花糕——第一晚就把"鸭都"的功课做掉一半。</div></div>
+    </div>
+    <div class="tipbox">提示：夫子庙—秦淮风光带街区免费，画舫票建议官方公众号或码头现场购买；节假日晚间排队较久，可把夜游安排在非旺季的平日。</div>
+    <div class="photos">
+      <figure class="w8"><img src="assets/nanjing/qinhuai.jpg" alt="秦淮河夜景，画舫与灯笼"><figcaption>秦淮河 · 桨声灯影<small>Wikimedia Commons</small></figcaption></figure>
+      <figure class="w4"><img src="assets/nanjing/fuzimiao.jpg" alt="夫子庙牌坊"><figcaption>夫子庙<small>Commons</small></figcaption></figure>
+      <figure class="w6"><img src="assets/nanjing/laomendong.jpg" alt="老门东历史街区"><figcaption>老门东 · 老城南<small>Commons</small></figcaption></figure>
+      <figure class="w6"><img src="assets/nanjing/zhonghuamen.jpg" alt="中华门瓮城"><figcaption>中华门瓮城<small>Commons</small></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== DAY 2 ===================== -->
+<section id="day2">
+  <div class="sec-head"><div class="no">02</div><h2>Day 2 · 上钟山，读民国</h2></div>
+  <p class="sec-sub">关键词：<em>392 级台阶、石象路秋色、颐和路的梧桐</em>。这一天从六朝的陵寝走到民国的公馆，是整趟行程密度最高的一天。</p>
+
+  <div class="day">
+    <div class="day-head">
+      <div class="date"><b>D2</b><span>第 2 天</span></div>
+      <div><h3>从中山陵到颐和路的一天</h3><div class="theme">中山陵 · 明孝陵 · 民国街区</div></div>
+    </div>
+    <div class="route">
+      <span class="stop">中山陵</span><span class="arr">→</span><span class="stop">明孝陵</span><span class="arr">→</span>
+      <span class="stop">石象路</span><span class="arr">→</span><span class="stop">美龄宫</span><span class="arr">→</span>
+      <span class="stop">颐和路公馆区</span><span class="arr">→</span><span class="stop">先锋书店</span>
+    </div>
+    <div class="timeline">
+      <div class="tl"><div class="time">08:30</div><div class="spot">中山陵<span class="tag">免费 · 需预约</span><span class="tag">赶早人少</span></div>
+        <div class="desc">地铁 2 号线下马坊站转景区观光车上山。博爱坊、陵门、碑亭，再登 392 级台阶——回望时南京城在梧桐绿海里铺开。祭堂内孙中山先生大理石坐像肃穆安静，是整座城市最庄重的半小时（墓室周一维护关闭，以官方公告为准）。</div></div>
+      <div class="tl"><div class="time">11:00</div><div class="spot">明孝陵 · 石象路<span class="tag">世界文化遗产</span><span class="tag">门票约 70 元</span></div>
+        <div class="desc">朱元璋的陵寝，明清皇家陵寝形制的源头。神道石象路是全南京最好的一段路：石兽成列、古木参天，秋天乌桕和银杏染成暖色，随手一拍就是金陵。</div></div>
+      <div class="tl"><div class="time">13:30</div><div class="spot">美龄宫<span class="tag">"远东第一别墅"</span><span class="tag">门票约 30 元</span></div>
+        <div class="desc">法国梧桐围成的"项链"，蓝琉璃檐的官邸是坠子。内部陈设保持原样，宋美龄的画室、专用餐桌都在，是理解民国生活史最具体的地方。</div></div>
+      <div class="tl"><div class="time">15:30</div><div class="spot">颐和路公馆区<span class="tag">免费</span><span class="tag">民国街景</span></div>
+        <div class="desc">"一条颐和路，半部民国史"——两百多栋公馆老洋房藏在梧桐深处，如今安安静静。不求看全，挑几条巷子慢慢走，转角就是故事（附近江苏路、宁海路都顺路）。</div></div>
+      <div class="tl"><div class="time">17:00</div><div class="spot">先锋书店 · 五台山总店<span class="tag">防空洞书店</span></div>
+        <div class="desc">由地下防空洞改造的"中国最美书店"，十字架、灰砖坡道、整面书墙。买张明信片盖个章，给这趟还没定日期的旅行先打个招呼。</div></div>
+      <div class="tl"><div class="time">18:30</div><div class="spot">晚餐 · 明瓦廊 / 新街口</div>
+        <div class="desc">本地人的小吃据点：易记皮肚面、金宏兴鸭子店、各种苍蝇馆子。想吃顿正经淮扬菜，可以去狮子桥一带。</div></div>
+      <div class="tl"><div class="time">可选</div><div class="spot">1912 街区 · 总统府周边夜色</div>
+        <div class="desc">精力够的话，晚上去总统府旁的 1912 街区坐坐，民国建筑群里喝一杯，为明天的总统府行预热。</div></div>
+    </div>
+    <div class="tipbox">提示：中山陵免费但<b>必须提前实名预约</b>（"中山陵园风景区"官方渠道），旺季票紧张要早约；景区观光车联票划算。钟山景区步行量大，穿舒服的鞋。</div>
+    <div class="photos">
+      <figure class="w6"><img src="assets/nanjing/sunyatsen.jpg" alt="中山陵台阶与祭堂"><figcaption>中山陵 · 392 级台阶<small>Wikimedia Commons</small></figcaption></figure>
+      <figure class="w6"><img src="assets/nanjing/mingxiaoling.jpg" alt="明孝陵"><figcaption>明孝陵<small>Commons</small></figcaption></figure>
+      <figure class="w6"><img src="assets/nanjing/shixianglu.jpg" alt="明孝陵石象路神道"><figcaption>石象路 · 神道石兽<small>Commons</small></figcaption></figure>
+      <figure class="w6"><img src="assets/nanjing/meiling.jpg" alt="美龄宫官邸"><figcaption>美龄宫<small>Commons</small></figcaption></figure>
+      <figure class="w12" style="height:260px"><img src="assets/nanjing/yihelu.jpg" alt="颐和路公馆区民国老建筑"><figcaption>颐和路公馆区 · 一条颐和路，半部民国史<small>Commons</small></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== DAY 3 ===================== -->
+<section id="day3">
+  <div class="sec-head"><div class="no">03</div><h2>Day 3 · 从总统府走到玄武湖</h2></div>
+  <p class="sec-sub">关键词：<em>中国近代史、南朝古刹、明城墙上看湖</em>。上午的行程连成一条直线，下午从湖边从容返程。</p>
+
+  <div class="day">
+    <div class="day-head">
+      <div class="date"><b>D3</b><span>第 3 天</span></div>
+      <div><h3>近代史、古寺与一湖碧水</h3><div class="theme">总统府 · 鸡鸣寺 · 台城 · 玄武湖</div></div>
+    </div>
+    <div class="route">
+      <span class="stop">总统府</span><span class="arr">→</span><span class="stop">鸡鸣寺</span><span class="arr">→</span>
+      <span class="stop">台城明城墙</span><span class="arr">→</span><span class="stop">玄武湖</span><span class="arr">→</span><span class="stop">返程</span>
+    </div>
+    <div class="timeline">
+      <div class="tl"><div class="time">09:00</div><div class="spot">总统府（中国近代史遗址博物馆）<span class="tag">门票约 35 元</span><span class="tag">周一闭馆</span></div>
+        <div class="desc">从两江总督署到天国天朝，再到临时大总统办公室与国民政府——一进大院走完一部中国近代史。子超楼里的老办公桌、煦园的石舫都值得细看，留足两小时。</div></div>
+      <div class="tl"><div class="time">11:00</div><div class="spot">鸡鸣寺<span class="tag">"南朝第一寺"</span><span class="tag">门票约 10 元</span></div>
+        <div class="desc">"南朝四百八十寺"之首，药师佛塔是南京的天际线坐标。春天樱花大道落英如雪，其余季节也有古刹的清静；寺内素斋馆的素面可以当午饭。</div></div>
+      <div class="tl"><div class="time">12:00</div><div class="spot">台城 · 解放门登明城墙<span class="tag">城墙俯瞰</span></div>
+        <div class="desc">从鸡鸣寺后登台城段明城墙：一侧是玄武湖的开阔水色，一侧是紫金山的黛影——"六朝金粉"最直观的一个观景台，也是全场最出片的一段路。</div></div>
+      <div class="tl"><div class="time">13:30</div><div class="spot">玄武湖<span class="tag">免费</span><span class="tag">收尾</span></div>
+        <div class="desc">从解放门下城墙即入玄武湖。环洲、樱洲随便走走，或者租条脚踏船泛到湖心，把金陵的节奏放慢到最后一分钟。</div></div>
+      <div class="tl"><div class="time">15:30</div><div class="spot">返程</div>
+        <div class="desc">玄武湖就在南京站旁边——取行李后步行或一站地铁即达；去南京南站约 30 分钟。傍晚的高铁一个多小时就把你送回上海。</div></div>
+    </div>
+    <div class="tipbox">提示：总统府周一闭馆，如行程撞上周一，可与 Day 2 内容对调；对博物馆感兴趣可把总统府换成<b>南京博物院</b>（免费需预约，周一仅上午开放，以官方公告为准），民国馆的街道场景尤其值得一看。</div>
+    <div class="photos">
+      <figure class="w6"><img src="assets/nanjing/presidential.jpg" alt="南京总统府大门"><figcaption>总统府 · 中国近代史遗址博物馆<small>Wikimedia Commons</small></figcaption></figure>
+      <figure class="w6"><img src="assets/nanjing/jimingsi.jpg" alt="鸡鸣寺药师佛塔"><figcaption>鸡鸣寺<small>Commons</small></figcaption></figure>
+      <figure class="w6"><img src="assets/nanjing/taicheng.jpg" alt="台城段明城墙"><figcaption>台城 · 明城墙<small>Commons</small></figcaption></figure>
+      <figure class="w6"><img src="assets/nanjing/xuanwu.jpg" alt="玄武湖与紫金山"><figcaption>玄武湖 · 城中湖山<small>Commons</small></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 住宿 ===================== -->
+<section id="stay">
+  <div class="sec-head"><div class="no">04</div><h2>住在哪里</h2></div>
+  <p class="sec-sub">这趟行程的要点都在地铁沿线，两个思路：<em>住老城南</em>守着夜秦淮，或<em>住新街口</em>当全网枢纽。价格为常规参考区间，以预订平台实时价为准。</p>
+  <div class="hotels">
+    <div class="hotel reveal"><div class="area">夫子庙 · 秦淮河畔</div><h4>秦淮河边的高层景观酒店</h4>
+      <p>选河景房推窗就是画舫与灯笼，夜游秦淮散场步行即回。Day 1 全程不用打车，住得越近，夜色越从容。</p>
+      <div class="meta"><span>河景房</span><span>步行夜游</span><span>约 ¥400–800/晚</span></div></div>
+    <div class="hotel reveal"><div class="area">新街口 · 地铁枢纽</div><h4>新街口商圈连锁酒店</h4>
+      <p>1/2 号线交汇的市中心，去钟山、夫子庙、玄武湖都是三站以内。商业配套成熟，深夜觅食不愁，适合怕折腾的行程。</p>
+      <div class="meta"><span>交通枢纽</span><span>商圈成熟</span><span>约 ¥300–600/晚</span></div></div>
+    <div class="hotel reveal"><div class="area">老门东 · 城南里巷</div><h4>老门东周边设计民宿</h4>
+      <p>住在青砖黛瓦的巷子里，清晨的老街没有游客，只有遛鸟的街坊和豆浆香气。适合喜欢"住进老城"感觉的旅行者。</p>
+      <div class="meta"><span>老城肌理</span><span>本地烟火</span><span>约 ¥400–900/晚</span></div></div>
+    <div class="hotel reveal"><div class="area">玄武湖 · 火车站旁</div><h4>玄武湖畔湖景酒店</h4>
+      <p>第三天动线最顺的选择：湖在楼下，南京站在隔壁，退房后拖着行李也走得动。适合把返程安排在傍晚的走法。</p>
+      <div class="meta"><span>湖景</span><span>近火车站</span><span>约 ¥400–700/晚</span></div></div>
+  </div>
+</section>
+
+<!-- ===================== 美食 ===================== -->
+<section id="food">
+  <div class="sec-head"><div class="no">05</div><h2>金陵味道</h2></div>
+  <p class="sec-sub">南京的味道是<em>"鸭"做主语的</em>：盐水鸭、鸭血粉丝、鸭油烧饼——再配一碗糖粥藕收尾。照着吃不会错。</p>
+  <div class="food-hero reveal">
+    <img src="assets/nanjing/qinhuai.jpg" alt="秦淮河畔的夜色与灯火">
+    <div class="cap"><b>夜秦淮 · 灯影里的小吃江湖</b>
+      <p>夫子庙—贡院街—老门东连成的美食动线：白天看街，晚上吃灯影。排队最长的店往往最值得（真实照片 · 秦淮河）。</p></div>
+  </div>
+  <div class="dishes">
+    <div class="dish reveal"><h5>盐水鸭<small>桂花鸭</small></h5><p>皮白肉嫩、咸鲜带桂花香。老字号认韩复兴，社区鸭子店认排队长的——南京人论"斩鸭子"从不含糊。</p></div>
+    <div class="dish reveal"><h5>鸭血粉丝汤<small>街头标配</small></h5><p>鸭血、鸭肠、鸭肝配粉丝，汤头清鲜。连锁品牌"回味"出品稳定，老门东小店更地道。</p></div>
+    <div class="dish reveal"><h5>牛肉锅贴<small>李记清真馆</small></h5><p>七家湾锅贴的代表，底脆汁多、牛肉馅带甜。草桥清真牛肉锅贴扁食店也是老牌。</p></div>
+    <div class="dish reveal"><h5>汤包<small>鸡鸣汤包 · 尹氏</small></h5><p>褶子朝下的"倒蒸"鸡鸣汤包皮薄卤足；尹氏鸡汁汤包连锁多，一笼配一碗鸭血粉丝就是一餐。</p></div>
+    <div class="dish reveal"><h5>皮肚面<small>项记 · 易记</small></h5><p>大肉、皮肚、猪肝、香肠铺满一碗的三鲜面，是南京人午餐的排面。明瓦廊一带老店集中。</p></div>
+    <div class="dish reveal"><h5>赤豆元宵<small>莲湖糕团店</small></h5><p>红豆沙熬得稠稠的，小元宵软糯，撒一勺桂花——夫子庙的甜蜜收尾。</p></div>
+    <div class="dish reveal"><h5>梅花糕<small>老门东</small></h5><p>梅花模子烤出来的米糕，顶上嵌小圆子和红枣，趁热咬开都是软糯的甜。</p></div>
+    <div class="dish reveal"><h5>鸭油酥烧饼<small>小郑酥烧饼</small></h5><p>用鸭油起酥的烧饼，咸口葱香、甜口糖芯，刚出炉的最好吃，老门东常年排队。</p></div>
+    <div class="dish reveal"><h5>活珠子<small>勇敢者菜单</small></h5><p>南京独有的街头限定，鸡胚蛋的独特口感，敢试是勇者，不敢看一眼也是体验。</p></div>
+    <div class="dish reveal"><h5>糖粥藕<small>蓝老大</small></h5><p>红糖糯米藕与粥一起熬，甜糯的 old-school 味道，科巷、老门东都能找到。</p></div>
+    <div class="dish reveal"><h5>雨花茶 · 盐水鸭礼盒<small>伴手礼</small></h5><p>带一罐雨花茶、一只真空盐水鸭回去，是金陵最体面的手信；夫子庙商圈都能买到正规品牌。</p></div>
+    <div class="dish reveal"><h5>素斋面<small>鸡鸣寺</small></h5><p>古寺里的一碗素面，香菇面筋清汤，配着钟声吃完，是 Day 3 最安静的午餐。</p></div>
+  </div>
+  <div class="streets">
+    <div class="street reveal"><b>老门东 · 剪子巷</b><p>锅贴、烧饼、梅花糕一条街，Day 1 下午就在这解决。</p></div>
+    <div class="street reveal"><b>夫子庙 · 贡院街</b><p>游客最多但选择最全，配合夜游秦淮刚刚好。</p></div>
+    <div class="street reveal"><b>明瓦廊 · 新街口</b><p>本地人的小吃腹地：皮肚面、鸭子店、苍蝇馆子。</p></div>
+    <div class="street reveal"><b>科巷</b><p>藏在新街口身后的市井菜市场美食街，鸡蛋汉堡、藕饼、糕点都很能打。</p></div>
+  </div>
+</section>
+
+<!-- ===================== 贴士 ===================== -->
+<section id="tips">
+  <div class="sec-head"><div class="no">06</div><h2>实用贴士</h2></div>
+  <p class="sec-sub">日期待定，所以更要把功课做在前面——预约、闭馆日和天气这三件事，决定了这趟旅行的顺手程度：</p>
+  <div class="tips">
+    <div class="tip reveal"><h5>预约优先级</h5><p>中山陵免费但必须提前实名预约（官方公众号，旺季紧张）；总统府、美龄宫、科举博物馆可现场或线上购票；南京博物院免费需抢约。定下日期第一件事：约中山陵。</p></div>
+    <div class="tip reveal"><h5>避开周一</h5><p>总统府周一闭馆，中山陵墓室周一维护，博物院周一仅上午开放。行程尽量避开周一；撞上了就把 Day 2 / Day 3 内容对调。</p></div>
+    <div class="tip reveal"><h5>季节选择</h5><p>南京春秋最舒服：3–5 月鸡鸣寺樱花与城墙新绿，10–11 月石象路秋色是全年巅峰。夏季闷热（"火炉"不是白叫的），冬季湿冷，行前一周盯准天气预报再锁日期。</p></div>
+    <div class="tip reveal"><h5>市内交通</h5><p>地铁覆盖全部行程点，支付宝/微信乘车码直接刷闸；机场（禄口）远在城南以外，但本行程高铁直达南京南，无需飞机。景区观光车联票在钟山景区最划算。</p></div>
+    <div class="tip reveal"><h5>避坑指南</h5><p>夫子庙周边搭讪"免费拍照""看相算命"一律不理；门口拉客的一日游、低价团不参加；买盐水鸭认准正规老字号门店而非景区摊点。</p></div>
+    <div class="tip reveal"><h5>节奏建议</h5><p>钟山景区面积大、步行多，Day 2 尽量早出发；秦淮夜游留给非周末更从容；南京旅游投诉与咨询热线以"南京文旅"官方渠道为准。</p></div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    南京三日六朝古都之旅 · 三天两晚 · 日期待定 · 上海出发<br>
+    行程与价格信息整理自公开资料，出行前请以官方与预订平台为准 · 照片 © 原作者，Wikimedia Commons
+  </div>
+</footer>
+
+<script>
+(function(){
+  var els = document.querySelectorAll('.reveal, .photos figure');
+  if (!('IntersectionObserver' in window)) {
+    els.forEach(function(e){ e.classList.add('show'); });
+    return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if (en.isIntersecting) { en.target.classList.add('show'); io.unobserve(en.target); }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px 240px 0px' });
+  els.forEach(function(e){ io.observe(e); });
+  /* 兜底：3 秒后无条件显示，避免任何环境下照片保持隐藏 */
+  setTimeout(function(){ els.forEach(function(e){ e.classList.add('show'); }); }, 3000);
+})();
+</script>
+</body>
+</html>
